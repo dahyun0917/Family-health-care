@@ -13,10 +13,16 @@ struct SnsView: View {
 //            Color.mainGrey.edgesIgnoringSafeArea(.all)  // 전체배경색 변화
             ScrollView{
                 LazyVStack {
-                    story
+                    HStack{
+                        ForEach(0...5, id: \.self) { _ in
+                            story
+                        }
+                    }
+                    .frame(width: 350)
+                    .padding(.top,10)
                     postMenu
-                    ForEach(0...5, id: \.self) { _ in
-                        VStack{
+                    VStack{
+                        ForEach(0...5, id: \.self) { _ in
                             SnsPostRow()
                         }
                     }
@@ -41,19 +47,7 @@ struct SnsView: View {
     }
 }
 private extension SnsView {
-    var story : some View {
-        HStack{
-            storyImage
-            storyImage
-            storyImage
-            storyImage
-            storyImage
-            storyImage
-        }
-        .frame(width: 350)
-        .padding(.top,10)
-    }
-    var storyImage: some View {
+    var story: some View {
         VStack{
             Image(systemName: "person")
                 .resizable()
