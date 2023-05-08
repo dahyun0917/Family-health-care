@@ -17,7 +17,7 @@ struct SnsView: View {
                     postMenu
                     ForEach(0...5, id: \.self) { _ in
                         VStack{
-                            SnsPostView()
+                            SnsPostRow()
                         }
                     }
                 }

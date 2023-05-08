@@ -1,55 +1,29 @@
 //
-//  SnsPostView.swift
+//  SnsPostRow.swift
 //  Family-health-care
 //
-//  Created by 이다현 on 2023/05/07.
+//  Created by 이다현 on 2023/05/08.
 //
 
 import SwiftUI
 
-struct SnsPostView: View {
+struct SnsPostRow: View {
     var body: some View {
         VStack{
-            postProfile
+            SnsUserProfile()
             postContent
         }
         .frame(height: 400)
         .background(Color.primary.colorInvert())
 //        .background(Color.mainGrey)
-        .cornerRadius(3)
-        .overlay(RoundedRectangle(cornerRadius: 3)
+        .cornerRadius(15)
+        .overlay(RoundedRectangle(cornerRadius: 15)
             .stroke(Color.black, lineWidth: 0.2))
         .shadow(color: .mainBeige, radius: 1, x: 2, y: 2)
         .padding(25)
     }
 }
-private extension SnsPostView {
-    var postProfile: some View {
-        HStack{
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40)
-                .cornerRadius(30)
-                .overlay(RoundedRectangle(cornerRadius: 30)
-                    .stroke(Color.black, lineWidth: 0.2))
-            VStack(alignment: .leading){
-                Text("dlekgus1353")
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 3)
-                Text("Aug 23")
-                    .font(.caption2)
-                    .fontWeight(.thin)
-                    .lineLimit(1)
-            }
-            Spacer()
-            
-        }
-        .padding(.horizontal,10)
-        .padding(.top,20)
-        .padding(.bottom,20)
-    }
+private extension SnsPostRow{
     var postContent: some View {
         VStack(alignment: .leading){
             Image("postPicTest")
@@ -91,8 +65,9 @@ private extension SnsPostView {
         }
     }
 }
-struct SnsPostView_Previews: PreviewProvider {
+
+struct SnsPostRow_Previews: PreviewProvider {
     static var previews: some View {
-        SnsPostView()
+        SnsPostRow()
     }
 }

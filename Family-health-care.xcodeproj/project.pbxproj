@@ -14,7 +14,9 @@
 		8951E7832A07B6F800988049 /* SnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7822A07B6F800988049 /* SnsView.swift */; };
 		8951E7852A07B74900988049 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7842A07B74900988049 /* Home.swift */; };
 		8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7872A07C37E00988049 /* Family_health_careApp.swift */; };
-		8951E78A2A07E9D200988049 /* SnsPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7892A07E9D200988049 /* SnsPostView.swift */; };
+		8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */; };
+		8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78F2A07F26400988049 /* SnsUserProfile.swift */; };
+		89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */; };
 		935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935FFBB62A067848007B0E70 /* SwiftUIView.swift */; };
 		935FFBBE2A067A01007B0E70 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBD2A067A01007B0E70 /* FirebaseAnalytics */; };
 		935FFBC02A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBF2A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -54,7 +56,9 @@
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
 		8951E7842A07B74900988049 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
-		8951E7892A07E9D200988049 /* SnsPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostView.swift; sourceTree = "<group>"; };
+		8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostDetailView.swift; sourceTree = "<group>"; };
+		8951E78F2A07F26400988049 /* SnsUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsUserProfile.swift; sourceTree = "<group>"; };
+		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		935FFBB62A067848007B0E70 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				8951E7862A07C2F900988049 /* Application */,
-				8951E77D2A07B68D00988049 /* Resource */,
 				935FFBF32A067BBE007B0E70 /* User Interface */,
+				8951E77D2A07B68D00988049 /* Resource */,
 				935FFBB42A067830007B0E70 /* Helper */,
 				89178BF72A026B020046C907 /* Assets.xcassets */,
 				89178BF92A026B020046C907 /* Preview Content */,
@@ -153,7 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				8951E7822A07B6F800988049 /* SnsView.swift */,
-				8951E7892A07E9D200988049 /* SnsPostView.swift */,
+				8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */,
+				8951E78F2A07F26400988049 /* SnsUserProfile.swift */,
+				89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */,
 			);
 			path = SNS;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
-				8951E78A2A07E9D200988049 /* SnsPostView.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
+				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
+				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
+				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
 				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
