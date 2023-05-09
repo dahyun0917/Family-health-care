@@ -30,7 +30,8 @@ private extension SnsPostRow{
                 .resizable()
                 .scaledToFill()
                 .frame(width: 300, height: 150,alignment: .center)
-                .padding([.leading, .bottom, .trailing],10)
+                .padding([.bottom, .trailing],10)
+                .padding(.leading,20)
                 
             Text("오운완 15일째")
                 .font(.headline)
