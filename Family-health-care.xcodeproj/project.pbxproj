@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		873A702B2A0A6F4F00F800CA /* PromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702A2A0A6F4F00F800CA /* PromiseView.swift */; };
+		873A702D2A0A6FAF00F800CA /* FamilyPromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */; };
+		873A702F2A0A6FDF00F800CA /* FamilyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */; };
+		873A70312A0A6FFE00F800CA /* FamilyMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */; };
 		89178BF62A026B000046C907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89178BF52A026B000046C907 /* ContentView.swift */; };
 		89178BF82A026B020046C907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BF72A026B020046C907 /* Assets.xcassets */; };
 		89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BFA2A026B020046C907 /* Preview Assets.xcassets */; };
@@ -49,11 +53,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		873A702A2A0A6F4F00F800CA /* PromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseView.swift; sourceTree = "<group>"; };
+		873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyPromiseView.swift; sourceTree = "<group>"; };
+		873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyPageView.swift; sourceTree = "<group>"; };
+		873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyMemberView.swift; sourceTree = "<group>"; };
 		89178BF02A026B000046C907 /* Family-health-care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Family-health-care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89178BF72A026B020046C907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
 		8951E7842A07B74900988049 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
@@ -102,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		873A70292A0A6F1C00F800CA /* FamilyPage */ = {
+			isa = PBXGroup;
+			children = (
+				873A702A2A0A6F4F00F800CA /* PromiseView.swift */,
+				873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */,
+				873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */,
+				873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */,
+			);
+			path = FamilyPage;
+			sourceTree = "<group>";
+		};
 		89178BE72A026B000046C907 = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +163,8 @@
 			children = (
 				8951E77E2A07B69600988049 /* Firebase */,
 			);
-			path = Resource;
+			name = Resource;
+			path = "User Interface/Resource";
 			sourceTree = "<group>";
 		};
 		8951E77E2A07B69600988049 /* Firebase */ = {
@@ -202,6 +222,7 @@
 		935FFBF42A067BD1007B0E70 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				873A70292A0A6F1C00F800CA /* FamilyPage */,
 				8951E7812A07B6E500988049 /* SNS */,
 				89178BF52A026B000046C907 /* ContentView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
@@ -314,12 +335,16 @@
 			files = (
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
+				873A702F2A0A6FDF00F800CA /* FamilyPageView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
+				873A702D2A0A6FAF00F800CA /* FamilyPromiseView.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
 				89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
+				873A702B2A0A6F4F00F800CA /* PromiseView.swift in Sources */,
+				873A70312A0A6FFE00F800CA /* FamilyMemberView.swift in Sources */,
 				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -431,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -451,11 +476,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,11 +506,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
