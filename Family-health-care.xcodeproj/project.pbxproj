@@ -18,7 +18,10 @@
 		8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78F2A07F26400988049 /* SnsUserProfile.swift */; };
 		89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */; };
 		89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */; };
-		935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935FFBB62A067848007B0E70 /* SwiftUIView.swift */; };
+		932117052A0F99BB0037DAF0 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932117042A0F99BB0037DAF0 /* MessageBubble.swift */; };
+		932117072A0FF5620037DAF0 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932117062A0FF5620037DAF0 /* Chats.swift */; };
+		932117092A10A0AD0037DAF0 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932117082A10A0AC0037DAF0 /* GifImage.swift */; };
+		935FFBB72A067848007B0E70 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935FFBB62A067848007B0E70 /* ColorExtension.swift */; };
 		935FFBBE2A067A01007B0E70 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBD2A067A01007B0E70 /* FirebaseAnalytics */; };
 		935FFBC02A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBF2A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion */; };
 		935FFBC22A067A01007B0E70 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBC12A067A01007B0E70 /* FirebaseAnalyticsSwift */; };
@@ -46,6 +49,14 @@
 		935FFBEE2A067A01007B0E70 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBED2A067A01007B0E70 /* FirebaseRemoteConfigSwift */; };
 		935FFBF02A067A01007B0E70 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBEF2A067A01007B0E70 /* FirebaseStorage */; };
 		935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */; };
+		9384238B2A10BDD600836D47 /* temp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9384238A2A10BDD600836D47 /* temp.gif */; };
+		938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8A2A10CA8400DD7865 /* Symbol.swift */; };
+		938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8C2A10D06300DD7865 /* SickView.swift */; };
+		93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBC2A0F843D0016675C /* Medicine.swift */; };
+		93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBE2A0F846F0016675C /* Medicines.swift */; };
+		93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC32A0F858F0016675C /* CharacterView.swift */; };
+		93D8FDC62A0F88A10016675C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC52A0F88A10016675C /* Chat.swift */; };
+		93D8FDC82A0F88FA0016675C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC72A0F88FA0016675C /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +64,7 @@
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89178BF72A026B020046C907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Family-health-care/Resource/Firebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
 		8951E7842A07B74900988049 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
@@ -61,7 +72,18 @@
 		8951E78F2A07F26400988049 /* SnsUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsUserProfile.swift; sourceTree = "<group>"; };
 		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryView.swift; sourceTree = "<group>"; };
-		935FFBB62A067848007B0E70 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		932117042A0F99BB0037DAF0 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		932117062A0FF5620037DAF0 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
+		932117082A10A0AC0037DAF0 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
+		935FFBB62A067848007B0E70 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		9384238A2A10BDD600836D47 /* temp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = temp.gif; sourceTree = "<group>"; };
+		938C5C8A2A10CA8400DD7865 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		938C5C8C2A10D06300DD7865 /* SickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickView.swift; sourceTree = "<group>"; };
+		93D8FDBC2A0F843D0016675C /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
+		93D8FDBE2A0F846F0016675C /* Medicines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicines.swift; sourceTree = "<group>"; };
+		93D8FDC32A0F858F0016675C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		93D8FDC52A0F88A10016675C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		93D8FDC72A0F88FA0016675C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +143,7 @@
 		89178BF22A026B000046C907 /* Family-health-care */ = {
 			isa = PBXGroup;
 			children = (
+				93D8FDBB2A0F84180016675C /* Model */,
 				8951E7862A07C2F900988049 /* Application */,
 				935FFBF32A067BBE007B0E70 /* User Interface */,
 				8951E77D2A07B68D00988049 /* Resource */,
@@ -142,6 +165,7 @@
 		8951E77D2A07B68D00988049 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9384238C2A10BDD900836D47 /* gif */,
 				8951E77E2A07B69600988049 /* Firebase */,
 			);
 			path = Resource;
@@ -178,6 +202,7 @@
 		935FFBB42A067830007B0E70 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				938C5C892A10CA6800DD7865 /* CustomView */,
 				935FFBB52A067835007B0E70 /* Extension */,
 			);
 			path = Helper;
@@ -186,7 +211,7 @@
 		935FFBB52A067835007B0E70 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				935FFBB62A067848007B0E70 /* SwiftUIView.swift */,
+				935FFBB62A067848007B0E70 /* ColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -202,11 +227,51 @@
 		935FFBF42A067BD1007B0E70 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				93D8FDC22A0F84D70016675C /* Character */,
 				8951E7812A07B6E500988049 /* SNS */,
 				89178BF52A026B000046C907 /* ContentView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		9384238C2A10BDD900836D47 /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				9384238A2A10BDD600836D47 /* temp.gif */,
+			);
+			path = gif;
+			sourceTree = "<group>";
+		};
+		938C5C892A10CA6800DD7865 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				932117082A10A0AC0037DAF0 /* GifImage.swift */,
+				938C5C8A2A10CA8400DD7865 /* Symbol.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		93D8FDBB2A0F84180016675C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93D8FDBC2A0F843D0016675C /* Medicine.swift */,
+				93D8FDBE2A0F846F0016675C /* Medicines.swift */,
+				93D8FDC72A0F88FA0016675C /* Message.swift */,
+				932117062A0FF5620037DAF0 /* Chats.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		93D8FDC22A0F84D70016675C /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				93D8FDC32A0F858F0016675C /* CharacterView.swift */,
+				93D8FDC52A0F88A10016675C /* Chat.swift */,
+				932117042A0F99BB0037DAF0 /* MessageBubble.swift */,
+				938C5C8C2A10D06300DD7865 /* SickView.swift */,
+			);
+			path = Character;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +366,7 @@
 			files = (
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
 				89178BF82A026B020046C907 /* Assets.xcassets in Resources */,
+				9384238B2A10BDD600836D47 /* temp.gif in Resources */,
 				8951E7802A07B6A000988049 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,15 +378,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D8FDC62A0F88A10016675C /* Chat.swift in Sources */,
+				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
+				938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */,
+				938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
+				93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */,
 				89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */,
+				932117072A0FF5620037DAF0 /* Chats.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
+				932117092A10A0AD0037DAF0 /* GifImage.swift in Sources */,
+				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
-				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
+				935FFBB72A067848007B0E70 /* ColorExtension.swift in Sources */,
+				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
+				932117052A0F99BB0037DAF0 /* MessageBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
