@@ -12,6 +12,12 @@ extension Color{
     static let mainGrey = Color(hex:"EEEEEE")
     static let mainBeige = Color(hex:"E5D6C6")
     static let mainLightBeige = Color(hex:"FdF1DE")
+    static let mainWhite = Color(hex:"FFFFFF")
+    static let darkBlue = Color(hex: "23343F")
+    static let steelBlue = Color(hex: "26546A")
+    static let lightGray = Color(hex: "E6E5E5")
+    static let mediumGray = Color(hex: "7B7B7B")
+    
 }
 
 extension Color {
