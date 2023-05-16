@@ -11,7 +11,6 @@
 		89178BF62A026B000046C907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89178BF52A026B000046C907 /* ContentView.swift */; };
 		89178BF82A026B020046C907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BF72A026B020046C907 /* Assets.xcassets */; };
 		89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BFA2A026B020046C907 /* Preview Assets.xcassets */; };
-		8951E7802A07B6A000988049 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8951E77F2A07B6A000988049 /* GoogleService-Info.plist */; };
 		8951E7832A07B6F800988049 /* SnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7822A07B6F800988049 /* SnsView.swift */; };
 		8951E7852A07B74900988049 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7842A07B74900988049 /* Home.swift */; };
 		8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7872A07C37E00988049 /* Family_health_careApp.swift */; };
@@ -47,6 +46,16 @@
 		935FFBEE2A067A01007B0E70 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBED2A067A01007B0E70 /* FirebaseRemoteConfigSwift */; };
 		935FFBF02A067A01007B0E70 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBEF2A067A01007B0E70 /* FirebaseStorage */; };
 		935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */; };
+		F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F298DB112A0A87B400D1DB2E /* GoogleService-Info.plist */; };
+		F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578772A1376A500A0E93B /* MedicineStateRow.swift */; };
+		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
+		F2E5787C2A137BD700A0E93B /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787B2A137BD700A0E93B /* Medicine.swift */; };
+		F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */; };
+		F2E578802A1394CF00A0E93B /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787F2A1394CF00A0E93B /* Promise.swift */; };
+		F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578812A13996F00A0E93B /* HeightWeight.swift */; };
+		F2E578842A139A8C00A0E93B /* Walk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578832A139A8C00A0E93B /* Walk.swift */; };
+		F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWirteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */; };
+		F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +64,6 @@
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89178BF72A026B020046C907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
 		8951E7842A07B74900988049 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
@@ -64,6 +72,16 @@
 		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryView.swift; sourceTree = "<group>"; };
 		935FFBB62A067848007B0E70 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		F298DB112A0A87B400D1DB2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F2E578772A1376A500A0E93B /* MedicineStateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineStateRow.swift; sourceTree = "<group>"; };
+		F2E578792A1376EE00A0E93B /* MedicineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState.swift; sourceTree = "<group>"; };
+		F2E5787B2A137BD700A0E93B /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
+		F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
+		F2E5787F2A1394CF00A0E93B /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		F2E578812A13996F00A0E93B /* HeightWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightWeight.swift; sourceTree = "<group>"; };
+		F2E578832A139A8C00A0E93B /* Walk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walk.swift; sourceTree = "<group>"; };
+		F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePromiseWirteView.swift; sourceTree = "<group>"; };
+		F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMedicineSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				873A70332A0A78A100F800CA /* MyPageView.swift */,
+				F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */,
+				F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */,
+				F2E578772A1376A500A0E93B /* MedicineStateRow.swift */,
+				F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -131,11 +153,11 @@
 		89178BF22A026B000046C907 /* Family-health-care */ = {
 			isa = PBXGroup;
 			children = (
+				F2E578762A13767100A0E93B /* Model */,
+				F2389E582A0E76B30035CF65 /* res */,
 				8951E7862A07C2F900988049 /* Application */,
 				935FFBF32A067BBE007B0E70 /* User Interface */,
-				8951E77D2A07B68D00988049 /* Resource */,
 				935FFBB42A067830007B0E70 /* Helper */,
-				89178BF72A026B020046C907 /* Assets.xcassets */,
 				89178BF92A026B020046C907 /* Preview Content */,
 			);
 			path = "Family-health-care";
@@ -147,23 +169,6 @@
 				89178BFA2A026B020046C907 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		8951E77D2A07B68D00988049 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				8951E77E2A07B69600988049 /* Firebase */,
-			);
-			name = Resource;
-			path = "User Interface/Resource";
-			sourceTree = "<group>";
-		};
-		8951E77E2A07B69600988049 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				8951E77F2A07B6A000988049 /* GoogleService-Info.plist */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		8951E7812A07B6E500988049 /* SNS */ = {
@@ -219,6 +224,35 @@
 				8951E7842A07B74900988049 /* Home.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		F2389E532A0E75DD0035CF65 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F298DB112A0A87B400D1DB2E /* GoogleService-Info.plist */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F2389E582A0E76B30035CF65 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				89178BF72A026B020046C907 /* Assets.xcassets */,
+				F2389E532A0E75DD0035CF65 /* Firebase */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		F2E578762A13767100A0E93B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2E578792A1376EE00A0E93B /* MedicineState.swift */,
+				F2E5787B2A137BD700A0E93B /* Medicine.swift */,
+				F2E5787F2A1394CF00A0E93B /* Promise.swift */,
+				F2E578812A13996F00A0E93B /* HeightWeight.swift */,
+				F2E578832A139A8C00A0E93B /* Walk.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +346,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
+				F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */,
 				89178BF82A026B020046C907 /* Assets.xcassets in Resources */,
-				8951E7802A07B6A000988049 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,16 +358,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
+				F2E578842A139A8C00A0E93B /* Walk.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
+				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
 				89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */,
+				F2E5787C2A137BD700A0E93B /* Medicine.swift in Sources */,
+				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
 				873A70342A0A78A100F800CA /* MyPageView.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
 				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
+				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
+				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWirteView.swift in Sources */,
+				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
+				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
