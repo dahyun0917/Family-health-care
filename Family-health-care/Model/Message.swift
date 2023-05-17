@@ -7,27 +7,42 @@
 
 import Foundation
 
-struct Message:Identifiable{
-    let id :UUID = UUID()
-    let isCharacter: Bool
-    let body: String
-    let answers: [String]
-    init(isCharacter: Bool, body: String, answers: [String]=[]) {
-        self.isCharacter = isCharacter
+protocol Message: Identifiable {
+    var id: Date { get }
+    var body: String { get }
+    var source: String { get }
+}
+
+struct BotMessage:Message{
+    let id : Date
+    let body : String
+    var needAnswer : Bool
+    let answers : [String]
+    var source: String {
+            return "Bot"
+        }
+    static let type : String = "Bot"
+
+    init(id : Date = Date(), body: String, answers:[String]=[]){
+        self.id = id
+        self.needAnswer = answers.count == 0 ? false : true
         self.body = body
         self.answers = answers
     }
 }
 
-var sampleMessage=[
-    Message(isCharacter:true, body:"진통제와 혈압약 먹을 시간이야dsfjhoaiwejfoawjeiofgjawoegjawoe;gjoawerigjaworgijawrogj"),
-    Message(isCharacter:false, body: "먹었어weiofjioawejfoawjeoifjaweoifjasioefjoiawejof"),
-    Message(isCharacter: true, body: "GOOD!"),
-    Message(isCharacter:true, body:"진통제와 혈압약 먹을 시간이야", answers:["알았어", "먹었어", "싫어요"]),
-    Message(isCharacter:false, body: "먹었어"),
-    Message(isCharacter: true, body: "GOOD!"),
-    Message(isCharacter:true, body:"진통제와 혈압약 먹을 시간이야", answers:["알았어", "먹었어", "싫어요"]),
-    Message(isCharacter:false, body: "먹었어"),
-    Message(isCharacter: true, body: "GOOD!"),
-    Message(isCharacter:true, body:"진통제와 혈압약 먹을 시간이야", answers:["알았어", "먹었어", "싫어요"]),
-]
+struct UserMessage:Message{
+    let id : Date
+    let associated : Date
+    let body : String
+    var source: String {
+            return "User"
+        }
+    static let type : String = "User"
+    
+    init(id : Date = Date(), body : String, associated : Date){
+        self.id = id
+        self.body = body
+        self.associated = associated
+    }
+}

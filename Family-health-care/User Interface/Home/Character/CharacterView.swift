@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CharacterView: View {
+    
     var body: some View {
         
         ZStack{
@@ -38,7 +39,7 @@ struct CharacterView: View {
                     
                     Spacer()
                     
-                    Chat(messages: sampleMessage)
+                    Chat()
                         .frame(width:innerWidth, height:innerWidth*0.8)
                     
                     HStack{

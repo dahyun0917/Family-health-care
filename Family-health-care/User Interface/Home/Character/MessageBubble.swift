@@ -8,31 +8,34 @@
 import SwiftUI
 
 struct MessageBubble: View {
-    let message:Message
+    let message:any Message
     
     var body: some View {
         
-        let align = message.isCharacter ? Alignment.leading : Alignment.trailing
-        
+        let align = (message.source == BotMessage.type) ? Alignment.leading : Alignment.trailing
+        let foreColor = (message.source == BotMessage.type) ? Color.white:Color.black
+        let backColor = (message.source == BotMessage.type) ? Color.mainBlue : Color.mainBeige
+        let edge = (message.source == BotMessage.type) ? Edge.Set.leading : Edge.Set.trailing
         
         VStack{
             Text(message.body)
-                .foregroundColor(message.isCharacter ? Color.white:Color.black)
+                .foregroundColor(foreColor)
                 .padding(10)
-                .background(message.isCharacter ? Color.mainBlue : Color.mainBeige)
+                .background(backColor)
                 .cornerRadius(10)
                 .lineLimit(nil)
                 .frame(maxWidth: 250, alignment: align)
-            
         }
-        .padding(message.isCharacter ? Edge.Set.leading:Edge.Set.trailing, 10)
+        .padding(edge, 10)
         
         
     }
 }
 
 struct AnswerButton:View{
-    let message:Message
+    @EnvironmentObject private var chat : Chats
+    let message : BotMessage
+    
     var body: some View{
         ZStack{
             GeometryReader { geometry in
@@ -46,8 +49,10 @@ struct AnswerButton:View{
                 ForEach(message.answers, id:\.self){ ans in
                     Button(action:{
                         print("\(ans)")
+                        if message.needAnswer{
+                            chat.respondToBot(target: message, response: ans)
+                        }
                         
-                        sampleMessage.append(Message(isCharacter: false, body: "\(ans)"))
                     }){
                         Text("\(ans)")
                     }
@@ -61,7 +66,6 @@ struct AnswerButton:View{
                 
             }
         }.padding([.bottom,.top],5)
-        //        .frame(height:30)
         
     }
 }
@@ -77,16 +81,17 @@ struct DashedLine: Shape {
     }
 }
 
-
-struct MessageBubble_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            ForEach(sampleMessage){
-                
-                MessageBubble(message:$0)
-                
-                
-            }
-        }
-    }
-}
+//
+//struct MessageBubble_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        Group{
+//            ForEach(chat.allMessages, id:\.id){
+//
+//                MessageBubble(message:$0)
+//
+//
+//            }
+//        }
+//    }
+//}

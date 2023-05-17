@@ -8,38 +8,42 @@
 import SwiftUI
 
 struct Chat: View {
-    let messages: [Message]
-    let w = 340
-    
+    @EnvironmentObject private var chat : Chats
     var body: some View {
         
         GeometryReader { geometry in
             ScrollViewReader{proxy in
                 ScrollView(.vertical){
-                    ForEach(messages, id:\.id){ message in
+                    ForEach(chat.allMessages, id:\.id){ allMessage in
+                        
                         VStack{
                             HStack{
-                                if message.isCharacter{
-                                    MessageBubble(message: message)
+                                if allMessage.source == BotMessage.type{
+                                    MessageBubble(message: allMessage)
                                     Spacer()
                                 }
                                 else{
                                     Spacer()
-                                    MessageBubble(message: message)
+                                    MessageBubble(message: allMessage)
                                 }
                             }.padding([.bottom, .top],5)
-                            if message.answers.count != 0 {
-                                AnswerButton(message: message)
+
+                            if let botMessage = allMessage as? BotMessage{
+                                if botMessage.answers.count != 0{
+                                    AnswerButton(message: botMessage)
+                                }
                             }
+                            
                         }
-                        .id(message.id)
+                        .id(allMessage.id)
                             
                     }
+                  
                 }.onAppear {
-                    proxy.scrollTo(messages.last?.id)
+                    proxy.scrollTo(chat.allMessages.last?.id)
                 }
-                .onChange(of: messages.count) { _ in
-                    proxy.scrollTo(messages.last?.id)
+                .onChange(of: chat.allMessages.count) { _ in
+                    proxy.scrollTo(chat.allMessages.last?.id)
                 }
             }
             
@@ -61,6 +65,6 @@ struct Chat: View {
 
 struct Chat_Previews: PreviewProvider {
     static var previews: some View {
-        Chat(messages: sampleMessage)
+        Chat()
     }
 }
