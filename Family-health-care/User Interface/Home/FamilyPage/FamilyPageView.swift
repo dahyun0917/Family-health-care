@@ -10,20 +10,25 @@ import SwiftUI
 struct FamilyPageView: View {
     var body: some View {
         ZStack{
-            Rectangle().edgesIgnoringSafeArea(.all).foregroundColor(Color.mainGrey)
+            Rectangle().edgesIgnoringSafeArea(.all).foregroundColor(Color.white)
             
-                NavigationStack{
-                    List {
-                        FamilyMemberView(borderColor: Color.mainBlue, innerColor: Color.mainGrey)
-                        FamilyMemberView(borderColor: Color.mainBeige, innerColor: Color.mainLightBeige)
-                        FamilyMemberView(borderColor: Color.mainBlue, innerColor: Color.mainGrey)
-                        FamilyMemberView(borderColor: Color.mainBeige, innerColor: Color.mainLightBeige)
-                        FamilyMemberView(borderColor: Color.mainBlue, innerColor: Color.mainGrey)
+            NavigationView{
+                GeometryReader{ geometry in
+                    List(0..<4) {row in
+                        if row % 2 == 0 {
+                            NavigationLink(destination: Text("Hi")){
+                                FamilyMemberView(borderColor: Color.mainBlue, innerColor: Color.mainGrey).frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+                            }
+                        }
+                        else{
+                            NavigationLink(destination: Text("Hi")){
+                                FamilyMemberView(borderColor: Color.mainBeige, innerColor: Color.mainLightBeige).frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+                            }
+                        }
                     }
-                    
                 }
             }
-        
+        }
     }
 }
 
