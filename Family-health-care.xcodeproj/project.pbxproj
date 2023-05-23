@@ -46,6 +46,7 @@
 		935FFBEE2A067A01007B0E70 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBED2A067A01007B0E70 /* FirebaseRemoteConfigSwift */; };
 		935FFBF02A067A01007B0E70 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBEF2A067A01007B0E70 /* FirebaseStorage */; };
 		935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */; };
+		F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */; };
 		F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F298DB112A0A87B400D1DB2E /* GoogleService-Info.plist */; };
 		F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578772A1376A500A0E93B /* MedicineStateRow.swift */; };
 		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
@@ -72,6 +73,7 @@
 		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryView.swift; sourceTree = "<group>"; };
 		935FFBB62A067848007B0E70 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditMedicineStateView.swift; sourceTree = "<group>"; };
 		F298DB112A0A87B400D1DB2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2E578772A1376A500A0E93B /* MedicineStateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineStateRow.swift; sourceTree = "<group>"; };
 		F2E578792A1376EE00A0E93B /* MedicineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */,
 				F2E578772A1376A500A0E93B /* MedicineStateRow.swift */,
 				F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */,
+				F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				873A70342A0A78A100F800CA /* MyPageView.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
 				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
+				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
 				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWirteView.swift in Sources */,
 				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
@@ -505,6 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
+				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -533,6 +538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
+				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
