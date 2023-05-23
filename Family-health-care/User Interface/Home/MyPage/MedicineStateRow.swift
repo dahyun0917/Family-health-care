@@ -33,7 +33,7 @@ struct MedicineStateRow: View {
                 }
             }.frame(width:185,height: 44).background(Color.mainBeige).cornerRadius(20)
         }
-        .frame(height: 150)
+        .frame(height: 60)
     }
 }
 

@@ -52,7 +52,7 @@ struct PromiseView: View {
                     .padding(20)
                 Spacer()
             }
-        }.frame(maxWidth:348,maxHeight:151).background(Color.mainBlue).cornerRadius(20)
+        }.frame(width:348,height:151).background(Color.mainBlue).cornerRadius(20)
     }
 }
 
@@ -74,7 +74,8 @@ struct HeightWeightView: View {
                 .foregroundColor(Color.darkBlue)
                 .padding(20)
             Spacer()
-        }.frame(maxWidth:348,maxHeight:114).background(Color(hex:"D1D2D2")).cornerRadius(20)
+        }
+        .frame(width:348,height:114).background(Color(hex:"D1D2D2")).cornerRadius(20)
     }
 }
 
@@ -86,8 +87,8 @@ struct WalkView: View  {
             Text("\(walk.walk)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue)
             Text("걸음 걸으셨네요!").foregroundColor(Color.darkBlue)
             Image(systemName:"figure.run").foregroundColor(Color.darkBlue)
-        }.frame(maxWidth:348,maxHeight:70)
-            .background().cornerRadius(20)
+        }.frame(width:348,height:70)
+            .background(Color.mainWhite).cornerRadius(20)
     }
 }
 
@@ -98,14 +99,18 @@ struct MedicineStateView: View {
             HStack{
                 Text("복약현황")
                 Spacer()
-                Image(systemName:"pill.circle.fill")
-                    .foregroundColor(Color.steelBlue)
+                NavigationLink(destination: MyPageMedicineSearchView()) {
+                    Image("big-add-pill")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color.steelBlue)
+                }
             }.padding([.top, .horizontal])
             Spacer()
             MedicineStateRow(medicineState: medicineStateList[0])
             MedicineStateRow(medicineState: medicineStateList[1])
             MedicineStateRow(medicineState: medicineStateList[2])
             Spacer()
-        }.frame(maxWidth:350,maxHeight:400).background(Color.mainLightBeige).cornerRadius(20)
+        }.frame(width:350,height:400).background(Color.mainLightBeige).cornerRadius(20)
     }
 }
