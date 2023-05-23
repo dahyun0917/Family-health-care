@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MyPageEditMedicineStateView: View {
     let medicine: Medicine
+    let rows: [GridItem] = [GridItem(.flexible())]
     @State var timeList:[timeItem] = [timeItem(time:Date())]
+    @State var weekList:[weekItem] = [weekItem(check: true, day: "월"), weekItem(check: true, day: "화"), weekItem(check: true, day: "수"), weekItem(check: true, day: "목"), weekItem(check: true, day: "금"), weekItem(check: false, day: "토"), weekItem(check: false, day: "일")]
+    
     var body: some View {
         VStack {
             HStack {
@@ -78,55 +81,30 @@ struct MyPageEditMedicineStateView: View {
                         Spacer()
                     }
                     HStack {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("월")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("화")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("수")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("목")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("금")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mainBlue, lineWidth: 2)
-                                .frame(width: 40, height: 40)
-                            Text("토")
-                                .foregroundColor(Color.mainBlue)
-                        }
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.mainBlue)
-                                .frame(width: 40, height: 40)
-                            Text("일")
-                                .foregroundColor(Color.mainWhite)
+                        LazyHGrid(rows:rows) {
+                            ForEach(0..<weekList.count, id: \.self) { index in
+                                Button {
+                                    weekList[index].check = !weekList[index].check
+                                } label: {
+                                    ZStack {
+                                        if weekList[index].check {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(Color.mainBlue)
+                                                .frame(width: 40, height: 40)
+                                            Text(weekList[index].day)
+                                                .foregroundColor(Color.mainWhite)
+                                            
+                                        } else {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.mainBlue, lineWidth: 2)
+                                                .frame(width: 40, height: 40)
+                                            Text(weekList[index].day)
+                                                .foregroundColor(Color.mainBlue)
+                                        }
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -196,6 +174,12 @@ struct medicineSettingView : View {
 struct timeItem: Identifiable {
     var id = UUID()
     var time: Date
+}
+
+struct weekItem: Identifiable {
+    var id = UUID()
+    var check: Bool
+    var day: String
 }
 
 struct MyPageEditMedicineStateView_Previews: PreviewProvider {
