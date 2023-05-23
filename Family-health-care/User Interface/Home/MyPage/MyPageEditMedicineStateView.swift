@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MyPageEditMedicineStateView: View {
     let medicine: Medicine
-    @State private var currentDate = Date()
+    @State private var currentNumber = 0
+    @State var timeList:[timeItem] = [timeItem(index:0, time:Date())]
     var body: some View {
         VStack {
             HStack {
@@ -43,9 +44,26 @@ struct MyPageEditMedicineStateView: View {
                             .font(.headline)
                             .padding([.leading, .bottom])
                         Spacer()
+                        Button {
+                            self.currentNumber += 1
+                            self.timeList.append(timeItem(index: currentNumber, time: Date()))
+                        } label: {
+                            Text("시간 추가")
+                                .padding(.trailing)
+                                .foregroundColor(.green)
+                                .font(.caption)
+                        }
                     }
-                    DatePicker("", selection: $currentDate, displayedComponents: [.hourAndMinute])
-                        .labelsHidden()
+                    List{
+                        ForEach($timeList) { item in
+                            HStack{
+                                DatePicker("", selection: item.time, displayedComponents: [.hourAndMinute])
+                                    .labelsHidden()
+                                    .padding(.leading)
+                                Spacer()
+                            }
+                        }.onDelete(perform: removeRows)
+                    }
                 }
                 Spacer()
                     .frame(height: 40)
@@ -125,6 +143,9 @@ struct MyPageEditMedicineStateView: View {
             }
         }
     }
+    func removeRows(at offsets: IndexSet) {
+        timeList.remove(atOffsets: offsets)
+    }
 }
 
 struct medicineSettingView : View {
@@ -170,6 +191,12 @@ struct medicineSettingView : View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.lightGray, lineWidth: 2))
     }
+}
+
+struct timeItem: Identifiable {
+    var id = UUID()
+    var index: Int
+    var time: Date
 }
 
 struct MyPageEditMedicineStateView_Previews: PreviewProvider {
