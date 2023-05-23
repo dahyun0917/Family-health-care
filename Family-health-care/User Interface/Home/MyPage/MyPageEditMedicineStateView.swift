@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MyPageEditMedicineStateView: View {
     let medicine: Medicine
-    @State private var currentNumber = 0
-    @State var timeList:[timeItem] = [timeItem(index:0, time:Date())]
+    @State var timeList:[timeItem] = [timeItem(time:Date())]
     var body: some View {
         VStack {
             HStack {
@@ -45,8 +44,7 @@ struct MyPageEditMedicineStateView: View {
                             .padding([.leading, .bottom])
                         Spacer()
                         Button {
-                            self.currentNumber += 1
-                            self.timeList.append(timeItem(index: currentNumber, time: Date()))
+                            self.timeList.append(timeItem(time: Date()))
                         } label: {
                             Text("시간 추가")
                                 .padding(.trailing)
@@ -173,9 +171,11 @@ struct medicineSettingView : View {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color.mainBlue)
                             .frame(width: 33, height: 20)
-                        Text("변경")
-                            .font(.caption)
-                            .foregroundColor(Color.mainWhite)
+                        NavigationLink(destination: MyPageMedicineSearchView()) {
+                            Text("변경")
+                                .font(.caption)
+                                .foregroundColor(Color.mainWhite)
+                        }
                     }
                     .padding(.bottom, 6)
                     .padding(.trailing, 20)
@@ -195,7 +195,6 @@ struct medicineSettingView : View {
 
 struct timeItem: Identifiable {
     var id = UUID()
-    var index: Int
     var time: Date
 }
 
