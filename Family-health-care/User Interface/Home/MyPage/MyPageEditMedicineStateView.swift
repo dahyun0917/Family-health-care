@@ -174,6 +174,6 @@ struct medicineSettingView : View {
 
 struct MyPageEditMedicineStateView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageEditMedicineStateView()
+        MyPageEditMedicineStateView(medicine: medicineSamples[0])
     }
 }
