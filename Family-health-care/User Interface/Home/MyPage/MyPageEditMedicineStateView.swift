@@ -34,12 +34,12 @@ struct MyPageEditMedicineStateView: View {
                     medicineSettingView(medicine: medicine)
                 }
                 Spacer()
-                    .frame(height: 40)
+                    .frame(height: 30)
             }
             Divider()
             VStack {
                 Spacer()
-                    .frame(height: 40)
+                    .frame(height: 30)
                 VStack {
                     HStack {
                         Text("🕐 몇시에 드시는 약인가요?")
@@ -64,15 +64,15 @@ struct MyPageEditMedicineStateView: View {
                                 Spacer()
                             }
                         }.onDelete(perform: removeRows)
-                    }
+                    }.frame(height: 180)
                 }
                 Spacer()
-                    .frame(height: 40)
+                    .frame(height: 30)
             }
             Divider()
             VStack {
                 Spacer()
-                    .frame(height: 40)
+                    .frame(height: 30)
                 VStack {
                     HStack {
                         Text("🗓 요일을 선택해 주세요")
