@@ -28,6 +28,15 @@ struct MyPageMedicineSearchView: View {
                 
                 SearchResultRow(medicine: medicineSamples[0])
                 Spacer()
+                NavigationLink(destination: MyPageEditMedicineStateView(medicine: medicineSamples[0])) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color.mainBeige)
+                            .frame(height: 60)
+                        Text("약 선택 완료")
+                            .foregroundColor(Color.mainWhite)
+                    }
+                }
             }
         }
     }
