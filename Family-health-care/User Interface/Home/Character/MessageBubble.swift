@@ -11,7 +11,6 @@ struct MessageBubble: View {
     let message:any Message
     
     var body: some View {
-        
         let align = (message.source == BotMessage.type) ? Alignment.leading : Alignment.trailing
         let foreColor = (message.source == BotMessage.type) ? Color.white:Color.black
         let backColor = (message.source == BotMessage.type) ? Color.mainBlue : Color.mainBeige
@@ -27,8 +26,6 @@ struct MessageBubble: View {
                 .frame(maxWidth: 250, alignment: align)
         }
         .padding(edge, 10)
-        
-        
     }
 }
 
@@ -81,17 +78,16 @@ struct DashedLine: Shape {
     }
 }
 
-//
-//struct MessageBubble_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        Group{
-//            ForEach(chat.allMessages, id:\.id){
-//
-//                MessageBubble(message:$0)
-//
-//
-//            }
-//        }
-//    }
-//}
+
+struct MessageBubble_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            ForEach(Chats(token: "admin").allMessages, id:\.id){
+
+                MessageBubble(message:$0)
+
+
+            }
+        }
+    }
+}

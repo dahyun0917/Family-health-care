@@ -42,21 +42,21 @@ extension Chats{
     }
     
     func fetchBotMessage(_ token : String){
-        let db = Firestore.firestore()
-        let user = db.collection("users").document(token)
-        let botMessages = user.collection("BotMessage")
-        
-        //        // user information
-        //        user.getDocument(){ (doc, error) in
-        //            guard error == nil, let doc = doc, doc.exists else{
-        //                print("Error: \(error?.localizedDescription ?? "")")
-        //                return
-        //            }
-        //            let info = doc.data()
-        //            if let info = info{
-        //                print(info)
-        //            }
-        //        }
+//        let db = Firestore.firestore()
+//        let user = db.collection("users").document(token)
+//        let botMessages = user.collection("BotMessage")
+//
+//                // user information
+//                user.getDocument(){ (doc, error) in
+//                    guard error == nil, let doc = doc, doc.exists else{
+//                        print("Error: \(error?.localizedDescription ?? "")")
+//                        return
+//                    }
+//                    let info = doc.data()
+//                    if let info = info{
+//                        print(info)
+//                    }
+//                }
         
         botMessages.getDocuments(){ (botMessageSnapshot, error) in
             guard error == nil, let botMessageSnapshot = botMessageSnapshot else{
