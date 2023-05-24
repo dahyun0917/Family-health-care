@@ -19,7 +19,8 @@ struct Home: View {
 //        }
 //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 //        SnsView()
-        CharacterView()
+//        CharacterView()
+        MyPageView()
 //        VStack{
 //            ForEach(chat.allMessages, id:\.0){ messages in
 //                Text(messages.1)
