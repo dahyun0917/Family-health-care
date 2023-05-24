@@ -8,53 +8,61 @@
 import SwiftUI
 
 struct CharacterView: View {
-    
+    @State private var gifName : String = "man_gif"
+
     var body: some View {
-        
         ZStack{
             Color.clear
-            GeometryReader { geometry in
-                let parentWidth = geometry.size.width
-                let outerWidth = geometry.size.width-30
-                let innerWidth = geometry.size.width-50
-                let parentHeight = geometry.size.height
+            
+            GeometryReader { parent_proxy in
+                let parentWidth = parent_proxy.size.width
+                let outerWidth = parent_proxy.size.width-30
+                let innerWidth = parent_proxy.size.width-50
+                let parentHeight = parent_proxy.size.height
+                
                 
                 VStack(alignment: .center){
-                    Spacer()
-                    NavigationView{
-                        let gifWidth = parentWidth*0.85
-                        let gifHeight = parentWidth*0.85
-                        ZStack{
-                            Color.mainBeige
-                            GifImage("temp")
-                                .frame(width:gifWidth, height:gifHeight)
-//                                .border(Color.black)
-                            
-                            NavigationLink(destination: SickView()){
-                                Symbol("magnifyingglass", scale:.large, color: .black)
+                    GeometryReader { geometry_Gif in
+                        
+                        NavigationView{
+                            ScrollViewReader{scrollProxy in
+                                ScrollView(.horizontal, showsIndicators: false){
+                                    
+                                    HStack(spacing:0){
+                                        ZStack{
+                                            GifImage($gifName)
+                                                .frame( height:geometry_Gif.size.height)
+                                            
+                                            
+                                            NavigationLink(destination: SickView()){
+                                                Symbol("magnifyingglass", scale:.large, color: .black)
+                                            }.position(x:geometry_Gif.size.width*0.85, y:geometry_Gif.size.height*0.85)
+                                        }
+                                        .frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height).id("start")
+                                        CharacterSelectionView(gifName:$gifName).frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height)
+                                    }
+                                    
+                                }.onChange(of: gifName) { _ in
+                                    withAnimation{
+                                        scrollProxy.scrollTo("start", anchor: .leading)
+                                    }
+                                }
+                                .background(Color.mainBeige)
                             }
-                            .position(x:gifWidth, y:gifHeight)
+                            
                         }
                     }
-                    
+                    .onAppear{UIScrollView.appearance().isPagingEnabled = true}
                     Spacer()
                     
                     Chat()
                         .frame(width:innerWidth, height:innerWidth*0.8)
                     
-                    HStack{
-                        Spacer()
-                        Symbol("pill.fill", scale:.large)
-                        Spacer()
-                        Symbol("pill.fill", scale:.large)
-                        Spacer()
-                        Symbol("pill", scale:.large)
-                        Spacer()
-                    }
-                    .frame(width:innerWidth, height:50)
-                    .background(Color.white)
-                    .cornerRadius(40)
-                    .padding(10)
+                    medicineTakenView()
+                        .frame(width:innerWidth, height:50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .padding(10)
                     
                 }.frame(width: outerWidth, height: parentHeight)
                     .background(Color.mainBeige)
@@ -70,6 +78,6 @@ struct CharacterView: View {
 
 struct CharacterView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterView()
+        CharacterView().environmentObject(Chats(token:"admin"))
     }
 }
