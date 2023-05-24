@@ -49,13 +49,19 @@
 		935FFBEE2A067A01007B0E70 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBED2A067A01007B0E70 /* FirebaseRemoteConfigSwift */; };
 		935FFBF02A067A01007B0E70 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBEF2A067A01007B0E70 /* FirebaseStorage */; };
 		935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */; };
-		9384238B2A10BDD600836D47 /* temp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9384238A2A10BDD600836D47 /* temp.gif */; };
+		936AF0622A1CC59100248447 /* CharacterSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936AF0612A1CC59100248447 /* CharacterSelectionView.swift */; };
+		936AF0662A1CE0CD00248447 /* ccc.gif in Resources */ = {isa = PBXBuildFile; fileRef = 936AF0652A1CE0CC00248447 /* ccc.gif */; };
+		936AF0682A1CE0D900248447 /* temp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 936AF0672A1CE0D900248447 /* temp.gif */; };
+		9384238B2A10BDD600836D47 /* man_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9384238A2A10BDD600836D47 /* man_gif.gif */; };
+		938B045F2A139A4900A7D56D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B045E2A139A4900A7D56D /* Test.swift */; };
+		938B04632A13AB1F00A7D56D /* testtest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B04622A13AB1F00A7D56D /* testtest.swift */; };
 		938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8A2A10CA8400DD7865 /* Symbol.swift */; };
 		938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8C2A10D06300DD7865 /* SickView.swift */; };
+		93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */; };
 		93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBC2A0F843D0016675C /* Medicine.swift */; };
 		93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBE2A0F846F0016675C /* Medicines.swift */; };
 		93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC32A0F858F0016675C /* CharacterView.swift */; };
-		93D8FDC62A0F88A10016675C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC52A0F88A10016675C /* Chat.swift */; };
+		93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC52A0F88A10016675C /* ChatView.swift */; };
 		93D8FDC82A0F88FA0016675C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC72A0F88FA0016675C /* Message.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,13 +82,19 @@
 		932117062A0FF5620037DAF0 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
 		932117082A10A0AC0037DAF0 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		935FFBB62A067848007B0E70 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		9384238A2A10BDD600836D47 /* temp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = temp.gif; sourceTree = "<group>"; };
+		936AF0612A1CC59100248447 /* CharacterSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionView.swift; sourceTree = "<group>"; };
+		936AF0652A1CE0CC00248447 /* ccc.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ccc.gif; sourceTree = "<group>"; };
+		936AF0672A1CE0D900248447 /* temp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = temp.gif; path = ../../../../../../Desktop/temp.gif; sourceTree = "<group>"; };
+		9384238A2A10BDD600836D47 /* man_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = man_gif.gif; sourceTree = "<group>"; };
+		938B045E2A139A4900A7D56D /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		938B04622A13AB1F00A7D56D /* testtest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testtest.swift; sourceTree = "<group>"; };
 		938C5C8A2A10CA8400DD7865 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		938C5C8C2A10D06300DD7865 /* SickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickView.swift; sourceTree = "<group>"; };
+		93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = medicineTakenView.swift; sourceTree = "<group>"; };
 		93D8FDBC2A0F843D0016675C /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		93D8FDBE2A0F846F0016675C /* Medicines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicines.swift; sourceTree = "<group>"; };
 		93D8FDC32A0F858F0016675C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
-		93D8FDC52A0F88A10016675C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		93D8FDC52A0F88A10016675C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		93D8FDC72A0F88FA0016675C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +243,7 @@
 				8951E7812A07B6E500988049 /* SNS */,
 				89178BF52A026B000046C907 /* ContentView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
+				938B04622A13AB1F00A7D56D /* testtest.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -238,7 +251,9 @@
 		9384238C2A10BDD900836D47 /* gif */ = {
 			isa = PBXGroup;
 			children = (
-				9384238A2A10BDD600836D47 /* temp.gif */,
+				936AF0652A1CE0CC00248447 /* ccc.gif */,
+				936AF0672A1CE0D900248447 /* temp.gif */,
+				9384238A2A10BDD600836D47 /* man_gif.gif */,
 			);
 			path = gif;
 			sourceTree = "<group>";
@@ -259,6 +274,7 @@
 				93D8FDBE2A0F846F0016675C /* Medicines.swift */,
 				93D8FDC72A0F88FA0016675C /* Message.swift */,
 				932117062A0FF5620037DAF0 /* Chats.swift */,
+				938B045E2A139A4900A7D56D /* Test.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,9 +283,11 @@
 			isa = PBXGroup;
 			children = (
 				93D8FDC32A0F858F0016675C /* CharacterView.swift */,
-				93D8FDC52A0F88A10016675C /* Chat.swift */,
+				93D8FDC52A0F88A10016675C /* ChatView.swift */,
 				932117042A0F99BB0037DAF0 /* MessageBubble.swift */,
 				938C5C8C2A10D06300DD7865 /* SickView.swift */,
+				93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */,
+				936AF0612A1CC59100248447 /* CharacterSelectionView.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -366,7 +384,9 @@
 			files = (
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
 				89178BF82A026B020046C907 /* Assets.xcassets in Resources */,
-				9384238B2A10BDD600836D47 /* temp.gif in Resources */,
+				936AF0662A1CE0CD00248447 /* ccc.gif in Resources */,
+				9384238B2A10BDD600836D47 /* man_gif.gif in Resources */,
+				936AF0682A1CE0D900248447 /* temp.gif in Resources */,
 				8951E7802A07B6A000988049 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,12 +398,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8FDC62A0F88A10016675C /* Chat.swift in Sources */,
+				93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */,
 				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
+				936AF0622A1CC59100248447 /* CharacterSelectionView.swift in Sources */,
 				938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */,
+				93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */,
 				938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
@@ -394,6 +416,8 @@
 				932117092A10A0AD0037DAF0 /* GifImage.swift in Sources */,
 				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
+				938B045F2A139A4900A7D56D /* Test.swift in Sources */,
+				938B04632A13AB1F00A7D56D /* testtest.swift in Sources */,
 				935FFBB72A067848007B0E70 /* ColorExtension.swift in Sources */,
 				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
 				932117052A0F99BB0037DAF0 /* MessageBubble.swift in Sources */,
