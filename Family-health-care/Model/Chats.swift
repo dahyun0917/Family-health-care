@@ -42,9 +42,9 @@ extension Chats{
     }
     
     func fetchBotMessage(_ token : String){
-//        let db = Firestore.firestore()
-//        let user = db.collection("users").document(token)
-//        let botMessages = user.collection("BotMessage")
+        let db = Firestore.firestore()
+        let user = db.collection("users").document(token)
+        let botMessages = user.collection("BotMessage")
 //
 //                // user information
 //                user.getDocument(){ (doc, error) in
