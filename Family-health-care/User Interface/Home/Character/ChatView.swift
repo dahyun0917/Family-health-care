@@ -1,5 +1,5 @@
 //
-//  Chat.swift
+//  ChatView.swift
 //  Family-health-care
 //
 //  Created by seokhyeon on 2023/05/13.
@@ -10,8 +10,6 @@ import SwiftUI
 struct Chat: View {
     @EnvironmentObject private var chat : Chats
     var body: some View {
-        
-        GeometryReader { geometry in
             ScrollViewReader{proxy in
                 ScrollView(.vertical){
                     ForEach(chat.allMessages, id:\.id){ allMessage in
@@ -52,8 +50,6 @@ struct Chat: View {
             
             .background(Color.white)
             .cornerRadius(20)
-            .position(x:geometry.size.width/2, y:geometry.size.height/2)
-        }
         
     }
 }
@@ -65,6 +61,6 @@ struct Chat: View {
 
 struct Chat_Previews: PreviewProvider {
     static var previews: some View {
-        Chat()
+        Chat().environmentObject(Chats(token: "admin"))
     }
 }

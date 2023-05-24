@@ -16,18 +16,18 @@ final class Chats: ObservableObject{
         return combined.sorted(by: { $0.id < $1.id })
     }
     init(token:String){
-//                // 임시 데이터
-//                var temp_bot = [
-//                    BotMessage(id:Date(timeIntervalSince1970: 0),body:"안녕 첫 대화야"),
-//                    BotMessage(id:Date(timeIntervalSince1970: 1),body:"아침 약으로 진통제와 혈압약 먹을 시간이야!", answers:["먹었어", "까먹었어", "싫어"])]
-//
-//                self.botMessages = temp_bot
+                // 임시 데이터
+                var temp_bot = [
+                    BotMessage(id:Date(timeIntervalSince1970: 0),body:"안녕 첫 대화야"),
+                    BotMessage(id:Date(timeIntervalSince1970: 1),body:"아침 약으로 진통제와 혈압약 먹을 시간이야!", answers:["먹었어", "까먹었어", "싫어"])]
+
+                self.botMessages = temp_bot
 //                        self.userMessages = temp_user
         
         
-        //firebase에서 사용자의 채팅 내역을 가져옴
-        fetchBotMessage(token)
-        fetchUserMessage(token)
+//        //firebase에서 사용자의 채팅 내역을 가져옴
+//        fetchBotMessage(token)
+//        fetchUserMessage(token)
     }
     
 }
