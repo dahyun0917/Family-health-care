@@ -8,37 +8,60 @@
 import SwiftUI
 
 struct MedicineStateRow: View {
-    let medicineState: MedicineState
-    
+    @State var medicineStates: [MedicineState]
+    let columns: [GridItem] = [GridItem(.flexible())]
     var body: some View {
         HStack{
             VStack{
-                Text(medicineState.time)
+                Text(medicineStates[0].time)
                 //Text("아침식사").font(.system(size:12))
                 //Text("식전 30분").foregroundColor(.blue).font(.system(size:12))
             }
-            Image(systemName:"circle.circle")
-                .foregroundColor(Color.lightGray)
+//            Image(systemName:"circle.circle")
+//                .foregroundColor(Color.lightGray)
             Spacer().frame(width:50)
             HStack{
-                Text(medicineState.medicineName)
-                    .foregroundColor(.white)
-                    .padding(.trailing)
-                VStack{
-                    Image(systemName:"checkmark.square.fill").foregroundColor(Color.white)
-                    //Image(systemName:"checkmark.square").foregroundColor(Color.white)
-                    Text("복용완료!")
-                        .font(.system(size: 7))
-                        .foregroundColor(Color.white)
-                }
-            }.frame(width:185,height: 44).background(Color.mainBeige).cornerRadius(20)
+                LazyVGrid(columns:columns) {
+                    ForEach(0..<medicineStates.count, id: \.self) { index in
+                        HStack {
+                            Spacer()
+                            Text(medicineStates[index].medicineName)
+                                .foregroundColor(.white)
+                                //.padding(.trailing)
+                            Spacer()
+                            if medicineStates[index].isComplete {
+                                Button {
+                                    medicineStates[index].isComplete = false
+                                } label: {
+                                    VStack {
+                                        Image(systemName:"checkmark.square.fill").foregroundColor(Color.white)
+                                        //Image(systemName:"checkmark.square").foregroundColor(Color.white)
+                                        Text("복용완료!")
+                                            .font(.system(size: 7))
+                                            .foregroundColor(Color.white)
+                                    }.frame(width: 30,height: 25).padding(.trailing, 20)
+                                }
+                            }
+                            else {
+                                Button {
+                                    medicineStates[index].isComplete = true
+                                } label: {
+                                    Image(systemName:"checkmark.square").frame(width: 30, height: 25)
+                                        .foregroundColor(Color.white).padding(.trailing, 20)
+                                }
+                            }
+                            //Spacer()
+                        }
+                    }
+                }.frame(width:230).background(Color.mainBeige).cornerRadius(20)
+            }
+            //.frame(height: 60)
         }
-        .frame(height: 60)
     }
 }
 
 struct MedicineStateRow_Previews: PreviewProvider {
     static var previews: some View {
-        MedicineStateRow(medicineState: medicineStateSamples[0])
+        MedicineStateRow(medicineStates: medicineStateSamples)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MedicineState {
+struct MedicineState: Hashable{
     let medicineName: String
     let time: String
     var isComplete: Bool = false

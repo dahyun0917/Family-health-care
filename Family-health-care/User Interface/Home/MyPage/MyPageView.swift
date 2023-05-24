@@ -107,9 +107,9 @@ struct MedicineStateView: View {
                 }
             }.padding([.top, .horizontal])
             Spacer()
-            MedicineStateRow(medicineState: medicineStateList[0])
-            MedicineStateRow(medicineState: medicineStateList[1])
-            MedicineStateRow(medicineState: medicineStateList[2])
+            MedicineStateRow(medicineStates: medicineStateList)
+//            MedicineStateRow(medicineState: medicineStateList[1])
+//            MedicineStateRow(medicineState: medicineStateList[2])
             Spacer()
         }.frame(width:350,height:400).background(Color.mainLightBeige).cornerRadius(20)
     }
