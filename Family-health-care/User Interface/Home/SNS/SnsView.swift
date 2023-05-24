@@ -32,7 +32,7 @@ struct SnsView: View {
                         LazyVStack{
                             ForEach(0...5, id: \.self) { _ in
                                 NavigationLink(destination: SnsPostDetailView()) {
-                                    SnsPostRow()
+                                    SnsPostRow(post:PostSamples[0])
                                 }
                             }
                             

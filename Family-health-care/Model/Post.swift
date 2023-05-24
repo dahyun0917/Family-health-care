@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Codable {
+struct Post: Codable,Identifiable{
     let id: UUID = UUID()
 //    var location: String?
     var title : String?
@@ -16,7 +16,7 @@ struct Post: Codable {
 //    var latitude: Double?
 //    var longitude: Double?
     var img: String?
-    var comment : [Comment]?
+    var comment : [Comment]? = []
     let createBy: String?
     var createAt: Date?
     

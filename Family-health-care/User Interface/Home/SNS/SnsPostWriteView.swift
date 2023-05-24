@@ -53,7 +53,7 @@ private extension SnsPostWriteView {
     }
     var writeAll: some View {
         VStack {
-            SnsUserProfile()
+            SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
             writeTitle
             writeContent
             uploadImage

@@ -16,8 +16,14 @@
 		8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7872A07C37E00988049 /* Family_health_careApp.swift */; };
 		8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */; };
 		8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78F2A07F26400988049 /* SnsUserProfile.swift */; };
+		898A2C592A1CD72400F6C917 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C582A1CD72400F6C917 /* Comment.swift */; };
+		898A2C5B2A1CE0F900F6C917 /* SnsStoryWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5A2A1CE0F900F6C917 /* SnsStoryWriteView.swift */; };
+		898A2C5E2A1CE2AA00F6C917 /* WriteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */; };
+		898A2C602A1E34A200F6C917 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5F2A1E34A200F6C917 /* Story.swift */; };
 		89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */; };
 		89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */; };
+		89E71F912A138F3100C93EBF /* SnsPostWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E71F902A138F3100C93EBF /* SnsPostWriteView.swift */; };
+		89E71F942A13A9B300C93EBF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E71F932A13A9B300C93EBF /* Post.swift */; };
 		935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935FFBB62A067848007B0E70 /* SwiftUIView.swift */; };
 		935FFBBE2A067A01007B0E70 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBD2A067A01007B0E70 /* FirebaseAnalytics */; };
 		935FFBC02A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBBF2A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -59,8 +65,14 @@
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
 		8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostDetailView.swift; sourceTree = "<group>"; };
 		8951E78F2A07F26400988049 /* SnsUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsUserProfile.swift; sourceTree = "<group>"; };
+		898A2C582A1CD72400F6C917 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		898A2C5A2A1CE0F900F6C917 /* SnsStoryWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryWriteView.swift; sourceTree = "<group>"; };
+		898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextView.swift; sourceTree = "<group>"; };
+		898A2C5F2A1E34A200F6C917 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryView.swift; sourceTree = "<group>"; };
+		89E71F902A138F3100C93EBF /* SnsPostWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostWriteView.swift; sourceTree = "<group>"; };
+		89E71F932A13A9B300C93EBF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		935FFBB62A067848007B0E70 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +133,7 @@
 		89178BF22A026B000046C907 /* Family-health-care */ = {
 			isa = PBXGroup;
 			children = (
+				89E71F922A13A99300C93EBF /* Model */,
 				8951E7862A07C2F900988049 /* Application */,
 				935FFBF32A067BBE007B0E70 /* User Interface */,
 				8951E77D2A07B68D00988049 /* Resource */,
@@ -163,6 +176,8 @@
 				8951E78F2A07F26400988049 /* SnsUserProfile.swift */,
 				89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */,
 				89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */,
+				89E71F902A138F3100C93EBF /* SnsPostWriteView.swift */,
+				898A2C5A2A1CE0F900F6C917 /* SnsStoryWriteView.swift */,
 			);
 			path = SNS;
 			sourceTree = "<group>";
@@ -173,6 +188,16 @@
 				8951E7872A07C37E00988049 /* Family_health_careApp.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		89E71F922A13A99300C93EBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				898A2C5F2A1E34A200F6C917 /* Story.swift */,
+				89E71F932A13A9B300C93EBF /* Post.swift */,
+				898A2C582A1CD72400F6C917 /* Comment.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		935FFBB42A067830007B0E70 /* Helper */ = {
@@ -187,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				935FFBB62A067848007B0E70 /* SwiftUIView.swift */,
+				898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -312,15 +338,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898A2C5B2A1CE0F900F6C917 /* SnsStoryWriteView.swift in Sources */,
+				898A2C5E2A1CE2AA00F6C917 /* WriteTextView.swift in Sources */,
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
+				89E71F942A13A9B300C93EBF /* Post.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
 				89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */,
+				898A2C592A1CD72400F6C917 /* Comment.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
+				89E71F912A138F3100C93EBF /* SnsPostWriteView.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
 				935FFBB72A067848007B0E70 /* SwiftUIView.swift in Sources */,
+				898A2C602A1E34A200F6C917 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

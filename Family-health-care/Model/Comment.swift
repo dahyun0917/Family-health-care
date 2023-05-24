@@ -9,11 +9,7 @@ import Foundation
 
 struct Comment: Codable {
     let id: UUID = UUID()
-    //    var location: String?
-    var content: String?
-    //    var keywords: [String] = []
-    //    var latitude: Double?
-    //    var longitude: Double?
+    var content: String? = ""
     let createBy: String?
     var createAt: Date?
 }
