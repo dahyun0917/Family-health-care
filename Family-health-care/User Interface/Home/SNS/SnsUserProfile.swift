@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SnsUserProfile: View {
+    @State var createdBy:String
+    @State var createdAt:Date
     var body: some View {
         HStack{
             Image(systemName: "person")
@@ -18,11 +20,11 @@ struct SnsUserProfile: View {
                 .overlay(RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.black, lineWidth: 0.2))
             VStack(alignment: .leading){
-                Text("dlekgus1353")
+                Text(createdBy)
                     .font(.caption)
                     .fontWeight(.bold)
                     .padding(.bottom, 3)
-                Text("Aug 23")
+                Text("\(createdAt)")
                     .font(.caption2)
                     .fontWeight(.thin)
                     .lineLimit(1)
@@ -38,6 +40,6 @@ struct SnsUserProfile: View {
 
 struct SnsUserProfile_Previews: PreviewProvider {
     static var previews: some View {
-        SnsUserProfile()
+        SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
     }
 }

@@ -13,7 +13,7 @@ struct SnsPostDetailView: View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
                 ScrollView{
-                    LazyVStack {
+                    VStack {
                         postDetail
                         VStack(spacing: 0){
                         ForEach(0...5, id: \.self) { _ in
@@ -26,6 +26,8 @@ struct SnsPostDetailView: View {
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom,80)
                 }
                 .onAppear {
                     UIScrollView.appearance().bounces = false
@@ -43,7 +45,6 @@ struct SnsPostDetailView: View {
                     //                              }
                     //                          }
                     Button("확인"){
-                        
                     }
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -51,12 +52,6 @@ struct SnsPostDetailView: View {
                     
                 }
                 .background(Color.mainBlue)
-                
-//                TextEditor(text: $commentText)
-//                      .cornerRadius(15)
-//                      .padding()
-//                      .background(.blue)
-                  
                       
             }
             .onTapGesture {
@@ -71,7 +66,7 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile()
+                SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -108,13 +103,13 @@ private extension SnsPostDetailView {
                     .font(.headline)
                     .padding(.leading,20)
                 Spacer()
-                Image(systemName: "heart")
-                    .imageScale(.small)
-                    .foregroundColor(.red)
-                    .frame(width: 25, height: 25)
-                Text("6")
-                    .font(.caption)
-                    .padding(.trailing,10)
+//                Image(systemName: "heart")
+//                    .imageScale(.small)
+//                    .foregroundColor(.red)
+//                    .frame(width: 25, height: 25)
+//                Text("6")
+//                    .font(.caption)
+//                    .padding(.trailing,10)
             }
             Text("운동한지 15일 째 ~! 아직 시작단계지만 뿌듯 😝  선아는 벌써 이틀째 운동 쉬는중,, 내일은 선아랑 같이 헬스장 가야지~~     #다이어트 15일차 #건강 #하자 #ㅋㅋㅋ")
                 .font(.caption)

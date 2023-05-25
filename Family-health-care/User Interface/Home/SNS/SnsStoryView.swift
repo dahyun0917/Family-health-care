@@ -11,7 +11,7 @@ struct SnsStoryView: View {
     @State var progress : Double = 0.3
     var body: some View {
         VStack{
-            SnsUserProfile()
+            SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
             ProgressView(value: progress)
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.mainBlue))
                 .padding(.horizontal,15)
