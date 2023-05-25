@@ -27,6 +27,8 @@ struct Family_health_careApp: App {
         WindowGroup {
             NavigationView {
                 Home()
+//                    .environmentObject(Test())
+                    .environmentObject(Chats(token: "admin"))
             }
         }
     }

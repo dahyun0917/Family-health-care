@@ -2,8 +2,25 @@
 //  Medicine.swift
 //  Family-health-care
 //
-//  Created by 양선아 on 2023/05/16.
+//  Created by seokhyeon on 2023/05/09.
 //
+
+//import Foundation
+//
+//struct Medicine{
+//    let id : UUID = UUID()
+//    let medicineName : String
+//    let Company : String
+//    let Efficiency : String
+//    let useMethod : String
+//    let Warning : String
+//    let Instruction : String
+//    let depositMethod : String
+//    let medicineImage : String
+//}
+//
+//extension Medicine : Identifiable{}
+//extension Medicine : Equatable{}
 
 import Foundation
 
