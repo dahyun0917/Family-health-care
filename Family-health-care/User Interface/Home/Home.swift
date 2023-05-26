@@ -22,7 +22,7 @@ struct Home: View {
 
 //        SnsView()
 
-//        CharacterView()
+        CharacterView()
 
 //        MyPageView()
 //        VStack{
@@ -40,7 +40,12 @@ struct Home: View {
 //                }
 //            }
 //        }
-        SnsView(isWrite: false)
+//        SnsView(isWrite: false)
+//
+//        GifView(gifName: "man_gif")
+//                    .frame(width: 100, height: 200)
+//                    .aspectRatio(contentMode: .fit)
+//                    .border(Color.black)
     }
 }
 
