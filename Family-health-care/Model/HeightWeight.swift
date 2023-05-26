@@ -8,10 +8,10 @@
 import Foundation
 
 struct HeightWeight {
-    let heigt: Int
+    let height: Int
     let weight: Int
 }
 
 let heightWeightSampeles = [
-    HeightWeight(heigt: 160, weight: 70),
+    HeightWeight(height: 160, weight: 70),
 ]

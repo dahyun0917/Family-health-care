@@ -12,7 +12,7 @@ struct MyPageView: View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
             VStack{
-                PromiseView(promise: promiseSamples[0])
+                Promise2View(promise: promiseSamples[0])
                 HeightWeightView(heightWeight: heightWeightSampeles[0])
                 WalkView(walk: walkSampeles[0])
                 MedicineStateView(medicineStateList: medicineStateSamples)
@@ -27,7 +27,7 @@ struct MyPageView_Previews: PreviewProvider {
     }
 }
 
-struct PromiseView: View {
+struct Promise2View: View {
     let promise: Promise
     var body: some View {
         VStack{
@@ -69,7 +69,7 @@ struct HeightWeightView: View {
                 Image(systemName:"gearshape.fill").foregroundColor(Color.darkBlue)
             }.padding(.horizontal, 20)
                 .padding(.top, 20)
-            Text("\(heightWeight.heigt) cm   /    \(heightWeight.weight) kg")
+            Text("\(heightWeight.height) cm   /    \(heightWeight.weight) kg")
                 .font(.system(size:30,weight:.black))
                 .foregroundColor(Color.darkBlue)
                 .padding(20)

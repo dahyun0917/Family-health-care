@@ -40,7 +40,8 @@ struct Home: View {
 //                }
 //            }
 //        }
-        SnsView(isWrite: false)
+//        SnsView(isWrite: false)
+        FamilyPageView()
     }
 }
 

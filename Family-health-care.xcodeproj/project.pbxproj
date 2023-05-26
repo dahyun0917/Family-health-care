@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		873A70342A0A78A100F800CA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A70332A0A78A100F800CA /* MyPageView.swift */; };
+		873A702B2A0A6F4F00F800CA /* PromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702A2A0A6F4F00F800CA /* PromiseView.swift */; };
+		873A702D2A0A6FAF00F800CA /* FamilyPromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */; };
+		873A702F2A0A6FDF00F800CA /* FamilyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */; };
+		873A70312A0A6FFE00F800CA /* FamilyMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */; };
+		873A70332A0A78A100F800CA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D022A1C8EF9007DB8AF /* MyPageView.swift */; };
+		87968D0F2A1CC504007DB8AF /* MedicineInform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D0E2A1CC504007DB8AF /* MedicineInform.swift */; };
+		87968D202A1E2D5A007DB8AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D1F2A1E2D5A007DB8AF /* User.swift */; };
+		87B2008A2A1E3DBD00AADFCD /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B200892A1E3DBD00AADFCD /* Family.swift */; };
 		89178BF62A026B000046C907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89178BF52A026B000046C907 /* ContentView.swift */; };
-		89178BF82A026B020046C907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BF72A026B020046C907 /* Assets.xcassets */; };
 		89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BFA2A026B020046C907 /* Preview Assets.xcassets */; };
 		8951E7832A07B6F800988049 /* SnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7822A07B6F800988049 /* SnsView.swift */; };
 		8951E7852A07B74900988049 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7842A07B74900988049 /* Home.swift */; };
@@ -82,10 +88,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		873A70332A0A78A100F800CA /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
-		89178BF02A026B000046C907 /* Family-health-care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Family-health-care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		873A702A2A0A6F4F00F800CA /* PromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseView.swift; sourceTree = "<group>"; };
+		873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyPromiseView.swift; sourceTree = "<group>"; };
+		873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyPageView.swift; sourceTree = "<group>"; };
+		873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyMemberView.swift; sourceTree = "<group>"; };
+		87968D022A1C8EF9007DB8AF /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		87968D0E2A1CC504007DB8AF /* MedicineInform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInform.swift; sourceTree = "<group>"; };
+		87968D1F2A1E2D5A007DB8AF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		87B200892A1E3DBD00AADFCD /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		89178BF72A026B020046C907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Family-health-care/Resource/Firebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
@@ -168,10 +179,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		873A70292A0A6F1C00F800CA /* FamilyPage */ = {
+			isa = PBXGroup;
+			children = (
+				873A702C2A0A6FAF00F800CA /* FamilyPromiseView.swift */,
+				873A702E2A0A6FDF00F800CA /* FamilyPageView.swift */,
+				873A702A2A0A6F4F00F800CA /* PromiseView.swift */,
+				873A70302A0A6FFE00F800CA /* FamilyMemberView.swift */,
+				87968D0E2A1CC504007DB8AF /* MedicineInform.swift */,
+			);
+			path = FamilyPage;
+			sourceTree = "<group>";
+		};
 		873A70322A0A789100F800CA /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				873A70332A0A78A100F800CA /* MyPageView.swift */,
+				87968D022A1C8EF9007DB8AF /* MyPageView.swift */,
 				F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */,
 				F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */,
 				F2E578772A1376A500A0E93B /* MedicineStateRow.swift */,
@@ -194,7 +217,6 @@
 		89178BF12A026B000046C907 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89178BF02A026B000046C907 /* Family-health-care.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,14 +281,6 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		93105B392A1F383E00891E7D /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				89178BF72A026B020046C907 /* Assets.xcassets */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		935FFBB42A067830007B0E70 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +316,7 @@
 				89178BF52A026B000046C907 /* ContentView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
 				938B04622A13AB1F00A7D56D /* testtest.swift */,
+				873A70292A0A6F1C00F800CA /* FamilyPage */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -352,6 +367,8 @@
 				898A2C5F2A1E34A200F6C917 /* Story.swift */,
 				89E71F932A13A9B300C93EBF /* Post.swift */,
 				898A2C582A1CD72400F6C917 /* Comment.swift */,
+				87968D1F2A1E2D5A007DB8AF /* User.swift */,
+				87B200892A1E3DBD00AADFCD /* Family.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,7 +419,6 @@
 				935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */,
 			);
 			productName = "Family-health-care";
-			productReference = 89178BF02A026B000046C907 /* Family-health-care.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -447,11 +463,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
-				F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */,
-				89178BF82A026B020046C907 /* Assets.xcassets in Resources */,
 				936AF0662A1CE0CD00248447 /* ccc.gif in Resources */,
 				9384238B2A10BDD600836D47 /* man_gif.gif in Resources */,
 				9379E2F02A1F10F500858885 /* Assets.xcassets in Resources */,
+				F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,45 +477,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */,
-				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
-				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
+				873A702B2A0A6F4F00F800CA /* PromiseView.swift in Sources */,
+				873A702D2A0A6FAF00F800CA /* FamilyPromiseView.swift in Sources */,
+				873A702F2A0A6FDF00F800CA /* FamilyPageView.swift in Sources */,
+				873A70312A0A6FFE00F800CA /* FamilyMemberView.swift in Sources */,
+				87968D0F2A1CC504007DB8AF /* MedicineInform.swift in Sources */,
+				87968D202A1E2D5A007DB8AF /* User.swift in Sources */,
+				87B2008A2A1E3DBD00AADFCD /* Family.swift in Sources */,
+				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
+				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
+				8951E7852A07B74900988049 /* Home.swift in Sources */,
+				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
+				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
+				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
+				898A2C592A1CD72400F6C917 /* Comment.swift in Sources */,
 				898A2C5B2A1CE0F900F6C917 /* SnsStoryWriteView.swift in Sources */,
 				898A2C5E2A1CE2AA00F6C917 /* WriteTextView.swift in Sources */,
-				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
-				89E71F942A13A9B300C93EBF /* Post.swift in Sources */,
-				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
-				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
-				936AF0622A1CC59100248447 /* CharacterSelectionView.swift in Sources */,
-				938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */,
-				93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */,
-				938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */,
+				898A2C602A1E34A200F6C917 /* Story.swift in Sources */,
 				89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */,
-				F2E578842A139A8C00A0E93B /* Walk.swift in Sources */,
-				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
-				93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */,
 				89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */,
-				932117072A0FF5620037DAF0 /* Chats.swift in Sources */,
-				8951E7852A07B74900988049 /* Home.swift in Sources */,
-				932117092A10A0AD0037DAF0 /* GifImage.swift in Sources */,
-				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
+				89E71F912A138F3100C93EBF /* SnsPostWriteView.swift in Sources */,
+				89E71F942A13A9B300C93EBF /* Post.swift in Sources */,
 				9309BCF52A1E70AC0031D5E7 /* SwiftUIView.swift in Sources */,
-				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
+				932117052A0F99BB0037DAF0 /* MessageBubble.swift in Sources */,
+				932117072A0FF5620037DAF0 /* Chats.swift in Sources */,
+				932117092A10A0AD0037DAF0 /* GifImage.swift in Sources */,
+				936AF0622A1CC59100248447 /* CharacterSelectionView.swift in Sources */,
 				938B045F2A139A4900A7D56D /* Test.swift in Sources */,
 				938B04632A13AB1F00A7D56D /* testtest.swift in Sources */,
+				938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */,
+				938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */,
+				93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */,
+				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
+				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
+				93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */,
+				93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */,
 				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
-				932117052A0F99BB0037DAF0 /* MessageBubble.swift in Sources */,
-				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
-				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
-				873A70342A0A78A100F800CA /* MyPageView.swift in Sources */,
 				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
+				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
+				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
+				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
+				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
+				F2E578842A139A8C00A0E93B /* Walk.swift in Sources */,
 				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */,
 				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
-				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
-				898A2C592A1CD72400F6C917 /* Comment.swift in Sources */,
-				89E71F912A138F3100C93EBF /* SnsPostWriteView.swift in Sources */,
-				898A2C602A1E34A200F6C917 /* Story.swift in Sources */,
+				873A70332A0A78A100F800CA /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,11 +654,13 @@
 				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -661,11 +685,13 @@
 				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
