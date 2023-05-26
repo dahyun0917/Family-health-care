@@ -16,12 +16,15 @@ struct PromiseView: View {
                 HStack{
                     Text(date).font(.system(size:14)).padding(.leading,20)
                     Spacer()
-                }
-                Spacer().padding(.bottom)
+                    Image(systemName:"ellipsis").padding(.trailing,20)
+                }.padding(.top,5)
+                Spacer()
                 Text(text).multilineTextAlignment(.leading)
-                Spacer().frame(height:geometry.size.height*0.4)
+                Spacer()
                 
-            }.background(color).cornerRadius(20).frame(width:geometry.size.width,height:geometry.size.height).position(x:geometry.size.width/2,y:geometry.size.height/2)
+                
+            }.frame(width:geometry.size.width,height:geometry.size.height).position(x:geometry.size.width/2,y:geometry.size.height/2)
+                .background(color).cornerRadius(20)
         }
     }
 }
