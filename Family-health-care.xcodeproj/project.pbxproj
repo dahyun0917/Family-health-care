@@ -77,7 +77,7 @@
 		F2E578802A1394CF00A0E93B /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787F2A1394CF00A0E93B /* Promise.swift */; };
 		F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578812A13996F00A0E93B /* HeightWeight.swift */; };
 		F2E578842A139A8C00A0E93B /* Walk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578832A139A8C00A0E93B /* Walk.swift */; };
-		F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWirteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */; };
+		F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */; };
 		F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,7 +126,7 @@
 		F2E5787F2A1394CF00A0E93B /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		F2E578812A13996F00A0E93B /* HeightWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightWeight.swift; sourceTree = "<group>"; };
 		F2E578832A139A8C00A0E93B /* Walk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walk.swift; sourceTree = "<group>"; };
-		F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePromiseWirteView.swift; sourceTree = "<group>"; };
+		F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePromiseWriteView.swift; sourceTree = "<group>"; };
 		F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMedicineSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				873A70332A0A78A100F800CA /* MyPageView.swift */,
-				F2FC8AA92A13211000EC6E89 /* MyPagePromiseWirteView.swift */,
+				F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */,
 				F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */,
 				F2E578772A1376A500A0E93B /* MedicineStateRow.swift */,
 				F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */,
@@ -495,7 +495,7 @@
 				873A70342A0A78A100F800CA /* MyPageView.swift in Sources */,
 				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
-				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWirteView.swift in Sources */,
+				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */,
 				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
 				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
 				898A2C592A1CD72400F6C917 /* Comment.swift in Sources */,
