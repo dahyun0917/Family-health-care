@@ -63,6 +63,7 @@
 		935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */; };
 		936AF0622A1CC59100248447 /* CharacterSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936AF0612A1CC59100248447 /* CharacterSelectionView.swift */; };
 		936AF0662A1CE0CD00248447 /* ccc.gif in Resources */ = {isa = PBXBuildFile; fileRef = 936AF0652A1CE0CC00248447 /* ccc.gif */; };
+		936B84F62A2032840042EE3F /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 936B84F52A2032840042EE3F /* SwiftyGif */; };
 		9379E2F02A1F10F500858885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9379E2EF2A1F10F500858885 /* Assets.xcassets */; };
 		9384238B2A10BDD600836D47 /* man_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9384238A2A10BDD600836D47 /* man_gif.gif */; };
 		938B045F2A139A4900A7D56D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B045E2A139A4900A7D56D /* Test.swift */; };
@@ -155,6 +156,7 @@
 				935FFBE62A067A01007B0E70 /* FirebaseMLModelDownloader in Frameworks */,
 				935FFBDA2A067A01007B0E70 /* FirebaseFirestoreSwift in Frameworks */,
 				935FFBC62A067A01007B0E70 /* FirebaseAppCheck in Frameworks */,
+				936B84F62A2032840042EE3F /* SwiftyGif in Frameworks */,
 				935FFBC42A067A01007B0E70 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				935FFBCA2A067A01007B0E70 /* FirebaseAuth in Frameworks */,
 				935FFBCE2A067A01007B0E70 /* FirebaseCrashlytics in Frameworks */,
@@ -417,6 +419,7 @@
 				935FFBED2A067A01007B0E70 /* FirebaseRemoteConfigSwift */,
 				935FFBEF2A067A01007B0E70 /* FirebaseStorage */,
 				935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */,
+				936B84F52A2032840042EE3F /* SwiftyGif */,
 			);
 			productName = "Family-health-care";
 			productType = "com.apple.product-type.application";
@@ -447,6 +450,7 @@
 			mainGroup = 89178BE72A026B000046C907;
 			packageReferences = (
 				935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 			);
 			productRefGroup = 89178BF12A026B000046C907 /* Products */;
 			projectDirPath = "";
@@ -651,7 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
-				DEVELOPMENT_TEAM = 6AQ46H4YCB;
+				DEVELOPMENT_TEAM = F43GSU7548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
@@ -682,7 +686,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
-				DEVELOPMENT_TEAM = 6AQ46H4YCB;
+				DEVELOPMENT_TEAM = F43GSU7548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
@@ -735,6 +739,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.0.0;
+			};
+		};
+		936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -874,6 +886,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		936B84F52A2032840042EE3F /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

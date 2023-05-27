@@ -22,7 +22,7 @@ struct Home: View {
 
 //        SnsView()
 
-//        CharacterView()
+        CharacterView()
 
 //        MyPageView()
 //        VStack{
@@ -41,7 +41,7 @@ struct Home: View {
 //            }
 //        }
 //        SnsView(isWrite: false)
-        FamilyPageView()
+        // FamilyPageView()
     }
 }
 

@@ -30,8 +30,9 @@ struct CharacterView: View {
                                     
                                     HStack(spacing:0){
                                         ZStack{
-                                            GifImage($gifName)
-                                                .frame( height:geometry_Gif.size.height)
+                                            GifView(gifName: "man_gif")
+                                                .frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height)
+                                                .aspectRatio(contentMode: .fit)
                                             
                                             
                                             NavigationLink(destination: SickView()){
