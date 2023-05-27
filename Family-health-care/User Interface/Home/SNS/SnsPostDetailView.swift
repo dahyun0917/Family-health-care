@@ -39,11 +39,6 @@ struct SnsPostDetailView: View {
                     TextField("댓글 부탁",text: $commentText)
                         .padding()
                         .textFieldStyle(.roundedBorder)
-                    //                        .onTapGesture {
-                    //                              withAnimation {
-                    //                                  proxy.scrollTo(index, anchor: .top)
-                    //                              }
-                    //                          }
                     Button("확인"){
                     }
                     .foregroundColor(.white)
