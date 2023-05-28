@@ -10,6 +10,8 @@ import SwiftUI
 struct CharacterView: View {
     @State private var gifName : String = "man_gif"
     @State private var selected = 0
+    @State private var showPopover = false
+    @State private var mealTime = 0
     
     var body: some View {
         ZStack{
@@ -82,22 +84,72 @@ struct CharacterView: View {
                     Chat()
                         .frame(width:innerWidth, height:min(innerHeight*0.8, innerWidth*0.8))
                     
-                    medicineTakenView()
-                        .frame(width:innerWidth, height:50)
-                        .background(Color.white)
-                        .cornerRadius(40)
-                        .padding(10)
+                    ZStack{
+                        medicineTakenView(showPopover: $showPopover, mealTime: $mealTime)
+                            .frame(width:innerWidth, height:50)
+                            .background(Color.white)
+                            .cornerRadius(40)
+                            .padding(10)
+                        if showPopover {
+                            VStack{
+                                Text(mealTimeString)
+                                ForEach((groupedMedicineStates[mealTime]?.map { $0.medicineName } ?? []), id:\.self) { medicineName in
+                                    Text(medicineName)
+                                    
+                                }
+                            }.padding()
+                                .background(Color.mainLightBeige)
+                                .cornerRadius(10)
+                                .shadow(radius: 10)
+                                .offset(x: 0, y: -50)  // Adjust this offset as needed
+                            
+                        }
+                    }
+                    
                     
                 }.frame(width: outerWidth, height: parentHeight)
                     .background(Color.mainBeige)
                     .cornerRadius(25)
                     .position(x:parentWidth/2, y:parentHeight/2)
             }
-        }.background(Color.mainGrey)
+        }
+        .background(Color.mainGrey)
+        .onTapGesture {
+            withAnimation(.spring()) {
+                self.showPopover = false
+            }
+        }
         
     }
 }
 
+private extension CharacterView {
+    var mealTimeString: String {
+        switch mealTime {
+        case 0:
+            return "아침"
+        case 1:
+            return "점심"
+        default:
+            return "저녁"
+        }
+    }
+    
+    var groupedMedicineStates: [Int: [MedicineState]] {
+        var grouped: [Int: [MedicineState]] = [:]
+        
+        for medicineState in medicineStateSamples {
+            let mealTime = medicineState.meal
+            if grouped[mealTime] == nil {
+                grouped[mealTime] = [medicineState]
+            } else {
+                grouped[mealTime]?.append(medicineState)
+            }
+        }
+        
+        return grouped
+    }
+}
 
 
 struct CharacterView_Previews: PreviewProvider {
