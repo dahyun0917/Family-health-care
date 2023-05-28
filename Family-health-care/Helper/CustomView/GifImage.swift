@@ -9,27 +9,31 @@
 import SwiftUI
 import SwiftyGif
 
+import SwiftUI
+import SwiftyGif
+
+class GifUIImageView: UIImageView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
+    }
+}
+
 struct GifView: UIViewRepresentable {
-    let gifName: String
+    @Binding var gifName: String
 
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-
-        let gif = try! UIImage(gifName: gifName)
-        let imageView = UIImageView(gifImage: gif, loopCount: -1) // Loop forever
-        imageView.contentMode = .scaleAspectFit
-        
-        view.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        return view
+    func makeUIView(context: Context) -> GifUIImageView {
+        let gifImageView = GifUIImageView()
+        gifImageView.contentMode = .scaleAspectFit
+        return gifImageView
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    func updateUIView(_ uiView: GifUIImageView, context: Context) {
+        do {
+            let gif = try UIImage(gifName: gifName)
+            uiView.setGifImage(gif)
+        } catch {
+            print("Failed to load gif: \(error)")
+        }
+    }
 }
+

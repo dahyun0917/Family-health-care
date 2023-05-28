@@ -13,7 +13,7 @@ struct CharacterSelectionView: View {
         VStack{
             HStack{
                 CharacterMenu(gifName:$gifName,imageName: "man")
-                CharacterMenu(gifName:$gifName,imageName: "man")
+                CharacterMenu(gifName:$gifName,imageName: "ccc")
             }
             HStack{
                 CharacterMenu(gifName:$gifName,imageName: "man")
@@ -34,9 +34,7 @@ private extension CharacterSelectionView{
                         .resizable()
                         .scaledToFit()
                         .onTapGesture{
-                            
                             gifName = imageName+"_gif"
-                            print(gifName)
                         }
                 }.frame(width:proxy.size.width, height:proxy.size.height)
                     .background(Color.mainLightBeige)
