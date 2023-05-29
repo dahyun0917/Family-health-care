@@ -28,49 +28,10 @@ struct CharacterView: View {
                 VStack(alignment: .center){
                     NavigationView{
                         VStack{
-                            HStack(spacing: 30) {
-                                Button("내 캐릭터") { withAnimation { selected = 0 } }
-                                    .frame(width: 100)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.mainLightBeige)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(selected == 0 ? Color.mainLightBeige : Color.mainBeige)
-                                            )
-                                    )
-                                    .foregroundColor(Color.black)
-                                Button("캐릭터 변경") {
-                                    withAnimation {
-                                        selected = 1
-                                    }
-                                }
-                                .frame(width: innerWidth*0.25)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(selected == 1 ? Color.mainLightBeige : Color.mainBeige)
-                                )
-                                .foregroundColor(Color.black)
-                                
-                            }
-                            .padding()
-                            .background(Color.mainBeige)
-                            GeometryReader { geometry_Gif in
-                                TabView(selection: $selected) {
-                                    ZStack{
-                                        GifView(gifName: $gifName)
-                                            .frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height)
-                                            .aspectRatio(contentMode: .fit)
-                                        NavigationLink(destination: SickView()){
-                                            Symbol("magnifyingglass", scale:.large, color: .black)
-                                                .padding(5)
-                                                .background(Circle().fill(Color.mainLightBeige))
-                                        }.position(x:geometry_Gif.size.width*0.85, y:geometry_Gif.size.height*0.85)
-                                    }
-                                    .frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height).tag(0)
-                                    CharacterSelectionView(gifName:$gifName)
-                                        .frame(width:geometry_Gif.size.width, height:geometry_Gif.size.height).tag(1)
-                                }
+                            CharacterTabMenuBar(selected: $selected)
+                            TabView(selection: $selected) {
+                                CharacterTabView(gifName: $gifName).tag(0)
+                                CharacterSelectionView(gifName:$gifName).tag(1)
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -78,7 +39,10 @@ struct CharacterView: View {
                         .onChange(of: gifName){ _ in
                             withAnimation{ selected = 0 }
                         }
-                    }.navigationBarHidden(true)
+                    }
+                    .navigationBarHidden(true)
+                    .frame(width:innerWidth)
+                    
                     Spacer()
                     
                     Chat()
@@ -101,8 +65,7 @@ struct CharacterView: View {
                                 .background(Color.mainLightBeige)
                                 .cornerRadius(10)
                                 .shadow(radius: 10)
-                                .offset(x: 0, y: -50)  // Adjust this offset as needed
-                            
+                                .offset(x: 0, y: -50)
                         }
                     }
                     
