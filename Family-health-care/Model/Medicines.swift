@@ -1,13 +1,49 @@
-////
-////  Medicines.swift
-////  Family-health-care
-////
-////  Created by seokhyeon on 2023/05/09.
-////
 //
-//import Foundation
-//import Firebase
+//  Medicines.swift
+//  Family-health-care
 //
+//  Created by seokhyeon on 2023/05/09.
+//
+
+import Foundation
+import Firebase
+import SwiftUI
+
+final class MedicationsForPainOfParts: ObservableObject{
+    @Published var medicationsForPainOfParts: [String : [MedicationsForPain]]
+    let partsName = ["Arm", "Eye", "Head", "Heart", "Leg", "Mouth", "Stomach", "Throat"]
+    
+    init(){
+        self.medicationsForPainOfParts=[:]
+        fetchData()
+    }
+    
+    func fetchData(){
+        let db = Firestore.firestore()
+        let mfp = db.collection("medicationsForPain")
+        
+        for part in partsName{
+            let part_ref = mfp.document(part).collection("Pain")
+            part_ref.getDocuments(){ (painSnapshot, error) in
+                guard error == nil, let painSnapshot = painSnapshot else{
+                    print("error")
+                    return
+                }
+                var medicationsForPain : [MedicationsForPain] = []
+                for painDoc in painSnapshot.documents{
+                    let medics = painDoc.data()["medications"] as? [String] ?? []
+                    medicationsForPain.append(MedicationsForPain(pain: painDoc.documentID, medications: medics))
+                }
+                self.medicationsForPainOfParts[part] = medicationsForPain
+                print("\(part), \(medicationsForPain)")
+                
+            }
+        }
+        
+        
+    }
+}
+
 //final class Medicines: ObservableObject{
 //    @Published var medicines: [Medicine]
 //

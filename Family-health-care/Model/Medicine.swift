@@ -22,6 +22,11 @@
 //extension Medicine : Identifiable{}
 //extension Medicine : Equatable{}
 
+struct MedicationsForPain {
+    let pain: String
+    let medications: [String]
+}
+
 import Foundation
 
 struct Medicine {
