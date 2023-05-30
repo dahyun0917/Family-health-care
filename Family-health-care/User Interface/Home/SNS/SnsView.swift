@@ -19,8 +19,12 @@ struct SnsView: View {
                     ScrollView(.horizontal,showsIndicators: false){
                         HStack{
                             ForEach(0...5, id: \.self) { _ in
-                                story
+                                NavigationLink(destination: SnsStoryView()) {
+                                    story
+                                }
+                                
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                         .frame(maxHeight: .infinity)
                     }
@@ -35,6 +39,7 @@ struct SnsView: View {
                                     SnsPostRow(post:PostSamples[0])
                                 }
                             }
+                            .buttonStyle(PlainButtonStyle())
                             
                         }
                     }
