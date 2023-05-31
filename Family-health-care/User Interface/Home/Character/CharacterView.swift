@@ -25,7 +25,8 @@ struct CharacterView: View {
                 let parentHeight = parent_proxy.size.height
                 
                 
-                VStack(alignment: .center){
+//                VStack(alignment: .center){
+                ScrollView{
                     NavigationView{
                         VStack{
                             CharacterTabMenuBar(selected: $selected)
@@ -45,7 +46,7 @@ struct CharacterView: View {
                     
                     Spacer()
                     
-                    Chat()
+                    ChatView()
                         .frame(width:innerWidth, height:min(innerHeight*0.8, innerWidth*0.8))
                     
                     ZStack{

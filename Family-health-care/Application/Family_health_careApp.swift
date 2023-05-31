@@ -31,6 +31,7 @@ struct Family_health_careApp: App {
 //                    .environmentObject(Test())
                     .environmentObject(Chats(token: "admin"))
                     .environmentObject(MedicationsForPainOfParts())
+                    .environmentObject(Medicines())
             }
         }
     }

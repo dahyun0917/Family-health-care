@@ -73,6 +73,8 @@
 		93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */; };
 		93CC218A2A246D3B00981AC1 /* CharacterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC21892A246D3B00981AC1 /* CharacterTabView.swift */; };
 		93CC218C2A2470D500981AC1 /* CharacterTabMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC218B2A2470D500981AC1 /* CharacterTabMenuBar.swift */; };
+		93CC218E2A262CB000981AC1 /* MedicExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC218D2A262CB000981AC1 /* MedicExplanationView.swift */; };
+		93CC21912A27785D00981AC1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC21902A27785D00981AC1 /* NavigationBar.swift */; };
 		93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBC2A0F843D0016675C /* Medicine.swift */; };
 		93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDBE2A0F846F0016675C /* Medicines.swift */; };
 		93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC32A0F858F0016675C /* CharacterView.swift */; };
@@ -130,6 +132,8 @@
 		93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = medicineTakenView.swift; sourceTree = "<group>"; };
 		93CC21892A246D3B00981AC1 /* CharacterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTabView.swift; sourceTree = "<group>"; };
 		93CC218B2A2470D500981AC1 /* CharacterTabMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTabMenuBar.swift; sourceTree = "<group>"; };
+		93CC218D2A262CB000981AC1 /* MedicExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicExplanationView.swift; sourceTree = "<group>"; };
+		93CC21902A27785D00981AC1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		93D8FDBC2A0F843D0016675C /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		93D8FDBE2A0F846F0016675C /* Medicines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicines.swift; sourceTree = "<group>"; };
 		93D8FDC32A0F858F0016675C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 			children = (
 				932117082A10A0AC0037DAF0 /* GifImage.swift */,
 				938C5C8A2A10CA8400DD7865 /* Symbol.swift */,
+				93CC21902A27785D00981AC1 /* NavigationBar.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				936AF0612A1CC59100248447 /* CharacterSelectionView.swift */,
 				93CC21892A246D3B00981AC1 /* CharacterTabView.swift */,
 				93CC218B2A2470D500981AC1 /* CharacterTabMenuBar.swift */,
+				93CC218D2A262CB000981AC1 /* MedicExplanationView.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				873A702F2A0A6FDF00F800CA /* FamilyPageView.swift in Sources */,
 				873A70312A0A6FFE00F800CA /* FamilyMemberView.swift in Sources */,
 				87968D0F2A1CC504007DB8AF /* MedicineInform.swift in Sources */,
+				93CC21912A27785D00981AC1 /* NavigationBar.swift in Sources */,
 				87968D202A1E2D5A007DB8AF /* User.swift in Sources */,
 				87B2008A2A1E3DBD00AADFCD /* Family.swift in Sources */,
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
@@ -532,6 +539,7 @@
 				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
 				F2E578842A139A8C00A0E93B /* Walk.swift in Sources */,
 				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */,
+				93CC218E2A262CB000981AC1 /* MedicExplanationView.swift in Sources */,
 				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
 				873A70332A0A78A100F800CA /* MyPageView.swift in Sources */,
 			);
