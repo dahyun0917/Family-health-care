@@ -15,6 +15,7 @@
 		87968D0F2A1CC504007DB8AF /* MedicineInform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D0E2A1CC504007DB8AF /* MedicineInform.swift */; };
 		87968D202A1E2D5A007DB8AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D1F2A1E2D5A007DB8AF /* User.swift */; };
 		87B2008A2A1E3DBD00AADFCD /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B200892A1E3DBD00AADFCD /* Family.swift */; };
+		87C73F0E2A25E68900FF7CDF /* navView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C73F0D2A25E68900FF7CDF /* navView.swift */; };
 		89178BF62A026B000046C907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89178BF52A026B000046C907 /* ContentView.swift */; };
 		89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89178BFA2A026B020046C907 /* Preview Assets.xcassets */; };
 		8951E7832A07B6F800988049 /* SnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7822A07B6F800988049 /* SnsView.swift */; };
@@ -96,6 +97,7 @@
 		87968D0E2A1CC504007DB8AF /* MedicineInform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInform.swift; sourceTree = "<group>"; };
 		87968D1F2A1E2D5A007DB8AF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87B200892A1E3DBD00AADFCD /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		87C73F0D2A25E68900FF7CDF /* navView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navView.swift; sourceTree = "<group>"; };
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Family-health-care/Resource/Firebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -210,7 +212,6 @@
 				89178BF22A026B000046C907 /* Family-health-care */,
 				9379E2EF2A1F10F500858885 /* Assets.xcassets */,
 				89178BF12A026B000046C907 /* Products */,
-				93105B392A1F383E00891E7D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -316,6 +317,7 @@
 				89178BF52A026B000046C907 /* ContentView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
 				938B04622A13AB1F00A7D56D /* testtest.swift */,
+				87C73F0D2A25E68900FF7CDF /* navView.swift */,
 				873A70292A0A6F1C00F800CA /* FamilyPage */,
 			);
 			path = Home;
@@ -487,6 +489,7 @@
 				89178BF62A026B000046C907 /* ContentView.swift in Sources */,
 				8951E7832A07B6F800988049 /* SnsView.swift in Sources */,
 				8951E7852A07B74900988049 /* Home.swift in Sources */,
+				87C73F0E2A25E68900FF7CDF /* navView.swift in Sources */,
 				8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */,
 				8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */,
 				8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */,
