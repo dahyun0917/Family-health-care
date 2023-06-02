@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MedicineInform: View {
-    var color : Color
+    var color : Color, name : String = "글루페스트"
     var body: some View {
         HStack{
-            Text("글루패스트").font(.system(size: 18))
+            Text(name).font(.system(size: 18))
             
             VStack{
                 Image(systemName:"checkmark.square.fill")
