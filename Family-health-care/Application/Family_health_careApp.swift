@@ -30,12 +30,10 @@ struct Family_health_careApp: App {
         WindowGroup {
             NavigationView {
                 Home()
-//                    .environmentObject(Test())
                     .environmentObject(Chats(token: "admin"))
                     .environmentObject(MedicationsForPainOfParts())
                     .environmentObject(Medicines())
- //                   .environmentObject(User(token:"admin"))
-                    .environmentObject(Family(user: "admin"))
+                    .environmentObject(UserLoader(token: "admin"))
             }
         }
     }
