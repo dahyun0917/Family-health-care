@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct SnsUserProfile: View {
-    @State var createdBy:String
+    @State var createdBy:String = ""
     @State var createdAt:Date
+    static let dateFormat: DateFormatter = {
+           let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY년 M월 d일"
+            return formatter
+    }()
     var body: some View {
         HStack{
             Image(systemName: "person")
@@ -24,7 +29,7 @@ struct SnsUserProfile: View {
                     .font(.caption)
                     .fontWeight(.bold)
                     .padding(.bottom, 3)
-                Text("\(createdAt)")
+                Text("\(createdAt, formatter: SnsUserProfile.dateFormat)")
                     .font(.caption2)
                     .fontWeight(.thin)
                     .lineLimit(1)
@@ -36,7 +41,9 @@ struct SnsUserProfile: View {
         .padding(.top,20)
         .padding(.bottom,20)
     }
+    
 }
+
 
 struct SnsUserProfile_Previews: PreviewProvider {
     static var previews: some View {

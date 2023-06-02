@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SnsStoryView: View {
     @State var progress : Double = 0.3
+    var story:Story
     var body: some View {
         VStack{
-            SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
+            SnsUserProfile(createdBy: story.createBy, createdAt: story.createAt)
             ProgressView(value: progress)
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.mainBlue))
                 .padding(.horizontal,15)
@@ -19,8 +20,6 @@ struct SnsStoryView: View {
                 Image("postPicTest")
                     .resizable()
                     .padding(20)
-//                    .scaledToFill()
-                    
                     .frame(width: .infinity, height: .infinity,alignment: .center)
                     
             }
@@ -35,6 +34,6 @@ struct SnsStoryView: View {
 }
 struct SnsStoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SnsStoryView()
+        SnsStoryView(story: StorySamples[0])
     }
 }

@@ -9,90 +9,111 @@ import SwiftUI
 import UIKit
 
 struct SnsView: View {
-    @State var isWrite:Bool
+    @EnvironmentObject private var posts : Posts
+    @EnvironmentObject private var storys : Storys
+    @State var isWrite:Bool = false
+    @State var isClick:Int = 1
+    @State private var date = Date()
     var body: some View {
         NavigationView{
-            ZStack(alignment: .bottomTrailing){
-//                Color.mainGrey.edgesIgnoringSafeArea(.all)  // 전체배경색 변화
+            
+                //                Color.mainGrey.edgesIgnoringSafeArea(.all)  // 전체배경색 변화
                 
                 VStack {
                     ScrollView(.horizontal,showsIndicators: false){
                         HStack{
-                            ForEach(0...5, id: \.self) { _ in
-                                story
+                            ForEach(storys.storys, id: \.id) { story in
+                                NavigationLink(destination: SnsStoryView(story: story)) {
+                                    storyView(story: story)
+                                }
+                                
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                         .frame(maxHeight: .infinity)
                     }
                     .frame(width: 350)
                     .frame(height: 100)
-                    .padding(.top,10)
-                    postMenu
-                    ScrollView{
-                        LazyVStack{
-                            ForEach(0...5, id: \.self) { _ in
-                                NavigationLink(destination: SnsPostDetailView()) {
-                                    SnsPostRow(post:PostSamples[0])
+//                    .padding(.top,10)
+                    postMenu(isClick: $isClick)
+                    if (isClick == 1 ){
+                        ZStack(alignment: .bottomTrailing){
+                            ScrollView{
+                                LazyVStack{
+                                    ForEach(posts.posts, id: \.id) { post in
+                                        NavigationLink(destination: SnsPostDetailView(post:post)) {
+                                            SnsPostRow(post:post)
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
+                                    }
                                 }
                             }
+                            VStack{
+                                if isWrite {
+                                    Button() {
+                                    }
+                                label: {
+                                    Image("postWrite")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
+                                .background(Color.mainBlue)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                                    Button() {
+                                    }
+                                label: {
+                                    Image("storyWrite")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
+                                .background(Color.mainBlue)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                                    
+                                }
+                                Button {
+                                    if isWrite {
+                                        isWrite = false
+                                        
+                                    }
+                                    else {
+                                        isWrite = true
+                                        
+                                    }
+                                    //                    showNewTweetView.toggle()
+                                } label: {
+                                    Image(systemName: "plus")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
+                                .background(Color.mainBlue)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                            }
+                            .padding()
                             
+                            //                MyView()
                         }
-                    }
-                }
-                VStack{
-                    if isWrite {
-                        Button() {
-                        }
-                        label: {
-                            Image("postWrite")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                        .background(Color.mainBlue)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                        Button() {
-                        }
-                        label: {
-                            Image("storyWrite")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                        .background(Color.mainBlue)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
                         
                     }
-                    Button {
-                        if isWrite {
-                            isWrite = false
-                            
+                    else if (isClick == 2) {
+                        VStack{
+                            DatePicker("추억", selection: $date)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                            //달력과 텍스트의 위치를 지정하는 프레임
+                                .frame(maxHeight: 700)
                         }
-                        else {
-                            isWrite = true
-                            
-                        }
-                        //                    showNewTweetView.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.white)
-                            .padding()
                     }
-                    .background(Color.mainBlue)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
                 }
-                .padding()
-                
-//                MyView()
-                
-                
             }
         }
     }
-}
-private extension SnsView {
-    var story: some View {
+
+
+struct storyView : View {
+    var story : Story
+    var body : some View {
         VStack{
             Image(systemName: "person")
                 .resizable()
@@ -101,15 +122,18 @@ private extension SnsView {
                 .cornerRadius(30)
                 .overlay(RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.black, lineWidth: 0.5))
-            Text("person")
+            Text("\(story.createBy)")
                 .font(.caption)
                 .fontWeight(.thin)
                 .padding(.bottom, 6)
         }
     }
-    var postMenu: some View {
+}
+struct postMenu : View {
+    @Binding var isClick : Int
+    var body : some View {
         HStack{
-            Button(action: { }) {
+            Button(action: { isClick=1 }) {
               Capsule()
                 .fill(Color.mainBlue)
                 .frame(maxWidth: 100, minHeight: 30, maxHeight: 45)
@@ -119,7 +143,7 @@ private extension SnsView {
                 .padding(.vertical, 8)
                 .padding(.horizontal, 10)
             }
-            Button(action: { }) {
+            Button(action: { isClick=2 }) {
               Capsule()
                 .fill(Color.mainBlue)
                 .frame(maxWidth: 100, minHeight: 30, maxHeight: 45)
@@ -133,8 +157,6 @@ private extension SnsView {
         }
         .padding(.top,10)
     }
-    
-
 }
 /*
 struct MyView: UIViewControllerRepresentable {
