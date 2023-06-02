@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SnsPostDetailView: View {
+    @State var post : Post
     @State var commentText:String = ""
+    
     var body: some View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
@@ -16,13 +18,10 @@ struct SnsPostDetailView: View {
                     VStack {
                         postDetail
                         VStack(spacing: 0){
-                        ForEach(0...5, id: \.self) { _ in
+                            ForEach(post.comment, id: \.id) { comment in
                                 Text("--------------------------------------------")
-                                VStack(alignment: .leading){
-                                    Comment
-                                        .padding(.leading,15)
-                                    
-                                }
+                                commentView(comment:comment)
+                                .padding(.leading,15)
                             }
                         }
                     }
@@ -61,7 +60,7 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
+                SnsUserProfile(createdBy: "\(post.createBy)", createdAt: post.createAt)
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -69,7 +68,6 @@ private extension SnsPostDetailView {
             .cornerRadius(15)
             .overlay(RoundedRectangle(cornerRadius: 15)
                 .stroke(Color.black, lineWidth: 0.2))
-//            .shadow(color: .mainBeige, radius: 1, x: 2, y: 2)
             .padding([.leading,.top,.trailing],25)
             
             HStack(spacing: 0){
@@ -94,19 +92,12 @@ private extension SnsPostDetailView {
                 .padding([.bottom, .trailing],10)
                 .padding(.leading,20)
             HStack{
-                Text("오운완 15일째")
+                Text("\(post.title)")
                     .font(.headline)
                     .padding(.leading,20)
                 Spacer()
-//                Image(systemName: "heart")
-//                    .imageScale(.small)
-//                    .foregroundColor(.red)
-//                    .frame(width: 25, height: 25)
-//                Text("6")
-//                    .font(.caption)
-//                    .padding(.trailing,10)
             }
-            Text("운동한지 15일 째 ~! 아직 시작단계지만 뿌듯 😝  선아는 벌써 이틀째 운동 쉬는중,, 내일은 선아랑 같이 헬스장 가야지~~     #다이어트 15일차 #건강 #하자 #ㅋㅋㅋ")
+            Text("\(post.content)")
                 .font(.caption)
 //                .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 100)
                 .padding(.horizontal,20)
@@ -114,38 +105,6 @@ private extension SnsPostDetailView {
                 .padding(.bottom,20)
                 
         }
-    }
-    var Comment: some View {
-        HStack{
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40)
-                .cornerRadius(30)
-                .overlay(RoundedRectangle(cornerRadius: 30)
-                    .stroke(Color.black, lineWidth: 0.2))
-            VStack(alignment: .leading){
-                HStack{
-                    Text("dlekgus1353")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        
-                    Text("Aug 23")
-                        .font(.caption2)
-                        .fontWeight(.thin)
-                        .lineLimit(1)
-                    Spacer()
-                }
-                .padding(.bottom, 3)
-                Text("안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요")
-                    .font(.callout)
-                    .padding(.horizontal,10)
-            }
-            
-        }
-        .padding(.horizontal,10)
-        .padding(.top,20)
-        .padding(.bottom,20)
     }
     
     func hideKeyboard() {
@@ -163,11 +122,52 @@ private extension SnsPostDetailView {
     }
     
 }
+struct commentView : View {
+    var comment:Comment
+    let dateFormat: DateFormatter = {
+               let formatter = DateFormatter()
+                formatter.dateFormat = "YYYY년 M월 d일"
+//                formatter.locale = Locale(identifier:"en")
+                return formatter
+        }()
+    var body: some View {
+        HStack{
+            Image(systemName: "person")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 40, height: 40)
+                .cornerRadius(30)
+                .overlay(RoundedRectangle(cornerRadius: 30)
+                    .stroke(Color.black, lineWidth: 0.2))
+            VStack(alignment: .leading){
+                HStack{
+                    Text("\(comment.createBy)")
+                        .font(.caption)
+                        .fontWeight(.bold)
+
+                    Text("\(comment.createAt, formatter: dateFormat)")
+                        .font(.caption2)
+                        .fontWeight(.thin)
+                        .lineLimit(1)
+                    Spacer()
+                }
+                .padding(.bottom, 3)
+                Text("\(comment.content)")
+                    .font(.callout)
+                    .padding(.horizontal,10)
+            }
+
+        }
+        .padding(.horizontal,10)
+        .padding(.top,20)
+        .padding(.bottom,20)
+    }
+}
 
 
 
 struct SnsPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        SnsPostDetailView()
+        SnsPostDetailView(post:PostSamples[0])
     }
 }
