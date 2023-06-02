@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Comment: Codable {
+struct Comment: Codable,Identifiable {
     let id: UUID = UUID()
-    var content: String? = ""
-    let createBy: String?
-    var createAt: Date?
+    var content: String = ""
+    let createBy: String
+    var createAt: Date
 }
 let CommentSamples = [
     Comment(content:"오 정말 대단하다.",createBy: "asdf",createAt: Date()),
