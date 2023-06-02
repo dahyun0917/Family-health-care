@@ -10,45 +10,42 @@ import SwiftUI
 struct FamilyPageView: View {
     @State private var isPresented = false
     var body: some View {
-        ZStack{
-            Rectangle()
-                .edgesIgnoringSafeArea(.all)
-                .foregroundColor(Color.white)
-            
-            NavigationView{
-                ZStack{
-                    GeometryReader{ geometry in
-                        List(0..<5) {row in
-                            NavigationLink(destination: MyPageView()){
-                                FamilyMemberView(
-                                    borderColor: row % 2 == 0 ? Color.mainBlue : Color.mainBeige,
-                                    innerColor: row % 2 == 0 ? Color.mainGrey : Color.mainLightBeige)
-                                .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
-                            }
-                        }
+        NavigationView{
+            ZStack{
+                GeometryReader{ geometry in
+                    ScrollView(showsIndicators:false){
+                        VStack{
+                            ForEach(1..<9){row in
+                                NavigationLink(destination: MyPageView()){
+                                    FamilyMemberView(
+                                        borderColor: row % 2 == 0 ? Color.mainBlue : Color.mainBeige,
+                                        innerColor: row % 2 == 0 ? Color.mainGrey : Color.mainLightBeige)
+                                    .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+                                }
+                                
+                            }.buttonStyle(PlainButtonStyle())
+                        }.padding(.leading,20)
                     }
-                    
-                    
-                    
-                    Button(action:{
-                        isPresented.toggle()
-                    }){
-                        Rectangle()
-                            .clipShape(Circle())
-                            .foregroundColor(.mainBlue)
-                            .overlay(
-                                Image(systemName:"megaphone.fill").foregroundColor(.white))
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .frame(width:50,height:50)
-                    .position(x:350,y:700)
-                    .sheet(isPresented: $isPresented){
-                        FamilyPromiseView()}
                 }
-            }
+               
+                Button(action:{
+                    isPresented.toggle()
+                }){
+                    Rectangle()
+                        .clipShape(Circle())
+                        .foregroundColor(.mainBlue)
+                        .overlay(
+                            Image(systemName:"megaphone.fill").foregroundColor(.white))
+                }
+                .buttonStyle(PlainButtonStyle())
+                .frame(width:50,height:50)
+                .position(x:350,y:680)
+                .sheet(isPresented: $isPresented){
+                    FamilyPromiseView()}
+            }.navigationTitle("지원이네")
+                .navigationBarTitleDisplayMode(.inline)
+                
         }
-            
-        
     }
 }
 
