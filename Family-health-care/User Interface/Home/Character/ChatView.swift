@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct Chat: View {
+struct ChatView: View {
     @EnvironmentObject private var chat : Chats
+    @State private var medicinePresent = false
+    @State private var medicineName = ""
+    
     var body: some View {
+        NavigationStack{
             ScrollViewReader{proxy in
                 ScrollView(.vertical){
                     ForEach(chat.allMessages, id:\.id){ allMessage in
-                        
                         VStack{
                             HStack{
                                 if allMessage.source == BotMessage.type{
@@ -25,18 +28,16 @@ struct Chat: View {
                                     MessageBubble(message: allMessage)
                                 }
                             }.padding([.bottom, .top],5)
-
+                            
                             if let botMessage = allMessage as? BotMessage{
                                 if botMessage.answers.count != 0{
-                                    AnswerButton(message: botMessage)
+                                    AnswerButton(medicinePresent: $medicinePresent, medicineName: $medicineName,message: botMessage)
                                 }
                             }
                             
                         }
                         .id(allMessage.id)
-                            
                     }
-                  
                 }.onAppear {
                     proxy.scrollTo(chat.allMessages.last?.id)
                 }
@@ -44,14 +45,15 @@ struct Chat: View {
                     proxy.scrollTo(chat.allMessages.last?.id)
                 }
             }
-            
-            
-            
-            
             .background(Color.white)
-            .cornerRadius(20)
-        
+            .navigationBarHidden(true)
+            .navigationDestination(isPresented: $medicinePresent) {
+                MedicExplanationView(medicineName: medicineName)
+            }
+            
+        }.cornerRadius(20)
     }
+    
 }
 
 
@@ -61,6 +63,6 @@ struct Chat: View {
 
 struct Chat_Previews: PreviewProvider {
     static var previews: some View {
-        Chat().environmentObject(Chats(token: "admin"))
+        ChatView().environmentObject(Chats(token: "admin"))
     }
 }

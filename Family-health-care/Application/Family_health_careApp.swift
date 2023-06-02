@@ -14,7 +14,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-
+    
     return true
   }
 }
@@ -24,12 +24,16 @@ struct Family_health_careApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 Home()
-//                    .environmentObject(Test())
                     .environmentObject(Chats(token: "admin"))
+                    .environmentObject(MedicationsForPainOfParts())
+                    .environmentObject(Medicines())
+                    .environmentObject(UserLoader(token: "admin"))
                     .environmentObject(Posts())
                     .environmentObject(Storys())
             }

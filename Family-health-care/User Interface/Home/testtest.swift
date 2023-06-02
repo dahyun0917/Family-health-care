@@ -9,17 +9,26 @@ import SwiftUI
 import Firebase
 
 struct testtest: View {
-    @EnvironmentObject private var ttest : Test
+    @EnvironmentObject private var Fam : Family
     var body: some View {
         VStack{
-            Text("\(ttest.born)")
-            Text("\(ttest.t)")
-            Button(action: {ttest.born=9999
-                ttest.t=Timestamp()
-            }){
-                Text("눌러봐라")
+            ForEach(Fam.users,id:\.userId){ i in
+                Text("Username : " + "\(i.userName)")
+                Text("UserId : " + "\(i.userId)")
+                Text("Weight : " + "\(i.weight)")
+                Text("Height : " + "\(i.height)")
+                VStack{
+                    ForEach(i.medicineState,id:\.time){ med in
+                        HStack{
+                            Text("\(med.medicineName)")
+                            Text("\(String(med.isComplete))")
+                            Text("\(med.time)")
+                        }
+                    }
+                }
+                Text("")
             }
-        }
+            Text(String(Fam.users.count))}
     }
 }
 

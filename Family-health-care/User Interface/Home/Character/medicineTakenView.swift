@@ -8,21 +8,53 @@
 import SwiftUI
 
 struct medicineTakenView: View {
+    @Binding var showPopover : Bool
+    @Binding var mealTime : Int
+    
     var body: some View {
         HStack{
             Spacer()
-            Symbol("pill.fill", scale:.large)
-            Spacer()
-            Symbol("pill.fill", scale:.large)
-            Spacer()
-            Symbol("pill", scale:.large)
-            Spacer()
+            ForEach(groupedMedicineStates.keys.sorted(), id: \.self) { mealTime in
+                let medicines = groupedMedicineStates[mealTime]
+                let symbolName = (medicines != nil && medicines!.contains(where: { $0.isComplete })) ? "pill.fill" : "pill"
+                
+                Symbol(symbolName, scale:.large)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            self.showPopover = true
+                            self.mealTime = mealTime
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation(.spring()) {
+                                self.showPopover = false
+                            }
+                        }
+                    }
+                Spacer()
+            }
         }
     }
 }
 
-struct medicineTakenView_Previews: PreviewProvider {
-    static var previews: some View {
-        medicineTakenView()
+private extension medicineTakenView{
+    var groupedMedicineStates: [Int: [MedicineState]] {
+        var grouped: [Int: [MedicineState]] = [:]
+        
+        for medicineState in medicineStateSamples {
+            let mealTime = medicineState.meal
+            if grouped[mealTime] == nil {
+                grouped[mealTime] = [medicineState]
+            } else {
+                grouped[mealTime]?.append(medicineState)
+            }
+        }
+        
+        return grouped
     }
 }
+
+//struct medicineTakenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        medicineTakenView()
+//    }
+//}

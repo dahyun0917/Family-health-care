@@ -11,6 +11,28 @@ struct MedicineState: Hashable{
     let medicineName: String
     let time: String
     var isComplete: Bool = false
+    
+    var meal: Int {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+
+            if let date = formatter.date(from: time) {
+                let calendar = Calendar.current
+                let hour = calendar.component(.hour, from: date)
+
+                switch hour {
+                case 5..<11:
+                    return 0  // 아침
+                case 11..<16:
+                    return 1  // 점심
+                default:
+                    return 2  // 저녁
+                }
+            } else {
+                print("Invalid time format")
+                return -1
+            }
+        }
 }
 
 let medicineStateSamples = [

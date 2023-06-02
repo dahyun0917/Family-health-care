@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Promise {
-    let promiseDetail: String
-    let promiseDate: String
+struct Promise:Hashable{
+    var promiseDetail: String
+    var promiseDate: Date
 }
 
 let promiseSamples = [
-    Promise(promiseDetail: "이번달에는 정말로 금주 하겠습니다!!!\n간 절대 지켜 ~~", promiseDate: "2023.05.01"),
+    Promise(promiseDetail: "이번달에는 정말로 금주 하겠습니다!!!\n간 절대 지켜 ~~", promiseDate: Date()),
 ]

@@ -25,7 +25,7 @@ struct SearchResultRow: View {
                     .font(.headline)
                     .fontWeight(.medium)
                     .padding(.bottom, 6)
-                Text(medicine.description)
+                Text(medicine.Efficiency)
                     .font(.footnote)
                     .foregroundColor(Color.mediumGray)
             }

@@ -158,7 +158,7 @@ struct medicineSettingView : View {
                     .padding(.bottom, 6)
                     .padding(.trailing, 20)
                 }
-                Text(medicine.description)
+                Text(medicine.Efficiency)
                     .font(.footnote)
                     .foregroundColor(Color.mediumGray)
             }

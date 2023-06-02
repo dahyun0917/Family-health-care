@@ -17,47 +17,38 @@ final class Chats: ObservableObject{
     }
     init(token:String){
                 // 임시 데이터
-                var temp_bot = [
-                    BotMessage(id:Date(timeIntervalSince1970: 0),body:"안녕 첫 대화야"),
-                    BotMessage(id:Date(timeIntervalSince1970: 1),body:"아침 약으로 진통제와 혈압약 먹을 시간이야!", answers:["먹었어", "까먹었어", "싫어"])]
-
-                self.botMessages = temp_bot
+//                var temp_bot = [
+//                    BotMessage(id:Date(timeIntervalSince1970: 0),body:"안녕 첫 대화야", type:0),
+//                    BotMessage(id:Date(timeIntervalSince1970: 1),body:"아침 약으로 진통제와 혈압약 먹을 시간이야!", answers:["먹었어", "까먹었어", "싫어"], type:0)]
+//
+//                self.botMessages = temp_bot
 //                        self.userMessages = temp_user
         
         
 //        //firebase에서 사용자의 채팅 내역을 가져옴
-//        fetchBotMessage(token)
-//        fetchUserMessage(token)
+        fetchBotMessage(token)
+        fetchUserMessage(token)
     }
-    
 }
 
 
 extension Chats{
     func respondToBot(target targetBotMessage : BotMessage, response : String){
         self.userMessages.append(UserMessage(body: response, associated: targetBotMessage.id))
-        if let idx = self.botMessages.firstIndex(where: {$0.id == targetBotMessage.id}){
+        if targetBotMessage.type == 0, let idx = self.botMessages.firstIndex(where: {$0.id == targetBotMessage.id}){
             self.botMessages[idx].needAnswer = false
         }
+    }
+    
+    func sendToUser(message : String, answers: [String], type:Int){
+        self.botMessages.append(BotMessage(body: message, answers: answers, type: type))
     }
     
     func fetchBotMessage(_ token : String){
         let db = Firestore.firestore()
         let user = db.collection("users").document(token)
         let botMessages = user.collection("BotMessage")
-//
-//                // user information
-//                user.getDocument(){ (doc, error) in
-//                    guard error == nil, let doc = doc, doc.exists else{
-//                        print("Error: \(error?.localizedDescription ?? "")")
-//                        return
-//                    }
-//                    let info = doc.data()
-//                    if let info = info{
-//                        print(info)
-//                    }
-//                }
-        
+
         botMessages.getDocuments(){ (botMessageSnapshot, error) in
             guard error == nil, let botMessageSnapshot = botMessageSnapshot else{
                 print("Error: \(error?.localizedDescription ?? "")")
@@ -71,11 +62,12 @@ extension Chats{
                 }
                 let body = botMessageDoc.data()["body"] as? String ?? ""
                 let answers = botMessageDoc.data()["answers"] as? [String] ?? []
-                self.botMessages.append(BotMessage(id:timestamp.dateValue(), body:body, answers: answers))
+                let type = botMessageDoc.data()["type"] as? Int ?? 0
+                self.botMessages.append(BotMessage(id:timestamp.dateValue(), body:body, answers: answers, type:type))
             }
         }
-        
     }
+    
     func fetchUserMessage(_ token : String){
         let db = Firestore.firestore()
         let user = db.collection("users").document(token)
