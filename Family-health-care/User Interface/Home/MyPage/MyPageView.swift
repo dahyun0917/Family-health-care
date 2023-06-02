@@ -32,9 +32,9 @@ struct Promise2View: View {
     var body: some View {
         VStack{
             HStack{
-                Text(promise.promiseDate)
-                    .padding(20)
-                    .foregroundColor(Color.mainWhite)
+//                Text(promise.promiseDate)
+//                    .padding(20)
+//                    .foregroundColor(Color.mainWhite)
                 Spacer()
                 HStack{
                     NavigationLink(destination: MyPagePromiseWirteView(promise: promise.promiseDetail)) {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Promise {
+struct Promise:Hashable{
     var promiseDetail: String
     var promiseDate: Date
 }
