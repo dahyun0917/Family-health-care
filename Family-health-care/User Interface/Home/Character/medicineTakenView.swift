@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct medicineTakenView: View {
+    @EnvironmentObject private var userLoader : UserLoader
     @Binding var showPopover : Bool
     @Binding var mealTime : Int
     
@@ -39,16 +40,17 @@ struct medicineTakenView: View {
 private extension medicineTakenView{
     var groupedMedicineStates: [Int: [MedicineState]] {
         var grouped: [Int: [MedicineState]] = [:]
-        
-        for medicineState in medicineStateSamples {
-            let mealTime = medicineState.meal
-            if grouped[mealTime] == nil {
-                grouped[mealTime] = [medicineState]
-            } else {
-                grouped[mealTime]?.append(medicineState)
+        if let user = userLoader.user{
+            for medicineState in user.medicineState{
+                let mealTime = medicineState.meal
+                if grouped[mealTime] == nil {
+                    grouped[mealTime] = [medicineState]
+                } else {
+                    grouped[mealTime]?.append(medicineState)
+                }
             }
+            print(user)
         }
-        
         return grouped
     }
 }

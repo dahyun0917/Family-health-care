@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CharacterView: View {
+    @EnvironmentObject private var userLoader : UserLoader
     @State private var gifName : String = "man_gif"
     @State private var selected = 0
     @State private var showPopover = false
@@ -102,15 +103,16 @@ private extension CharacterView {
     var groupedMedicineStates: [Int: [MedicineState]] {
         var grouped: [Int: [MedicineState]] = [:]
         
-        for medicineState in medicineStateSamples {
-            let mealTime = medicineState.meal
-            if grouped[mealTime] == nil {
-                grouped[mealTime] = [medicineState]
-            } else {
-                grouped[mealTime]?.append(medicineState)
+        if let user = userLoader.user{
+            for medicineState in user.medicineState{
+                let mealTime = medicineState.meal
+                if grouped[mealTime] == nil {
+                    grouped[mealTime] = [medicineState]
+                } else {
+                    grouped[mealTime]?.append(medicineState)
+                }
             }
         }
-        
         return grouped
     }
 }
