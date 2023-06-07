@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct MyPageView: View {
+    @EnvironmentObject private var userLoader : UserLoader
+
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
             VStack{
-                Promise2View(promise: promiseSamples[0])
-                HeightWeightView(heightWeight: heightWeightSampeles[0])
-                WalkView(walk: walkSampeles[0])
-                MedicineStateView(medicineStateList: medicineStateSamples)
+                if let user = userLoader.user{
+                    Promise2View(promise: user.promise[0])
+                    HeightWeightView(height: user.height, weight: user.weight)
+                    WalkView(walk: user.walk)
+                    MedicineStateView(medicineStateList: user.medicineState)
+                }
             }
         }
     }
@@ -27,14 +31,21 @@ struct MyPageView_Previews: PreviewProvider {
     }
 }
 
+func dateType2String(inputDate: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy.MM.dd"
+    return dateFormatter.string(from: inputDate)
+}
+
 struct Promise2View: View {
     let promise: Promise
+    
     var body: some View {
         VStack{
             HStack{
-//                Text(promise.promiseDate)
-//                    .padding(20)
-//                    .foregroundColor(Color.mainWhite)
+                Text(dateType2String(inputDate: promise.promiseDate))
+                    .padding(20)
+                    .foregroundColor(Color.mainWhite)
                 Spacer()
                 HStack{
                     NavigationLink(destination: MyPagePromiseWirteView(promise: promise.promiseDetail)) {
@@ -46,18 +57,21 @@ struct Promise2View: View {
                 }.padding(20)
             }
             Spacer()
-            HStack{
+            HStack {
                 Text(promise.promiseDetail)
                     .foregroundColor(Color.mainWhite)
                     .padding(20)
                 Spacer()
             }
+            Spacer()
+            Spacer()
         }.frame(width:348,height:151).background(Color.mainBlue).cornerRadius(20)
     }
 }
 
 struct HeightWeightView: View {
-    let heightWeight: HeightWeight
+    let height:Int
+    let weight:Int
     var body: some View {
         VStack{
             Spacer()
@@ -69,7 +83,7 @@ struct HeightWeightView: View {
                 Image(systemName:"gearshape.fill").foregroundColor(Color.darkBlue)
             }.padding(.horizontal, 20)
                 .padding(.top, 20)
-            Text("\(heightWeight.height) cm   /    \(heightWeight.weight) kg")
+            Text("\(height) cm   /    \(weight) kg")
                 .font(.system(size:30,weight:.black))
                 .foregroundColor(Color.darkBlue)
                 .padding(20)
@@ -80,11 +94,11 @@ struct HeightWeightView: View {
 }
 
 struct WalkView: View  {
-    let walk: Walk
+    let walk: Int
     var body: some View {
         HStack{
             Text("오늘").foregroundColor(Color.darkBlue)
-            Text("\(walk.walk)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue)
+            Text("\(walk)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue)
             Text("걸음 걸으셨네요!").foregroundColor(Color.darkBlue)
             Image(systemName:"figure.run").foregroundColor(Color.darkBlue)
         }.frame(width:348,height:70)
