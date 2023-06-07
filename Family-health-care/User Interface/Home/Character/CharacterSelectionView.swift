@@ -16,8 +16,8 @@ struct CharacterSelectionView: View {
                 CharacterMenu(gifName:$gifName,imageName: "ccc")
             }
             HStack{
-                CharacterMenu(gifName:$gifName,imageName: "man")
-                CharacterMenu(gifName:$gifName,imageName: "man")
+                CharacterMenu(gifName:$gifName,imageName: "green")
+                CharacterMenu(gifName:$gifName,imageName: "sprout")
             }
         }.padding()
     }

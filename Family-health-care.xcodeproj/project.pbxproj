@@ -71,6 +71,10 @@
 		938B04632A13AB1F00A7D56D /* testtest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B04622A13AB1F00A7D56D /* testtest.swift */; };
 		938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8A2A10CA8400DD7865 /* Symbol.swift */; };
 		938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C5C8C2A10D06300DD7865 /* SickView.swift */; };
+		939FD5202A2A1994006F569B /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FD51F2A2A1994006F569B /* loginView.swift */; };
+		939FD5222A2A245C006F569B /* userLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FD5212A2A245C006F569B /* userLoaderView.swift */; };
+		939FD5242A308E7E006F569B /* green_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 939FD5232A308E7E006F569B /* green_gif.gif */; };
+		939FD5262A308E8A006F569B /* sprout_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 939FD5252A308E8A006F569B /* sprout_gif.gif */; };
 		93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */; };
 		93CC218A2A246D3B00981AC1 /* CharacterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC21892A246D3B00981AC1 /* CharacterTabView.swift */; };
 		93CC218C2A2470D500981AC1 /* CharacterTabMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC218B2A2470D500981AC1 /* CharacterTabMenuBar.swift */; };
@@ -131,6 +135,10 @@
 		938B04622A13AB1F00A7D56D /* testtest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testtest.swift; sourceTree = "<group>"; };
 		938C5C8A2A10CA8400DD7865 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		938C5C8C2A10D06300DD7865 /* SickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickView.swift; sourceTree = "<group>"; };
+		939FD51F2A2A1994006F569B /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		939FD5212A2A245C006F569B /* userLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userLoaderView.swift; sourceTree = "<group>"; };
+		939FD5232A308E7E006F569B /* green_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = green_gif.gif; sourceTree = "<group>"; };
+		939FD5252A308E8A006F569B /* sprout_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sprout_gif.gif; sourceTree = "<group>"; };
 		93B5B0B12A1703D9007DF94F /* medicineTakenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = medicineTakenView.swift; sourceTree = "<group>"; };
 		93CC21892A246D3B00981AC1 /* CharacterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTabView.swift; sourceTree = "<group>"; };
 		93CC218B2A2470D500981AC1 /* CharacterTabMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTabMenuBar.swift; sourceTree = "<group>"; };
@@ -325,10 +333,12 @@
 				873A70322A0A789100F800CA /* MyPage */,
 				8951E7812A07B6E500988049 /* SNS */,
 				89178BF52A026B000046C907 /* ContentView.swift */,
+				939FD5212A2A245C006F569B /* userLoaderView.swift */,
 				8951E7842A07B74900988049 /* Home.swift */,
 				938B04622A13AB1F00A7D56D /* testtest.swift */,
 				87C73F0D2A25E68900FF7CDF /* navView.swift */,
 				873A70292A0A6F1C00F800CA /* FamilyPage */,
+				939FD51F2A2A1994006F569B /* loginView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -336,6 +346,8 @@
 		9384238C2A10BDD900836D47 /* gif */ = {
 			isa = PBXGroup;
 			children = (
+				939FD5252A308E8A006F569B /* sprout_gif.gif */,
+				939FD5232A308E7E006F569B /* green_gif.gif */,
 				936AF0652A1CE0CC00248447 /* ccc_gif.gif */,
 				9384238A2A10BDD600836D47 /* man_gif.gif */,
 			);
@@ -483,8 +495,10 @@
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
 				936AF0662A1CE0CD00248447 /* ccc_gif.gif in Resources */,
 				9384238B2A10BDD600836D47 /* man_gif.gif in Resources */,
+				939FD5242A308E7E006F569B /* green_gif.gif in Resources */,
 				9379E2F02A1F10F500858885 /* Assets.xcassets in Resources */,
 				F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */,
+				939FD5262A308E8A006F569B /* sprout_gif.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,11 +547,13 @@
 				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
 				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
 				93D8FDC42A0F858F0016675C /* CharacterView.swift in Sources */,
+				939FD5202A2A1994006F569B /* loginView.swift in Sources */,
 				93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */,
 				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
 				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
 				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
 				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
+				939FD5222A2A245C006F569B /* userLoaderView.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
 				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
 				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
