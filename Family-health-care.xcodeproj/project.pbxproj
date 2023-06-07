@@ -14,6 +14,7 @@
 		873A70332A0A78A100F800CA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D022A1C8EF9007DB8AF /* MyPageView.swift */; };
 		87968D0F2A1CC504007DB8AF /* MedicineInform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D0E2A1CC504007DB8AF /* MedicineInform.swift */; };
 		87968D202A1E2D5A007DB8AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87968D1F2A1E2D5A007DB8AF /* User.swift */; };
+		87B072782A2A03330097B068 /* logInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B072772A2A03330097B068 /* logInView.swift */; };
 		87B2008A2A1E3DBD00AADFCD /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B200892A1E3DBD00AADFCD /* Family.swift */; };
 		87C73F0E2A25E68900FF7CDF /* navView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C73F0D2A25E68900FF7CDF /* navView.swift */; };
 		89178BF62A026B000046C907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89178BF52A026B000046C907 /* ContentView.swift */; };
@@ -101,6 +102,7 @@
 		87968D022A1C8EF9007DB8AF /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		87968D0E2A1CC504007DB8AF /* MedicineInform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInform.swift; sourceTree = "<group>"; };
 		87968D1F2A1E2D5A007DB8AF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		87B072772A2A03330097B068 /* logInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logInView.swift; sourceTree = "<group>"; };
 		87B200892A1E3DBD00AADFCD /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		87C73F0D2A25E68900FF7CDF /* navView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navView.swift; sourceTree = "<group>"; };
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				8951E7842A07B74900988049 /* Home.swift */,
 				938B04622A13AB1F00A7D56D /* testtest.swift */,
 				87C73F0D2A25E68900FF7CDF /* navView.swift */,
+				87B072772A2A03330097B068 /* logInView.swift */,
 				873A70292A0A6F1C00F800CA /* FamilyPage */,
 			);
 			path = Home;
@@ -545,6 +548,7 @@
 				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */,
 				93CC218E2A262CB000981AC1 /* MedicExplanationView.swift in Sources */,
 				F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */,
+				87B072782A2A03330097B068 /* logInView.swift in Sources */,
 				873A70332A0A78A100F800CA /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
