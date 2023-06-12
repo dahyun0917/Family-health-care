@@ -49,7 +49,6 @@ private extension medicineTakenView{
                     grouped[mealTime]?.append(medicineState)
                 }
             }
-            print(user)
         }
         return grouped
     }
