@@ -90,7 +90,6 @@
 		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
 		F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */; };
 		F2E578802A1394CF00A0E93B /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787F2A1394CF00A0E93B /* Promise.swift */; };
-		F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578812A13996F00A0E93B /* HeightWeight.swift */; };
 		F2E578842A139A8C00A0E93B /* Walk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578832A139A8C00A0E93B /* Walk.swift */; };
 		F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */; };
 		F2FC8AAC2A13212100EC6E89 /* MyPageMedicineSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */; };
@@ -152,7 +151,6 @@
 		F2E578792A1376EE00A0E93B /* MedicineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState.swift; sourceTree = "<group>"; };
 		F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
 		F2E5787F2A1394CF00A0E93B /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		F2E578812A13996F00A0E93B /* HeightWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightWeight.swift; sourceTree = "<group>"; };
 		F2E578832A139A8C00A0E93B /* Walk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walk.swift; sourceTree = "<group>"; };
 		F2FC8AA92A13211000EC6E89 /* MyPagePromiseWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePromiseWriteView.swift; sourceTree = "<group>"; };
 		F2FC8AAB2A13212100EC6E89 /* MyPageMedicineSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMedicineSearchView.swift; sourceTree = "<group>"; };
@@ -387,7 +385,6 @@
 				938B045E2A139A4900A7D56D /* Test.swift */,
 				F2E578792A1376EE00A0E93B /* MedicineState.swift */,
 				F2E5787F2A1394CF00A0E93B /* Promise.swift */,
-				F2E578812A13996F00A0E93B /* HeightWeight.swift */,
 				F2E578832A139A8C00A0E93B /* Walk.swift */,
 				898A2C5F2A1E34A200F6C917 /* Story.swift */,
 				89E71F932A13A9B300C93EBF /* Post.swift */,
@@ -551,7 +548,6 @@
 				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
 				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
-				F2E578822A13996F00A0E93B /* HeightWeight.swift in Sources */,
 				F2E578842A139A8C00A0E93B /* Walk.swift in Sources */,
 				F2FC8AAA2A13211000EC6E89 /* MyPagePromiseWriteView.swift in Sources */,
 				93CC218E2A262CB000981AC1 /* MedicExplanationView.swift in Sources */,
@@ -686,22 +682,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
-				DEVELOPMENT_TEAM = F43GSU7548;
+				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걸음수 정보를 얻기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.ac.knu.comp420.2019112601.Family-health-care";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.ac.knu.comp420.2019111318.Family-health-care";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -717,22 +714,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Family-health-care/Preview Content\"";
-				DEVELOPMENT_TEAM = F43GSU7548;
+				DEVELOPMENT_TEAM = 6AQ46H4YCB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걸음수 정보를 얻기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.ac.knu.comp420.2019112601.Family-health-care";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.ac.knu.comp420.2019111318.Family-health-care";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

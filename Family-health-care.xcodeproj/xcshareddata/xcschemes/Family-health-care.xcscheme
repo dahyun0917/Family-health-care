@@ -43,7 +43,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Users/jiwon/Library/Developer/Xcode/DerivedData/Family-health-care-czxwdmvdzutinjhbfgircfjyoybu/Build/Products/Debug-iphonesimulator/Family-health-care.app">
+         FilePath = "/Users/yangseon-a/Library/Developer/Xcode/DerivedData/Family-health-care-eivsxuomykfpapeucuhdjjyklrtp/Build/Products/Debug-iphonesimulator/Family-health-care.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
