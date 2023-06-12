@@ -9,14 +9,19 @@ import SwiftUI
 
 struct CharacterView: View {
     @EnvironmentObject private var userLoader : UserLoader
-    @State private var gifName : String = "man_gif"
+    @State private var gifName : String = ""
     @State private var selected = 0
     @State private var showPopover = false
     @State private var mealTime = 0
     
+    @State private var goSickView : Bool = false
+    
     var body: some View {
+        EmptyView().onReceive(userLoader.$user){user in
+            self.gifName = user?.charImage ?? "man_gif"
+        }
         ZStack{
-            Color.clear
+            Color.mainGrey.ignoresSafeArea(.all)
             
             GeometryReader { parent_proxy in
                 let parentWidth = parent_proxy.size.width
@@ -26,20 +31,26 @@ struct CharacterView: View {
                 let parentHeight = parent_proxy.size.height
                 
                 
-//                VStack(alignment: .center){
-                ScrollView{
-                    NavigationView{
+                VStack(alignment: .center){
+                    NavigationStack{
                         VStack{
                             CharacterTabMenuBar(selected: $selected)
                             TabView(selection: $selected) {
-                                CharacterTabView(gifName: $gifName).tag(0)
+                                
+                                CharacterTabView(gifName: $gifName, goSickView: $goSickView).tag(0)
                                 CharacterSelectionView(gifName:$gifName).tag(1)
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         .background(Color.mainBeige)
                         .onChange(of: gifName){ _ in
+                            if let user = userLoader.user{
+                                user.charImage = gifName
+                            }
                             withAnimation{ selected = 0 }
+                        }
+                        .navigationDestination(isPresented:$goSickView){
+                            SickView()
                         }
                     }
                     .navigationBarHidden(true)
@@ -48,7 +59,7 @@ struct CharacterView: View {
                     Spacer()
                     
                     ChatView()
-                        .frame(width:innerWidth, height:min(innerHeight*0.8, innerWidth*0.8))
+                        .frame(width:innerWidth, height:min(innerHeight*0.7, innerWidth*0.7))
                     
                     ZStack{
                         medicineTakenView(showPopover: $showPopover, mealTime: $mealTime)
@@ -72,13 +83,12 @@ struct CharacterView: View {
                     }
                     
                     
-                }.frame(width: outerWidth, height: parentHeight)
+                }.frame(width: outerWidth, height: parentHeight-50)
                     .background(Color.mainBeige)
                     .cornerRadius(25)
                     .position(x:parentWidth/2, y:parentHeight/2)
             }
         }
-        .background(Color.mainGrey)
         .onTapGesture {
             withAnimation(.spring()) {
                 self.showPopover = false
