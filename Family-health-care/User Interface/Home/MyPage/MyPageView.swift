@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreMotion
 
 struct MyPageView: View {
     @EnvironmentObject private var userLoader : UserLoader
@@ -17,7 +18,7 @@ struct MyPageView: View {
                 if let user = userLoader.user{
                     Promise2View(promise: user.promise[0])
                     HeightWeightView(height: user.height, weight: user.weight)
-                    WalkView(walk: user.walk)
+                    WalkView()
                     MedicineStateView(medicineStateList: user.medicineState)
                 }
             }
@@ -64,7 +65,6 @@ struct Promise2View: View {
                 Spacer()
             }
             Spacer()
-            Spacer()
         }.frame(width:348,height:151).background(Color.mainBlue).cornerRadius(20)
     }
 }
@@ -94,15 +94,60 @@ struct HeightWeightView: View {
 }
 
 struct WalkView: View  {
-    let walk: Int
+    @State private var stepCount: Int = 0
+    let pedometer = CMPedometer()
+    @State var timer: Timer?
     var body: some View {
         HStack{
             Text("오늘").foregroundColor(Color.darkBlue)
-            Text("\(walk)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue)
+            Text("\(stepCount)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue).onAppear(perform: {
+                startUpdatingStepCount()
+            })
             Text("걸음 걸으셨네요!").foregroundColor(Color.darkBlue)
             Image(systemName:"figure.run").foregroundColor(Color.darkBlue)
         }.frame(width:348,height:70)
             .background(Color.mainWhite).cornerRadius(20)
+    }
+    func startUpdatingStepCount() {
+        guard CMPedometer.isStepCountingAvailable() else {
+            print("걸음수 추적이 지원되지 않습니다.")
+            return
+        }
+        
+        let calendar = Calendar.current
+        let midnight = calendar.startOfDay(for: Date())
+        
+        pedometer.startUpdates(from: midnight) { data, error in
+            if let error = error {
+                print("걸음수 업데이트 오류: \(error.localizedDescription)")
+            } else if let data = data {
+                DispatchQueue.main.async {
+                    self.stepCount = data.numberOfSteps.intValue
+                }
+            }
+        }
+        // 일정 간격으로 걸음수 업데이트
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.updateStepCount()
+        }
+    }
+    func updateStepCount() {
+        guard CMPedometer.isStepCountingAvailable() else {
+            print("걸음수 추적이 지원되지 않습니다.")
+            return
+        }
+        let calendar = Calendar.current
+        let midnight = calendar.startOfDay(for: Date())
+        pedometer.startUpdates(from: midnight) { data, error in
+            if let error = error {
+                print("걸음수 업데이트 오류: \(error.localizedDescription)")
+            } else if let data = data {
+                DispatchQueue.main.async {
+                    self.stepCount = data.numberOfSteps.intValue
+                }
+            }
+        }
+        
     }
 }
 
