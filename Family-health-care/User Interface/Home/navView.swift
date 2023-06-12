@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct navView: View {
+    init(){
+        UITabBar.appearance().backgroundColor = UIColor(Color.white.opacity(0.5))
+    }
     var body: some View {
         TabView{
-            CharacterView().environmentObject(Chats(token:"admin"))
+            CharacterView()
                 .tabItem{
                     Image(systemName:"figure.socialdance")
                     Text("캐릭터")
@@ -32,6 +35,7 @@ struct navView: View {
                 }
             
         }
+            
     }
 }
 

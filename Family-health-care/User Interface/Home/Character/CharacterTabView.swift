@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharacterTabView: View {
     @Binding var gifName: String
+    @Binding var goSickView : Bool
     
     var body: some View{
         ZStack{
@@ -18,19 +19,14 @@ struct CharacterTabView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    NavigationLink(destination: SickView()){
                         Symbol("magnifyingglass", scale:.large, color: .black)
                             .padding(5)
                             .background(Circle().fill(Color.mainLightBeige))
-                    }
+                            .onTapGesture {
+                                goSickView = true
+                            }
                 }
             }
         }.padding()
     }
 }
-
-//struct CharacterTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacterTabView()
-//    }
-//}
