@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct PromiseView: View {
+    @EnvironmentObject private var fam : Family
     var text : String = "다짐 예시 문장입니다."
     var date : String = "2023.04.15"
     var complete : Bool = false
+    var option : Int = 1
     var color : Color = Color.mainBeige
+    var user : User
     
     var body: some View {
         
@@ -23,7 +26,11 @@ struct PromiseView: View {
                         Text(date).font(.system(size:14)).padding(.leading,20)
                         Spacer()
                         
-                        Image(systemName:"ellipsis").padding(.trailing,20)
+                        if option == 1{
+                            Image(systemName:"ellipsis").padding(.trailing,20)
+                        } else{
+                            Text(user.userName).font(.system(size:14)).padding(.trailing,20)
+                        }
                     }.padding(.top,5)
                     Spacer()
                     Text(text).multilineTextAlignment(.leading)
@@ -34,10 +41,12 @@ struct PromiseView: View {
                 
             }
             if complete{
-                Image("welldone").resizable()
+                Image("stamp")
+                    .resizable()
                     .opacity(0.5)
-                    .frame(width:geometry.size.width*0.5,height:geometry.size.height)
+                    .frame(width:geometry.size.height*1.2,height:geometry.size.height*1.2)
                     .position(x:geometry.size.width*0.5,y:geometry.size.height*0.5)
+                    
             }
         }
         
@@ -46,6 +55,7 @@ struct PromiseView: View {
 
 struct PromiseView_Previews: PreviewProvider {
     static var previews: some View {
-        PromiseView(text: "영양ddfdfdfdffdfdfdf제 매일 꼭 챙겨먹자 우리가족 화이팅! 가나다라마바사", date: "2023.04.15", complete:true,color:Color.mainBeige)
+        //PromiseView(text: "영양ddfdfdfdffdfdfdf제 매일 꼭 챙겨먹자 우리가족 화이팅! 가나다라마바사", date: "2023.04.15", complete:true,color:Color.mainBeige)
+        Text("df")
     }
 }

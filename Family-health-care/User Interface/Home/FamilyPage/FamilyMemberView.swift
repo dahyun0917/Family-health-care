@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct FamilyMemberView: View {
+    @EnvironmentObject private var user : User
     @State private var isPopup = false
     var borderColor : Color, innerColor : Color
-    var names = ["아스피린","글루페스트","타이레놀","활명수","이석현"]
-    @State private var pillIndex = -1
+    @State private var pillName : String = "nil"
+    @State private var pillTaken : Bool = false
     var body: some View {
         
         GeometryReader{ geometry in
@@ -26,10 +27,9 @@ struct FamilyMemberView: View {
                                         .frame(width: inGeo.size.width,height:inGeo.size.height*0.8)
                                         .cornerRadius(20)
                                         .overlay(
-                                            Image("postPicTest")
-                                                .resizable()
+                                            GifView(gifName:$user.charImage).aspectRatio(contentMode: .fit)
                                                 .clipShape(Circle()))
-                                    Text("엄마").frame(width: inGeo.size.width, height:inGeo.size.height*0.2).background(innerColor).cornerRadius(20)
+                                    Text(user.userName).frame(width: inGeo.size.width, height:inGeo.size.height*0.2).background(innerColor).cornerRadius(20)
                                 }
                             }
                         }.frame(width:geometry.size.width/3)
@@ -37,17 +37,27 @@ struct FamilyMemberView: View {
                         VStack{
                             GeometryReader{ inGeo in
                                 VStack{
-                                    PromiseView(text:"영양제 매일 꼭 챙겨먹자 우리가족 화이팅!",date:"2023.04.15",color: innerColor)
+                                    PromiseView(text:user.promise.first!.promiseDetail,date:"2023.04.15",color: innerColor,user:user)
                                         .cornerRadius(20)
                                         .frame(width: inGeo.size.width, height:inGeo.size.height*0.8)
                                     HStack{
-                                        Text("저녁")
                                         
-                                        ForEach(1..<5){row in
-                                           Image(systemName: "pill").onTapGesture {
-                                                self.pillIndex = row
-                                                withAnimation(.spring()){
-                                                    self.isPopup.toggle()
+                                        ForEach(user.medicineState,id:\.self.medicineName){med in
+                                            if med.isComplete{
+                                                Image(systemName:"pill.fill")
+                                                    .onTapGesture {
+                                                        self.pillName = med.medicineName
+                                                        withAnimation(.spring()){
+                                                            self.isPopup.toggle()
+                                                        }
+                                                    }
+                                            } else {
+                                                Image(systemName: "pill").onTapGesture {
+                                                    self.pillName = med.medicineName
+                                                    self.pillTaken = med.isComplete
+                                                    withAnimation(.spring()){
+                                                        self.isPopup.toggle()
+                                                    }
                                                 }
                                             }
                                         }
@@ -58,12 +68,12 @@ struct FamilyMemberView: View {
                         }.frame(width:geometry.size.width*0.55)
                             .padding(.bottom,5)
                     }.padding(10)
-                }.background(borderColor).cornerRadius(30).position(x:geometry.size.width/2,y:geometry.size.height/2)
+                }.background(borderColor).cornerRadius(20).position(x:geometry.size.width/2,y:geometry.size.height/2)
                 
             }
             if isPopup{
                 ZStack{
-                    MedicineInform(color:borderColor,name:names[pillIndex]).offset(x:geometry.size.width*0.5,y:geometry.size.height*0.6)}
+                    MedicineInform(color:borderColor,name:pillName,complete:pillTaken).offset(x:geometry.size.width*0.5,y:geometry.size.height*0.6)}
             }
         }
         
@@ -72,6 +82,7 @@ struct FamilyMemberView: View {
 
 struct FamilyMemberView_Previews: PreviewProvider {
     static var previews: some View {
-        FamilyMemberView(borderColor: Color.mainBeige, innerColor: Color.mainLightBeige)
+        //FamilyMemberView(borderColor: Color.mainBeige, innerColor: Color.mainLightBeige)
+        Text("d")
     }
 }

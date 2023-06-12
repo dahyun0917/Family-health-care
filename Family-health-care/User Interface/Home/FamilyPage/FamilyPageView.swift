@@ -9,20 +9,22 @@ import SwiftUI
 
 struct FamilyPageView: View {
     @State private var isPresented = false
+    @EnvironmentObject private var fam : Family
     var body: some View {
         NavigationView{
             ZStack{
                 GeometryReader{ geometry in
                     ScrollView(showsIndicators:false){
                         VStack{
-                            ForEach(1..<9){row in
-                                NavigationLink(destination: MyPageView()){
+                            ForEach(fam.users.indices){index in
+                                let user = fam.users[index]
+                                NavigationLink(destination: MyPageView().accentColor(.black)){
                                     FamilyMemberView(
-                                        borderColor: row % 2 == 0 ? Color.mainBlue : Color.mainBeige,
-                                        innerColor: row % 2 == 0 ? Color.mainGrey : Color.mainLightBeige)
+                                        borderColor: index % 2 == 0 ? Color.mainBeige : Color.mainBlue,
+                                        innerColor: index % 2 == 0 ? Color.mainLightBeige : Color.mainGrey)
                                     .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+                                    .environmentObject(user)
                                 }
-                                
                             }.buttonStyle(PlainButtonStyle())
                         }.padding(.leading,20)
                     }
@@ -42,8 +44,9 @@ struct FamilyPageView: View {
                 .position(x:350,y:680)
                 .sheet(isPresented: $isPresented){
                     FamilyPromiseView()}
-            }.navigationTitle("지원이네")
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationTitle("지원이네")
+            
                 
         }
     }
@@ -51,6 +54,7 @@ struct FamilyPageView: View {
 
 struct FamilyPageView_Previews: PreviewProvider {
     static var previews: some View {
-        FamilyPageView()
+        //FamilyPageView()
+        Text("Df")
     }
 }
