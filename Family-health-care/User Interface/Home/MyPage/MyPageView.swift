@@ -10,17 +10,31 @@ import CoreMotion
 
 struct MyPageView: View {
     @EnvironmentObject private var userLoader : UserLoader
-
+    
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
-            VStack{
-                if let user = userLoader.user{
-                    Promise2View(promise: user.promise[0])
-                    HeightWeightView(height: user.height, weight: user.weight)
-                    WalkView()
-                    MedicineStateView(medicineStateList: user.medicineState)
-                }
+//            GeometryReader {  parent_proxy in
+//                let parentWidth = parent_proxy.size.width
+//                let parentHeight = parent_proxy.size.height
+//                VStack{
+//                    if let user = userLoader.user{
+//                        Promise2View(promise: user.promise[0])
+//                        HeightWeightView(height: user.height, weight: user.weight)
+//                        WalkView()
+//                        MedicineStateView(medicineStateList: user.medicineState)
+//                    }
+//                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+//            }
+            GeometryReader {  parent_proxy in
+                let parentWidth = parent_proxy.size.width
+                let parentHeight = parent_proxy.size.height
+                VStack{
+                    Promise2View(promise: promiseSamples[0])
+                    HeightWeightView(height: 180, weight: 30)
+                    WalkView().frame(height:parentHeight*0.1)
+                    MedicineStateView(medicineStateList: medicineStateSamples)
+                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
             }
         }
     }
@@ -56,16 +70,14 @@ struct Promise2View: View {
                     Image(systemName:"checkmark.square")
                         .foregroundColor(Color.mainWhite)
                 }.padding(20)
-            }
-            Spacer()
+            }.frame(alignment:.top)
             HStack {
                 Text(promise.promiseDetail)
                     .foregroundColor(Color.mainWhite)
                     .padding(20)
                 Spacer()
             }
-            Spacer()
-        }.frame(width:348,height:151).background(Color.mainBlue).cornerRadius(20)
+        }.frame(height:151).background(Color.mainBlue).cornerRadius(20)
     }
 }
 
@@ -81,15 +93,14 @@ struct HeightWeightView: View {
                 
                 Spacer()
                 Image(systemName:"gearshape.fill").foregroundColor(Color.darkBlue)
-            }.padding(.horizontal, 20)
-                .padding(.top, 20)
+            }.frame(alignment: .top).padding(.horizontal, 20)
+                .padding(.top, 10)
             Text("\(height) cm   /    \(weight) kg")
                 .font(.system(size:30,weight:.black))
                 .foregroundColor(Color.darkBlue)
                 .padding(20)
-            Spacer()
         }
-        .frame(width:348,height:114).background(Color(hex:"D1D2D2")).cornerRadius(20)
+        .frame(height:114).background(Color(hex:"D1D2D2")).cornerRadius(20)
     }
 }
 
@@ -164,10 +175,9 @@ struct MedicineStateView: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color.steelBlue)
                 }
-            }.padding([.top, .horizontal])
-            Spacer()
+            }.frame(alignment: .top).padding([.top, .horizontal])
             MedicineStateRow(medicineStates: medicineStateList)
             Spacer()
-        }.frame(width:350,height:400).background(Color.mainLightBeige).cornerRadius(20)
+        }.background(Color.mainLightBeige).cornerRadius(20)
     }
 }
