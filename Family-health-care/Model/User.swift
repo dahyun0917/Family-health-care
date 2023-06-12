@@ -18,6 +18,7 @@ final class User: ObservableObject {
     @Published var height: Int = 0
     @Published var weight: Int = 0
     @Published var family: String = ""
+    @Published var charImage : String = ""
 
     init(token: String, completion: @escaping (User) -> Void) {
         fetchFields(token: token) {
@@ -37,6 +38,7 @@ final class User: ObservableObject {
                 print("Error: \(error?.localizedDescription ?? "")")
                 return
             }
+            
             let info = doc.data()
             if let info = info{
                 //print(info)
@@ -61,6 +63,10 @@ final class User: ObservableObject {
                 if let userId = info["userId"] as? String{
                     self.userId = userId
                 }
+                
+                if let charImage = info["charImage"] as? String{
+                    self.charImage = charImage
+                }
             }
             completion()
         }
@@ -81,7 +87,8 @@ final class User: ObservableObject {
                     continue
                 }
                 let promiseContents = document.data()["promiseContents"] as? String ?? ""
-                self.promise.append(Promise(promiseDetail: promiseContents, promiseDate: timestamp.dateValue()))
+                let complete = document.data()["complete"] as? Bool ?? false
+                self.promise.append(Promise(promiseDetail: promiseContents, promiseDate: timestamp.dateValue(),isComplete : complete))
             }
             completion()
         }
