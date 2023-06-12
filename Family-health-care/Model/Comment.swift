@@ -10,20 +10,20 @@ import Foundation
 struct Comment: Codable,Identifiable {
     let id: UUID = UUID()
     var content: String = ""
-    let createBy: String
-    var createAt: Date
+    let createdBy: String
+    var createdAt: Date
 }
 let CommentSamples = [
-    Comment(content:"오 정말 대단하다.",createBy: "asdf",createAt: Date()),
-    Comment(content:"오 정말 대단하지 않다.",createBy: "qwer",createAt: Date()),
-    Comment(content:"오 정말 ",createBy: "zxcv",createAt: Date()),
-    Comment(content:"오 정",createBy: "dfgh",createAt: Date()),
-    Comment(content:"오 ",createBy: "qwe",createAt: Date()),
-    Comment(content:"말 대단하다.",createBy: "asdewrf",createAt: Date()),
-    Comment(content:"대단하다.",createBy: "assfdf",createAt: Date()),
-    Comment(content:"단하다.",createBy: "er",createAt: Date()),
-    Comment(content:"하다.",createBy: "tuj",createAt: Date()),
-    Comment(content:"다.",createBy: "cxz",createAt: Date()),
-    Comment(content:"오 정다.",createBy: "qwhhg",createAt: Date())
+    Comment(content:"오 정말 대단하다.",createdBy: "asdf",createdAt: Date()),
+    Comment(content:"오 정말 대단하지 않다.",createdBy: "qwer",createdAt: Date()),
+    Comment(content:"오 정말 ",createdBy: "zxcv",createdAt: Date()),
+    Comment(content:"오 정",createdBy: "dfgh",createdAt: Date()),
+    Comment(content:"오 ",createdBy: "qwe",createdAt: Date()),
+    Comment(content:"말 대단하다.",createdBy: "asdewrf",createdAt: Date()),
+    Comment(content:"대단하다.",createdBy: "assfdf",createdAt: Date()),
+    Comment(content:"단하다.",createdBy: "er",createdAt: Date()),
+    Comment(content:"하다.",createdBy: "tuj",createdAt: Date()),
+    Comment(content:"다.",createdBy: "cxz",createdAt: Date()),
+    Comment(content:"오 정다.",createdBy: "qwhhg",createdAt: Date())
     
 ]
