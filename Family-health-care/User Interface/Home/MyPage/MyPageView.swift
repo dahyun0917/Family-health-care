@@ -14,28 +14,34 @@ struct MyPageView: View {
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
-//            GeometryReader {  parent_proxy in
-//                let parentWidth = parent_proxy.size.width
-//                let parentHeight = parent_proxy.size.height
-//                VStack{
-//                    if let user = userLoader.user{
-//                        Promise2View(promise: user.promise[0])
-//                        HeightWeightView(height: user.height, weight: user.weight)
-//                        WalkView()
-//                        MedicineStateView(medicineStateList: user.medicineState)
-//                    }
-//                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
-//            }
+            //            GeometryReader {  parent_proxy in
+            //                let parentWidth = parent_proxy.size.width
+            //                let parentHeight = parent_proxy.size.height
+            //                VStack{
+            //                    if let user = userLoader.user{
+            //                        Promise2View(promise: user.promise[0])
+            //                        HeightWeightView(height: user.height, weight: user.weight)
+            //                        WalkView()
+            //                        MedicineStateView(medicineStateList: user.medicineState)
+            //                    }
+            //                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+            //            }
             GeometryReader {  parent_proxy in
                 let parentWidth = parent_proxy.size.width
                 let parentHeight = parent_proxy.size.height
                 VStack{
                     Promise2View(promise: promiseSamples[0])
                     HeightWeightView(height: 180, weight: 30)
-                    WalkView().frame(height:parentHeight*0.1)
+                    WalkView()
                     MedicineStateView(medicineStateList: medicineStateSamples)
                 }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
             }
+//            VStack {
+//                Promise2View(promise: promiseSamples[0])
+//                HeightWeightView(height: 180, weight: 30)
+//                WalkView()
+//                MedicineStateView(medicineStateList: medicineStateSamples)
+//            }
         }
     }
 }
@@ -164,20 +170,47 @@ struct WalkView: View  {
 
 struct MedicineStateView: View {
     let medicineStateList: [MedicineState]
+    @State var medicineStateDictionary: [String:[MedicineState]] = [:]
+    @State var sortedTimes: [String] = []
     var body: some View {
-        VStack{
-            HStack{
-                Text("복약현황")
-                Spacer()
-                NavigationLink(destination: MyPageMedicineSearchView()) {
-                    Image("big-add-pill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color.steelBlue)
+        ZStack {
+            VStack {
+                HStack{
+                    Text("복약현황").padding(.leading)
+                    Spacer()
+                    HStack {
+                        NavigationLink(destination: MyPageMedicineSearchView()) {
+                            Image("big-add-pill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(Color.steelBlue)
+                        }
+                    }.frame(alignment: .top).padding([.top, .horizontal])
+                }.onAppear() {
+                    for medicineState in medicineStateList {
+                        if medicineStateDictionary[medicineState.time]==nil {
+                            medicineStateDictionary[medicineState.time] = []
+                        }
+                        medicineStateDictionary[medicineState.time]?.append(medicineState)
+                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "HH:mm"
+
+                    sortedTimes = medicineStateDictionary.keys.sorted { (time1, time2) -> Bool in
+                        if let date1 = dateFormatter.date(from: time1), let date2 = dateFormatter.date(from: time2) {
+                            return date1 < date2
+                        }
+                        return false
+                    }
                 }
-            }.frame(alignment: .top).padding([.top, .horizontal])
-            MedicineStateRow(medicineStates: medicineStateList)
-            Spacer()
-        }.background(Color.mainLightBeige).cornerRadius(20)
+                LazyVGrid(columns: [GridItem(.flexible())], spacing: 20) {
+                    ForEach(sortedTimes, id: \.self) { sortedTime in
+                        MedicineStateRow(medicineStates: medicineStateDictionary[sortedTime]!)
+                    }
+                }
+                
+                Spacer()
+            }.background(Color.mainLightBeige).cornerRadius(20)
+        }
     }
 }

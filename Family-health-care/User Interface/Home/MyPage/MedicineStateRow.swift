@@ -17,17 +17,18 @@ struct MedicineStateRow: View {
                 //Text("아침식사").font(.system(size:12))
                 //Text("식전 30분").foregroundColor(.blue).font(.system(size:12))
             }
-//            Image(systemName:"circle.circle")
-//                .foregroundColor(Color.lightGray)
+            //            Image(systemName:"circle.circle")
+            //                .foregroundColor(Color.lightGray)
             Spacer().frame(width:50)
             HStack{
                 LazyVGrid(columns:columns) {
+                    Spacer()
                     ForEach(0..<medicineStates.count, id: \.self) { index in
                         HStack {
                             Spacer()
                             Text(medicineStates[index].medicineName)
                                 .foregroundColor(.white)
-                                //.padding(.trailing)
+                            //.padding(.trailing)
                             Spacer()
                             if medicineStates[index].isComplete {
                                 Button {
@@ -53,8 +54,9 @@ struct MedicineStateRow: View {
                             //Spacer()
                         }
                     }
+                    Spacer()
                 }.frame(width:230).background(Color.mainBeige).cornerRadius(20)
-            }
+            }//.padding(.vertical)
             //.frame(height: 60)
         }
     }
