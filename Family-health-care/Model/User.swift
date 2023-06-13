@@ -81,7 +81,8 @@ final class User: ObservableObject {
                     continue
                 }
                 let promiseContents = document.data()["promiseContents"] as? String ?? ""
-                self.promise.append(Promise(promiseDetail: promiseContents, promiseDate: timestamp.dateValue()))
+                let complete = document.data()["complete"] as? Bool ?? false
+                self.promise.append(Promise(promiseDetail: promiseContents, promiseDate: timestamp.dateValue(), isCompleted: complete))
             }
             completion()
         }
