@@ -10,11 +10,20 @@ import FirebaseFirestore
 
 final class Family: ObservableObject{
     @Published var users : [User] = []
-    @Published var posts : [Post] = []
+    @Published var posts : [Post] = []{
+        didSet(oldValue){
+            if (posts.count != lastPostCount && posts.count - oldValue.count>0) {addPostData(token: self.postToken)}
+        }
+    }
     @Published var storys : [Story] = []
-    var postPath : String = ""
     var flag : Bool = true
     let db = Firestore.firestore()
+    @Published var postToken = ""
+    @Published var storyToken = ""
+    @Published var lastPostCount = 0
+    @Published var lastStoryCount = 0
+    
+    
     init(user : User){
         getUserData(userId: user.userId)
         self.users.append(user)
@@ -35,7 +44,11 @@ final class Family: ObservableObject{
                             print("Error: \(error?.localizedDescription ?? "")")
                             return
                         }
-                        self.getPostData(token:family.path+"/Posts")
+                        self.postToken = family.path+"/Posts"
+                        self.getPostData(token : self.postToken){
+                        }
+                        self.getStoryData(token: family.path+"/Storys"){
+                        }
                         if let users = doc["users"]! as? [String]{
                             for name in users{
                                 if name != userId{
@@ -56,21 +69,14 @@ final class Family: ObservableObject{
         
     }
     
-    func getPostData (token:String){
+    func getPostData (token:String, completion: @escaping () -> Void){
         
         db.collection(token).getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
                     let info = document.data()
-                    
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-//                        let comments:[Comment] = self.getCommentData(token: token+"/"+document.documentID+"/comments")
-                        
-                        
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             let title = info["title"] as? String ?? ""
                             let content = info["content"] as? String ?? ""
                             let img = info["img"] as? String ?? ""
@@ -81,17 +87,46 @@ final class Family: ObservableObject{
                     self.getCommentData(token: token+"/"+document.documentID+"/comments") { (comments) in
                         // 이곳에서 comments 데이터를 사용할 수 있습니다.
                         let post:Post = Post(title: title, content: content, img: img, comment : comments, createdBy: createdBy, createdAt: createdAt)
-                        
+                        self.lastPostCount += 1
                         self.posts.append(post)
+                        
                     }
-//                        }
-//                    }
                 }
+                completion()
+            }
+            
+        }
+        
+        
+    }
+    
+    func addPostData (token:String){
+        let post: [String: Any] = [
+            "title" : posts.last!.title,
+            "content" : posts.last!.content,
+            "img" : posts.last!.img,
+            "createdBy" : posts.last!.createdBy,
+            "createdAt" : posts.last!.createdAt
+        ]
+//        let p = Post(title : "\(posts.last!.title)",
+//                        content : "\(posts.last!.content)",
+//                        img : "\(posts.last!.img)",
+//                        comment : [],
+//                        createdBy : "\(posts.last!.createdBy)",
+//                        createdAt : posts.last!.createdAt
+//                        )
+        let newRef = db.collection(token).document()
+        newRef.setData(post){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+                self.lastPostCount += 1
+                
             }
         }
         
     }
-    
     func getCommentData (token:String, completion: @escaping ([Comment]) -> Void) {
         var comments:[Comment] = []
         db.collection(token).getDocuments() { (querySnapshot, err) in
@@ -112,11 +147,34 @@ final class Family: ObservableObject{
             }
         }
     }
+    
+    func setCommentData (token:String) {
+        
+    }
 
     
     
-    func getStoryData(token:String) {
-        
+    func getStoryData(token:String, completion: @escaping () -> Void) {
+        db.collection(token).getDocuments() { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                            let content = info["content"] as? String ?? ""
+                            let img = info["img"] as? String ?? ""
+                            let createdBy = info["createdBy"] as? String ?? ""
+                            let createdAt = info["createdAt"] as? Date ?? Date()
+                    
+                    
+                    let story:Story = Story(content: content, img: img, createBy: createdBy, createAt: createdAt)
+                    self.lastStoryCount += 1
+                    self.storys.append(story)
+                }
+                completion()
+            }
+            
+        }
     }
         
 }
