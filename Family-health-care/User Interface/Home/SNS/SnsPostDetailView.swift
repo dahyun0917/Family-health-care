@@ -60,7 +60,7 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "\(post.createBy)", createdAt: post.createAt)
+                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt)
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -74,7 +74,7 @@ private extension SnsPostDetailView {
                 Image(systemName: "ellipsis.message")
                     .imageScale(.medium)
                     .frame(width: 25, height: 25)
-                Text("13")
+                Text("\(post.comment.count)")
                     .font(.caption)
                     .frame(width: 32, height: 32)
             }
@@ -141,11 +141,11 @@ struct commentView : View {
                     .stroke(Color.black, lineWidth: 0.2))
             VStack(alignment: .leading){
                 HStack{
-                    Text("\(comment.createBy)")
+                    Text("\(comment.createdBy)")
                         .font(.caption)
                         .fontWeight(.bold)
 
-                    Text("\(comment.createAt, formatter: dateFormat)")
+                    Text("\(comment.createdAt, formatter: dateFormat)")
                         .font(.caption2)
                         .fontWeight(.thin)
                         .lineLimit(1)

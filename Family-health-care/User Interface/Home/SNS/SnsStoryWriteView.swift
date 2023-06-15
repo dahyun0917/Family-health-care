@@ -13,17 +13,21 @@ struct SnsStoryWriteView: View {
     @State var inputHeightTitle:CGFloat = 40
     @State var inputHeightContent:CGFloat = 40
     @State var imageFile:Bool = true
+    var user : User
+    var family : Family
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading) {
-                SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
+                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date())
                 writeText
                 uploadPicture
             }
             HStack{
                 Spacer()
                 Button {
-                    //                    showNewTweetView.toggle()
+                    let story = Story(content: text, img: "", createBy: user.userId, createAt: Date())
+                    family.storys.append(story)
                 } label: {
                     Text("완료")
                         .foregroundColor(.white)
@@ -82,8 +86,8 @@ private extension SnsStoryWriteView {
 
     }
 }
-struct SnsStoryWriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        SnsStoryWriteView()
-    }
-}
+//struct SnsStoryWriteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SnsStoryWriteView()
+//    }
+//}

@@ -11,7 +11,7 @@ struct SnsPostRow: View {
     @State var post : Post
     var body: some View {
         VStack{
-            SnsUserProfile(createdBy: "\(post.createBy)", createdAt: post.createAt)
+            SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt)
             postContent
         }
         .frame(height: 400)

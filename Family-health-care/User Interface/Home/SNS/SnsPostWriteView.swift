@@ -18,6 +18,9 @@ struct SnsPostWriteView: View {
     @State var inputHeightTitle:CGFloat = 40
     @State var inputHeightContent:CGFloat = 40
     @State var imageFile:Bool = true
+    @Environment(\.dismiss) private var dismiss
+    var user : User
+    var family : Family
     
     var body: some View {
         VStack{
@@ -25,7 +28,9 @@ struct SnsPostWriteView: View {
                 writeAll
             }
             Button {
-                //                    showNewTweetView.toggle()
+                let post = Post(title: textTitle, content: textContent, img: "", createdBy: user.userId, createdAt: Date())
+                family.posts.append(post)
+                dismiss()
             } label: {
                 Text("작성완료")
                     .foregroundColor(.white)
@@ -52,20 +57,20 @@ private extension SnsPostWriteView {
         }
     }
     var writeAll: some View {
-        VStack {
-            SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
+        VStack{
+            SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date())
             writeTitle
             writeContent
             uploadImage
-//            Spacer()
         }
         .frame(height: 650)
         .background(Color.primary.colorInvert())
-//        .background(Color.mainGrey)
+        //        .background(Color.mainGrey)
         .cornerRadius(15)
         .overlay(RoundedRectangle(cornerRadius: 15)
             .stroke(Color.black, lineWidth: 0.2))
         .padding(20)
+        
     }
     var writeTitle: some View {
         VStack(alignment: .leading) {
@@ -118,8 +123,8 @@ private extension SnsPostWriteView {
     }
 }
 
-struct SnsPostWriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        SnsPostWriteView()
-    }
-}
+//struct SnsPostWriteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//       SnsPostWriteView(user:User(token: "admin", completion: <#T##(User) -> Void#>))
+//    }
+//}
