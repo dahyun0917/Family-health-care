@@ -8,12 +8,14 @@
 import SwiftUI
 import UIKit
 
+
 struct SnsView: View {
-    @EnvironmentObject private var posts : Posts
-    @EnvironmentObject private var storys : Storys
+    @EnvironmentObject private var family : Family
+    @EnvironmentObject private var userLoader : UserLoader
     @State var isWrite:Bool = false
     @State var isClick:Int = 1
     @State private var date = Date()
+    
     var body: some View {
         NavigationView{
             
@@ -22,7 +24,7 @@ struct SnsView: View {
                 VStack {
                     ScrollView(.horizontal,showsIndicators: false){
                         HStack{
-                            ForEach(storys.storys, id: \.id) { story in
+                            ForEach(family.storys, id: \.id) { story in
                                 NavigationLink(destination: SnsStoryView(story: story)) {
                                     storyView(story: story)
                                 }
@@ -33,14 +35,15 @@ struct SnsView: View {
                         .frame(maxHeight: .infinity)
                     }
                     .frame(width: 350)
-                    .frame(height: 100)
-//                    .padding(.top,10)
+                    .frame(height: 30)
+//                    .padding(.bottom,10)
+                    .padding(.top,30)
                     postMenu(isClick: $isClick)
                     if (isClick == 1 ){
                         ZStack(alignment: .bottomTrailing){
                             ScrollView{
                                 LazyVStack{
-                                    ForEach(posts.posts, id: \.id) { post in
+                                    ForEach(family.posts, id: \.id) { post in
                                         NavigationLink(destination: SnsPostDetailView(post:post)) {
                                             SnsPostRow(post:post)
                                         }
@@ -49,49 +52,43 @@ struct SnsView: View {
                                 }
                             }
                             VStack{
-                                if isWrite {
-                                    Button() {
-                                    }
-                                label: {
-                                    Image("postWrite")
-                                        .foregroundColor(.white)
-                                        .padding()
-                                }
-                                .background(Color.mainBlue)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
-                                    Button() {
-                                    }
-                                label: {
-                                    Image("storyWrite")
-                                        .foregroundColor(.white)
-                                        .padding()
-                                }
-                                .background(Color.mainBlue)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
-                                    
-                                }
-                                Button {
+                                if let user = userLoader.user{
                                     if isWrite {
-                                        isWrite = false
-                                        
+                                        NavigationLink(destination: SnsPostWriteView(user:user,family:family)) {
+                                            Image("postWrite")
+                                                .padding(13)     
+                                                .background(Color.mainBlue)
+                                                .foregroundColor(.white)
+                                                .clipShape(Circle())
+                                        }
+                                        NavigationLink(destination: SnsStoryWriteView(user:user,family:family)) {
+                                            Image("storyWrite")
+                                                .padding(13)
+                                                .background(Color.mainBlue)
+                                                .foregroundColor(.white)
+                                                .clipShape(Circle())
+                                        }
                                     }
-                                    else {
-                                        isWrite = true
-                                        
+                                    Button {
+                                        if isWrite {
+                                            isWrite = false
+                                        }
+                                        else {
+                                            isWrite = true
+                                        }
+                                        //                    showNewTweetView.toggle()
+                                    } label: {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.white)
+                                            .padding()
                                     }
-                                    //                    showNewTweetView.toggle()
-                                } label: {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.white)
-                                        .padding()
+                                    .background(Color.mainBlue)
+                                    .foregroundColor(.white)
+                                    .clipShape(Circle())
                                 }
-                                .background(Color.mainBlue)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
                             }
                             .padding()
+                        
                             
                             //                MyView()
                         }
@@ -284,6 +281,6 @@ class FloatingButtonViewController: UIViewController {
 }*/
 struct SnsView_Previews: PreviewProvider {
     static var previews: some View {
-        SnsView(isWrite: false)
+        SnsView()
     }
 }

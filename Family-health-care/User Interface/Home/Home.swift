@@ -14,28 +14,28 @@ struct Home: View {
     @State var pd : String = ""
     @EnvironmentObject private var userLoader : UserLoader
     var body: some View {
-        NavigationView{
-            VStack{
-                if let user = userLoader.user{
-                    NavigationLink(destination: testtest()
-                        .environmentObject(Family(user: user))){
-                        Text("asdf")
-                    }
-                    Text("\(user.userId)")
-                    ForEach(user.promise, id:\.self){ promise in
-                        Text(promise.promiseDetail)
-                    }
-                    
-                    Button("click"){
-                        print("click")
-                        
-                        user.promise.append(Promise(promiseDetail: "아자아자 테스트", promiseDate: Date()))
-                        user.height = 165
-                        
-                    }
-                }
-                
-            }
+//        NavigationView{
+//            VStack{
+//                if let user = userLoader.user{
+//                    NavigationLink(destination: testtest()
+//                        .environmentObject(Family(user: user))){
+//                        Text("asdf")
+//                    }
+//                    Text("\(user.userId)")
+//                    ForEach(user.promise, id:\.self){ promise in
+//                        Text(promise.promiseDetail)
+//                    }
+//
+//                    Button("click"){
+//                        print("click")
+//
+//                        user.promise.append(Promise(promiseDetail: "아자아자 테스트", promiseDate: Date()))
+//                        user.height = 165
+//
+//                    }
+//                }
+//
+//            }
             //        ZStack{
             //            Color.mainBeige.ignoresSafeArea(.all)
             //
@@ -67,10 +67,13 @@ struct Home: View {
             //            }
             //        }
             //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if let user = userLoader.user{
+            SnsView()
+            .environmentObject(Family(user: user))}
+//        SnsView()
             
-            //        SnsView()
-            
-            CharacterView()
+//            CharacterView()
             
             //        MyPageView()
             //        VStack{
@@ -90,7 +93,7 @@ struct Home: View {
             //        }
             //        SnsView(isWrite: false)
             // FamilyPageView()
-        }
+//        }
     }
 }
 
