@@ -119,7 +119,7 @@ struct storyView : View {
                 .cornerRadius(30)
                 .overlay(RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.black, lineWidth: 0.5))
-            Text("\(story.createBy)")
+            Text("\(story.createdBy)")
                 .font(.caption)
                 .fontWeight(.thin)
                 .padding(.bottom, 6)

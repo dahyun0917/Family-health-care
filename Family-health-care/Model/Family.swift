@@ -15,7 +15,11 @@ final class Family: ObservableObject{
             if (posts.count != lastPostCount && posts.count - oldValue.count>0) {addPostData(token: self.postToken)}
         }
     }
-    @Published var storys : [Story] = []
+    @Published var storys : [Story] = []{
+        didSet(oldValue){
+            if (storys.count != lastStoryCount && storys.count - oldValue.count>0) {addStoryData(token: self.storyToken)}
+        }
+    }
     var flag : Bool = true
     let db = Firestore.firestore()
     @Published var postToken = ""
@@ -45,9 +49,10 @@ final class Family: ObservableObject{
                             return
                         }
                         self.postToken = family.path+"/Posts"
+                        self.storyToken = family.path+"/Storys"
                         self.getPostData(token : self.postToken){
                         }
-                        self.getStoryData(token: family.path+"/Storys"){
+                        self.getStoryData(token: self.storyToken){
                         }
                         if let users = doc["users"]! as? [String]{
                             for name in users{
@@ -59,12 +64,12 @@ final class Family: ObservableObject{
                             }
                             
                         }
-
+                        
                     }
                     
                 }
             }
-           
+            
         }
         
     }
@@ -77,11 +82,11 @@ final class Family: ObservableObject{
             } else {
                 for document in querySnapshot!.documents {
                     let info = document.data()
-                            let title = info["title"] as? String ?? ""
-                            let content = info["content"] as? String ?? ""
-                            let img = info["img"] as? String ?? ""
-                            let createdBy = info["createdBy"] as? String ?? ""
-                            let createdAt = info["createdAt"] as? Date ?? Date()
+                    let title = info["title"] as? String ?? ""
+                    let content = info["content"] as? String ?? ""
+                    let img = info["img"] as? String ?? ""
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Date ?? Date()
                     
                     
                     self.getCommentData(token: token+"/"+document.documentID+"/comments") { (comments) in
@@ -108,13 +113,13 @@ final class Family: ObservableObject{
             "createdBy" : posts.last!.createdBy,
             "createdAt" : posts.last!.createdAt
         ]
-//        let p = Post(title : "\(posts.last!.title)",
-//                        content : "\(posts.last!.content)",
-//                        img : "\(posts.last!.img)",
-//                        comment : [],
-//                        createdBy : "\(posts.last!.createdBy)",
-//                        createdAt : posts.last!.createdAt
-//                        )
+        //        let p = Post(title : "\(posts.last!.title)",
+        //                        content : "\(posts.last!.content)",
+        //                        img : "\(posts.last!.img)",
+        //                        comment : [],
+        //                        createdBy : "\(posts.last!.createdBy)",
+        //                        createdAt : posts.last!.createdAt
+        //                        )
         let newRef = db.collection(token).document()
         newRef.setData(post){ err in
             if let err = err {
@@ -139,7 +144,7 @@ final class Family: ObservableObject{
                     let content:String = info["content"] as? String ?? ""
                     let createdBy = info["createdBy"] as? String ?? ""
                     let createdAt = info["createdAt"] as? Date ?? Date()
-
+                    
                     comments.append(Comment(content:content,createdBy: createdBy, createdAt: createdAt))
                 }
                 completion(comments)
@@ -151,7 +156,7 @@ final class Family: ObservableObject{
     func setCommentData (token:String) {
         
     }
-
+    
     
     
     func getStoryData(token:String, completion: @escaping () -> Void) {
@@ -161,13 +166,13 @@ final class Family: ObservableObject{
             } else {
                 for document in querySnapshot!.documents {
                     let info = document.data()
-                            let content = info["content"] as? String ?? ""
-                            let img = info["img"] as? String ?? ""
-                            let createdBy = info["createdBy"] as? String ?? ""
-                            let createdAt = info["createdAt"] as? Date ?? Date()
+                    let content = info["content"] as? String ?? ""
+                    let img = info["img"] as? String ?? ""
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Date ?? Date()
                     
                     
-                    let story:Story = Story(content: content, img: img, createBy: createdBy, createAt: createdAt)
+                    let story:Story = Story(content: content, img: img, createdBy: createdBy, createdAt: createdAt)
                     self.lastStoryCount += 1
                     self.storys.append(story)
                 }
@@ -176,5 +181,24 @@ final class Family: ObservableObject{
             
         }
     }
+    
+    func addStoryData (token:String){
+        let story: [String: Any] = [
+            "content" : storys.last!.content,
+            "img" : storys.last!.img,
+            "createdBy" : storys.last!.createdBy,
+            "createdAt" : storys.last!.createdAt
+        ]
+        let newRef = db.collection(token).document()
+        newRef.setData(story){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+                self.lastPostCount += 1
+                
+            }
+        }
         
+    }
 }

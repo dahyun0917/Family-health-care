@@ -13,6 +13,7 @@ struct SnsStoryWriteView: View {
     @State var inputHeightTitle:CGFloat = 40
     @State var inputHeightContent:CGFloat = 40
     @State var imageFile:Bool = true
+    @Environment(\.dismiss) private var dismiss
     var user : User
     var family : Family
     
@@ -26,8 +27,9 @@ struct SnsStoryWriteView: View {
             HStack{
                 Spacer()
                 Button {
-                    let story = Story(content: text, img: "", createBy: user.userId, createAt: Date())
+                    let story = Story(content: text, img: "", createdBy: user.userId, createdAt: Date())
                     family.storys.append(story)
+                    dismiss()
                 } label: {
                     Text("완료")
                         .foregroundColor(.white)
