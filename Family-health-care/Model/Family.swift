@@ -77,7 +77,7 @@ final class Family: ObservableObject{
     }
     
     func getPostData (token:String, completion: @escaping () -> Void){
-        let post = db.collection(token).order(by: "createdAt")
+        let post = db.collection(token).order(by: "createdAt", descending: true)
         post.getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -97,7 +97,7 @@ final class Family: ObservableObject{
                         let post:Post = Post(title: title, content: content, img: img, comment : comments, createdBy: createdBy, createdByImg : createdByImg, createdAt: createdAt.dateValue() )
                         self.lastPostCount += 1
                         self.posts.append(post)
-                        
+//                        print(post.createdAt)
                     }
                 }
                 completion()
@@ -106,7 +106,8 @@ final class Family: ObservableObject{
     }
     
     func getStoryData(token:String, completion: @escaping () -> Void) {
-        let story = db.collection(token).order(by: "createdAt")
+        let yesterday = Date(timeIntervalSinceNow: -86400)
+        let story = db.collection(token).whereField("createdAt", isGreaterThan: yesterday).order(by: "createdAt")
         story.getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -124,6 +125,7 @@ final class Family: ObservableObject{
                     self.lastStoryCount += 1
                     self.storys.append(story)
                 }
+//                print(self.storys)
                 completion()
             }
             
@@ -132,7 +134,7 @@ final class Family: ObservableObject{
     
     func getCommentData (token:String, completion: @escaping ([Comment]) -> Void) {
         var comments:[Comment] = []
-        var comment = db.collection(token).order(by: "createdAt")
+        let comment = db.collection(token).order(by: "createdAt")
         comment.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
