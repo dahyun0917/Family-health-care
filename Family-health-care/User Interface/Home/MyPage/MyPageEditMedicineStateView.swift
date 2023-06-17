@@ -12,7 +12,8 @@ struct MyPageEditMedicineStateView: View {
     @EnvironmentObject private var userLoader : UserLoader
     let medicine: Medicine
     let rows: [GridItem] = [GridItem(.flexible())]
-    @State var timeList:[timeItem] = [timeItem(time:Date())]
+    @State var timeList:[Date]
+    @Binding var isChosen: Bool
     
     var body: some View {
         VStack {
@@ -51,7 +52,7 @@ struct MyPageEditMedicineStateView: View {
                             .padding([.leading, .bottom])
                         Spacer()
                         Button {
-                            self.timeList.append(timeItem(time: Date()))
+                            self.timeList.append(Date())
                         } label: {
                             Text("시간 추가")
                                 .padding(.trailing)
@@ -60,9 +61,9 @@ struct MyPageEditMedicineStateView: View {
                         }
                     }
                     List{
-                        ForEach($timeList) { item in
+                        ForEach($timeList, id: \.self) { item in
                             HStack{
-                                DatePicker("", selection: item.time, displayedComponents: [.hourAndMinute])
+                                DatePicker("", selection: item, displayedComponents: [.hourAndMinute])
                                     .labelsHidden()
                                     .padding(.leading)
                                 Spacer()
@@ -79,12 +80,17 @@ struct MyPageEditMedicineStateView: View {
                     .frame(height: 30)
             }
             Spacer()
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color.mainBlue)
-                    .frame(height: 60)
-                Text("설정 완료")
-                    .foregroundColor(Color.mainWhite)
+            Button {
+                isChosen = true
+                dismiss()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color.mainBlue)
+                        .frame(height: 60)
+                    Text("설정 완료")
+                        .foregroundColor(Color.mainWhite)
+                }
             }
         }.navigationBarBackButtonHidden(true)
     }
@@ -145,14 +151,3 @@ struct timeItem: Identifiable {
     var time: Date
 }
 
-struct weekItem: Identifiable {
-    var id = UUID()
-    var check: Bool
-    var day: String
-}
-
-struct MyPageEditMedicineStateView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageEditMedicineStateView(medicine: medicineSamples[0])
-    }
-}

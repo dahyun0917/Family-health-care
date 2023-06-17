@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct MyPageMedicineSearchView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var medicines : Medicines
+    @EnvironmentObject private var userLoader : UserLoader
     @State private var searchText = ""
     @State private var selectedObject: Medicine?
+    @State private var isChosen = false
     
     var objects: [Medicine] {
         return medicines.medicines
@@ -66,17 +68,33 @@ struct MyPageMedicineSearchView: View {
                 }.padding()
                 
                 Spacer()
-                NavigationLink(destination: MyPageEditMedicineStateView(medicine: medicineSamples[0])) {
+                if selectedObject==nil {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.mainBlue)
+                            .foregroundColor(Color.gray.opacity(0.3))
                             .frame(height: 60)
-                        Text("약 선택 완료")
+                        Text("약을 선택해주세요")
                             .foregroundColor(Color.mainWhite)
                     }
+                } else {
+                    NavigationLink(destination: MyPageEditMedicineStateView(medicine: selectedObject!, timeList: [], isChosen: $isChosen)) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.mainBlue)
+                                .frame(height: 60)
+                            Text("약 선택 완료")
+                                .foregroundColor(Color.mainWhite)
+                        }
+                    }
                 }
-            }.navigationBarBackButtonHidden(true)
+            }
         }
+        .onAppear {
+            if isChosen {
+                dismiss()
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
