@@ -9,15 +9,32 @@ import SwiftUI
 import Kingfisher
 
 struct SnsStoryView: View {
-    @State var progress : Double = 0.3
     var user:User
     var story:Story
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var downloadAmount = 0.0
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
+        
     var body: some View {
+
         VStack{
             SnsUserProfile(createdBy: story.createdBy, createdAt: story.createdAt,createdByImg: story.createdByImg)
-            ProgressView(value: progress)
-                .progressViewStyle(LinearProgressViewStyle(tint: Color.mainBlue))
-                .padding(.horizontal,15)
+            VStack{
+                ProgressView(value: downloadAmount, total: 100)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.mainBlue))
+                    .padding(.horizontal,15)
+            }.onReceive(timer) { _ in
+                //만약 downloadAmount가 100보다 작다면 실행
+                //total값 보다 작아야함
+                if downloadAmount < 100 {
+                    downloadAmount += 5
+                } else{
+                    dismiss()
+                    
+                }
+            }
             VStack{
                 if (story.img != ""){
                     KFImage(URL(string: story.img)!)
@@ -53,7 +70,28 @@ struct SnsStoryView: View {
         .padding(.top,5)
         
     }
+    
+//    func setTimer(){
+//        var timer = Timer()
+//        var secondsPassed = 0
+//        let time = 3
+//
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+//            if secondsPassed < time {
+//                print ("\(secondsPassed) seconds")
+//                secondsPassed += 1
+////
+////                let percent = Float(self.secondsPassed) / Float(self.time)
+////                self.progressView.progressView = percent
+//                progress = Double(secondsPassed) / Double(time)
+//            }
+//            else {
+//                dismiss()
+//            }
+//        }
+//    }
 }
+
 //struct SnsStoryView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        SnsStoryView(story: StorySamples[0])
