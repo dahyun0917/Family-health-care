@@ -21,30 +21,13 @@ struct MyPageView: View {
                 let parentHeight = parent_proxy.size.height
                 VStack{
                     if let user = userLoader.user{
-                        Promise2View(promise: user.promise[0]).environmentObject(userLoader)
+                        Promise2View(promise: user.promise).environmentObject(userLoader)
                         HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
                         WalkView().environmentObject(userLoader)
                         MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
                     }
                 }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
-//                print(user)
             }
-//            GeometryReader {  parent_proxy in
-//                let parentWidth = parent_proxy.size.width
-//                let parentHeight = parent_proxy.size.height
-//                VStack{
-//                    Promise2View(promise: promiseSamples[1])
-//                    HeightWeightView(height: 180, weight: 30)
-//                    WalkView()
-//                    MedicineStateView(medicineStateList: medicineStateSamples)
-//                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
-//            }
-            //            VStack {
-            //                Promise2View(promise: promiseSamples[0])
-            //                HeightWeightView(height: 180, weight: 30)
-            //                WalkView()
-            //                MedicineStateView(medicineStateList: medicineStateSamples)
-            //            }
         }
     }
 }
@@ -63,26 +46,26 @@ func dateType2String(inputDate: Date) -> String {
 
 struct Promise2View: View {
     @EnvironmentObject private var userLoader : UserLoader
-    let promise: Promise
+    let promise: [Promise]
     
     var body: some View {
         VStack{
-            if !promise.isCompleted {
+            if promise.count>0 && !promise[promise.count-1].isCompleted {
                 VStack {
                     HStack{
-                        Text(dateType2String(inputDate: promise.promiseDate))
+                        Text(dateType2String(inputDate: promise[promise.count-1].promiseDate))
                             .padding(20)
                             .foregroundColor(Color.mainWhite)
                         Spacer()
                         HStack{
-                            NavigationLink(destination: MyPagePromiseWirteView(promise: promise.promiseDetail, isNewPromise: false).environmentObject(userLoader)) {
+                            NavigationLink(destination: MyPagePromiseWirteView(promise: promise[promise.count-1].promiseDetail, isNewPromise: false).environmentObject(userLoader)) {
                                 Image(systemName:"square.and.pencil")
                                     .foregroundColor(Color.mainWhite)
                             }
                             
                             Button(action: {
                                 if var user = userLoader.user {
-                                    user.promise[0].isCompleted = true
+                                    user.uploadPromise(dataDetail: promise[promise.count-1].promiseDetail, dataDate: promise[promise.count-1].promiseDate, dataComplete: true)
                                 }
                             }) {
                                 Image(systemName:"checkmark.square")
@@ -91,7 +74,7 @@ struct Promise2View: View {
                         }.padding(20)
                     }.frame(alignment:.top)
                     HStack {
-                        Text(promise.promiseDetail)
+                        Text(promise[promise.count-1].promiseDetail)
                             .foregroundColor(Color.mainWhite)
                             .padding(20)
                         Spacer()
@@ -165,6 +148,7 @@ struct HeightWeightView: View {
                             if var user = userLoader.user {
                                 user.height = height
                                 user.weight = weight
+                                user.uploadWeightHeight(dataWeight: weight, dataHeight: height)
                             }
                         }) {
                             Text("저장")
@@ -222,6 +206,7 @@ struct WalkView: View  {
             self.updateStepCount()
             if var user = userLoader.user {
                 user.walk = stepCount
+                user.uploadWalk(data: stepCount)
             }
         }
     }
@@ -258,12 +243,12 @@ struct MedicineStateView: View {
                     Text("복약현황").padding(.leading).foregroundColor(Color.steelBlue)
                     Spacer()
                     HStack {
-                        NavigationLink(destination: MyPageMedicineSearchView().environmentObject(medicines)) {
+                        NavigationLink(destination: MyPageMedicineSearchView().environmentObject(medicines).environmentObject(userLoader)) {
                             Image("big-add-pill")
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(Color.steelBlue)
-                        }
+                        }.navigationBarBackButtonHidden(true)
                     }.frame(alignment: .top).padding([.top, .horizontal])
                 }.onAppear() {
                     for medicineState in medicineStateList {

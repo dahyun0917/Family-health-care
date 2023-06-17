@@ -18,8 +18,10 @@ final class User: ObservableObject {
     @Published var height: Int = 0
     @Published var weight: Int = 0
     @Published var family: String = ""
+    private let token: String
 
     init(token: String, completion: @escaping (User) -> Void) {
+        self.token = token
         fetchFields(token: token) {
             self.fetchPromise(token: token) {
                 self.fetchMedicine(token: token) {
@@ -69,7 +71,7 @@ final class User: ObservableObject {
     func fetchPromise(token: String, completion: @escaping () -> Void) {
         let db = Firestore.firestore()
 
-        let promises = db.collection("users").document(token).collection("promises")
+        let promises = db.collection("users").document(token).collection("promises").order(by: "promiseDate")
         promises.getDocuments { (querySnapshot, err) in
             guard err == nil , let querySnapshot = querySnapshot else{
                 print("Error: \(err?.localizedDescription ?? "")")
@@ -80,9 +82,10 @@ final class User: ObservableObject {
                     print("Error : Unable to cast 'time' to Timestamp")
                     continue
                 }
+                let promiseID = document.documentID
                 let promiseContents = document.data()["promiseContents"] as? String ?? ""
                 let complete = document.data()["complete"] as? Bool ?? false
-                self.promise.append(Promise(promiseDetail: promiseContents, promiseDate: timestamp.dateValue(), isCompleted: complete))
+                self.promise.append(Promise(promiseID: promiseID, promiseDetail: promiseContents, promiseDate: timestamp.dateValue(), isCompleted: complete))
             }
             completion()
         }
@@ -105,6 +108,74 @@ final class User: ObservableObject {
                 self.medicineState.append(MedicineState(medicineName: medicineName, time: time, isComplete: complete))
             }
             completion()
+        }
+    }
+    
+    func uploadWalk(data: Int) {
+        let db = Firestore.firestore()
+        db.collection("users").document(token).updateData([
+            "walk": data
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                self.walk = data
+            }
+        }
+    }
+    
+    func uploadWeightHeight(dataWeight: Int, dataHeight: Int) {
+        let db = Firestore.firestore()
+        db.collection("users").document(token).updateData([
+            "weight": dataWeight,
+            "height": dataHeight
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                self.weight = dataWeight
+                self.height = dataHeight
+            }
+        }
+    }
+    
+    func uploadPromise(dataDetail: String, dataDate: Date, dataComplete:Bool) {
+        let db = Firestore.firestore()
+        if self.promise.count>0 {
+            db.collection("users").document(token).collection("promises").document(self.promise[self.promise.count-1].promiseID).updateData([
+                "complete": dataComplete,
+                "promiseContents": dataDetail,
+                "promiseDate": dataDate
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    if self.promise.count > 0 {
+                        self.promise[self.promise.count-1].promiseDetail = dataDetail
+                        self.promise[self.promise.count-1].promiseDate = dataDate
+                        self.promise[self.promise.count-1].isCompleted = dataComplete
+                    }
+                }
+            }
+        }
+    }
+    
+    func addPromise(data: Promise) {
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil // ref를 Optional로 선언
+        ref = db.collection("users").document(token).collection("promises").addDocument(data: [
+            "complete": data.isCompleted,
+            "promiseContents": data.promiseDetail,
+            "promiseDate": data.promiseDate
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                self.promise.append(data)
+                if self.promise.count > 0 {
+                    self.promise[self.promise.count-1].promiseID = ref!.documentID
+                }
+            }
         }
     }
 }

@@ -12,12 +12,6 @@ struct MyPagePromiseWirteView: View {
     @EnvironmentObject private var userLoader : UserLoader
     @State var promise: String
     let isNewPromise: Bool
-//    let promise: String
-    
-//    init(promise: String) {
-//
-//        self.promise = promise
-//    }
     
     var body: some View {
         ZStack{
@@ -34,13 +28,11 @@ struct MyPagePromiseWirteView: View {
                     Button (action: {
                         if var user = userLoader.user{
                             if isNewPromise {
-                                let newPromise = Promise(promiseDetail: promise, promiseDate: Date(), isCompleted: false)
-//                                user.promise.append()
-                                user.promise.insert(newPromise, at: 0)
+                                let newPromise = Promise(promiseID:"", promiseDetail: promise, promiseDate: Date(), isCompleted: false)
+                                user.addPromise(data: newPromise)
                             }
                             else {
-                                user.promise[0].promiseDetail = promise
-                                user.promise[0].promiseDate = Date()
+                                user.uploadPromise(dataDetail: promise, dataDate: Date(), dataComplete: false)
                             }
                             dismiss()
                         }
