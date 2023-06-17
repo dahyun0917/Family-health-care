@@ -10,32 +10,34 @@ import CoreMotion
 
 struct MyPageView: View {
     @EnvironmentObject private var userLoader : UserLoader
+    @State var user:User?
     
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
-            //            GeometryReader {  parent_proxy in
-            //                let parentWidth = parent_proxy.size.width
-            //                let parentHeight = parent_proxy.size.height
-            //                VStack{
-            //                    if let user = userLoader.user{
-            //                        Promise2View(promise: user.promise[0])
-            //                        HeightWeightView(height: user.height, weight: user.weight)
-            //                        WalkView()
-            //                        MedicineStateView(medicineStateList: user.medicineState)
-            //                    }
-            //                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
-            //            }
             GeometryReader {  parent_proxy in
                 let parentWidth = parent_proxy.size.width
                 let parentHeight = parent_proxy.size.height
                 VStack{
-                    Promise2View(promise: promiseSamples[1])
-                    HeightWeightView(height: 180, weight: 30)
-                    WalkView()
-                    MedicineStateView(medicineStateList: medicineStateSamples)
+                    if let user = userLoader.user{
+                        Promise2View(promise: user.promise[0]).environmentObject(userLoader)
+                        HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
+                        WalkView().environmentObject(userLoader)
+                        MedicineStateView(medicineStateList: user.medicineState)
+                    }
                 }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+//                print(user)
             }
+//            GeometryReader {  parent_proxy in
+//                let parentWidth = parent_proxy.size.width
+//                let parentHeight = parent_proxy.size.height
+//                VStack{
+//                    Promise2View(promise: promiseSamples[1])
+//                    HeightWeightView(height: 180, weight: 30)
+//                    WalkView()
+//                    MedicineStateView(medicineStateList: medicineStateSamples)
+//                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+//            }
             //            VStack {
             //                Promise2View(promise: promiseSamples[0])
             //                HeightWeightView(height: 180, weight: 30)
@@ -59,6 +61,7 @@ func dateType2String(inputDate: Date) -> String {
 }
 
 struct Promise2View: View {
+    @EnvironmentObject private var userLoader : UserLoader
     let promise: Promise
     
     var body: some View {
@@ -71,12 +74,19 @@ struct Promise2View: View {
                             .foregroundColor(Color.mainWhite)
                         Spacer()
                         HStack{
-                            NavigationLink(destination: MyPagePromiseWirteView(promise: promise.promiseDetail)) {
+                            NavigationLink(destination: MyPagePromiseWirteView(promise: promise.promiseDetail, isNewPromise: false).environmentObject(userLoader)) {
                                 Image(systemName:"square.and.pencil")
                                     .foregroundColor(Color.mainWhite)
                             }
-                            Image(systemName:"checkmark.square")
-                                .foregroundColor(Color.mainWhite)
+                            
+                            Button(action: {
+                                if var user = userLoader.user {
+                                    user.promise[0].isCompleted = true
+                                }
+                            }) {
+                                Image(systemName:"checkmark.square")
+                                    .foregroundColor(Color.mainWhite)
+                            }
                         }.padding(20)
                     }.frame(alignment:.top)
                     HStack {
@@ -88,7 +98,7 @@ struct Promise2View: View {
                 }.background(Color.mainBlue).cornerRadius(20)
             }
             else {
-                NavigationLink(destination: MyPagePromiseWirteView(promise: "")) {
+                NavigationLink(destination: MyPagePromiseWirteView(promise: "", isNewPromise: true).environmentObject(userLoader)) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(style: StrokeStyle(lineWidth: 9, dash: [90, 25], dashPhase: -10))
@@ -114,6 +124,7 @@ struct Promise2View: View {
 }
 
 struct HeightWeightView: View {
+    @EnvironmentObject private var userLoader : UserLoader
     @State private var showModal = false
     @State var height:Int
     @State var weight:Int
@@ -150,8 +161,12 @@ struct HeightWeightView: View {
                         
                         Button(action: {
                             showModal = false
+                            if var user = userLoader.user {
+                                user.height = height
+                                user.weight = weight
+                            }
                         }) {
-                            Text("Save")
+                            Text("저장")
                         }
                     }
                     .padding()
@@ -168,6 +183,7 @@ struct HeightWeightView: View {
 }
 
 struct WalkView: View  {
+    @EnvironmentObject private var userLoader : UserLoader
     @State private var stepCount: Int = 0
     let pedometer = CMPedometer()
     @State var timer: Timer?
@@ -203,6 +219,9 @@ struct WalkView: View  {
         // 일정 간격으로 걸음수 업데이트
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             self.updateStepCount()
+            if var user = userLoader.user {
+                user.walk = stepCount
+            }
         }
     }
     func updateStepCount() {

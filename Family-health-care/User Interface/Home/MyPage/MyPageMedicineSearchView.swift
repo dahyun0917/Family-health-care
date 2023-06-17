@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct MyPageMedicineSearchView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         ZStack{
             Color.mainBeige.edgesIgnoringSafeArea(.all)
             VStack{
+                Button (action: {dismiss()})
+                {
+                    HStack {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color.mediumGray)
+                        Text("취소").foregroundColor(Color.mediumGray).padding(.trailing, 10)
+                        Spacer()
+                    }.padding(.leading)
+                }
                 HStack{
                     Image(systemName: "magnifyingglass")
                         .padding(20)
@@ -37,7 +46,7 @@ struct MyPageMedicineSearchView: View {
                             .foregroundColor(Color.mainWhite)
                     }
                 }
-            }
+            }.navigationBarBackButtonHidden(true)
         }
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyPageEditMedicineStateView: View {
+    @Environment(\.dismiss) private var dismiss
     let medicine: Medicine
     let rows: [GridItem] = [GridItem(.flexible())]
     @State var timeList:[timeItem] = [timeItem(time:Date())]
@@ -17,7 +18,10 @@ struct MyPageEditMedicineStateView: View {
         VStack {
             HStack {
                 Spacer()
-                Text("취소").foregroundColor(Color.mediumGray).padding(.trailing, 10)
+                Button (action: {dismiss()})
+                {
+                    Text("취소").foregroundColor(Color.mediumGray).padding(.trailing, 10)
+                }
                 Text("삭제").foregroundColor(.red).padding(.trailing, 40)
             }
             Spacer().frame(height: 20)
@@ -117,7 +121,7 @@ struct MyPageEditMedicineStateView: View {
                 Text("설정 완료")
                     .foregroundColor(Color.mainWhite)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     func removeRows(at offsets: IndexSet) {
         timeList.remove(atOffsets: offsets)
