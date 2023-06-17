@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SnsPostDetailView: View {
     @State var post : Post
     @State var commentText:String = ""
-    
+    var user:User
     var body: some View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
@@ -20,7 +21,7 @@ struct SnsPostDetailView: View {
                         VStack(spacing: 0){
                             ForEach(post.comment, id: \.id) { comment in
                                 Text("--------------------------------------------")
-                                commentView(comment:comment)
+                                commentView(comment:comment,url: URL(string: post.createdBy)!)
                                 .padding(.leading,15)
                             }
                         }
@@ -39,6 +40,7 @@ struct SnsPostDetailView: View {
                         .padding()
                         .textFieldStyle(.roundedBorder)
                     Button("확인"){
+                        
                     }
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -60,7 +62,7 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt)
+                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,user:user)
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -85,12 +87,28 @@ private extension SnsPostDetailView {
     }
     var postContent: some View {
         VStack(alignment: .leading){
-            Image("postPicTest")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 300, height: 150,alignment: .center)
-                .padding([.bottom, .trailing],10)
-                .padding(.leading,20)
+            KFImage(URL(string: post.createdBy)!)
+              .placeholder { //플레이스 홀더 설정
+//                  Image(systemName: "person")
+              }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+              .onSuccess {r in //성공
+//                      print("succes: \(r)")
+              }
+              .onFailure { e in //실패
+//                      print("failure: \(e)")
+              }
+              .resizable()
+              .scaledToFill()
+              .frame(width: 300, height: 150,alignment: .center)
+              .padding([.bottom, .trailing],10)
+              .padding(.leading,20)
+
+//            Image("postPicTest")
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 300, height: 150,alignment: .center)
+//                .padding([.bottom, .trailing],10)
+//                .padding(.leading,20)
             HStack{
                 Text("\(post.title)")
                     .font(.headline)
@@ -103,7 +121,7 @@ private extension SnsPostDetailView {
                 .padding(.horizontal,20)
                 .padding(.top,1)
                 .padding(.bottom,20)
-                
+
         }
     }
     
@@ -122,6 +140,8 @@ private extension SnsPostDetailView {
     }
     
 }
+
+    
 struct commentView : View {
     var comment:Comment
     let dateFormat: DateFormatter = {
@@ -130,15 +150,33 @@ struct commentView : View {
 //                formatter.locale = Locale(identifier:"en")
                 return formatter
         }()
+    let url:URL
     var body: some View {
         HStack{
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40)
-                .cornerRadius(30)
-                .overlay(RoundedRectangle(cornerRadius: 30)
-                    .stroke(Color.black, lineWidth: 0.2))
+            KFImage(url)
+                  .placeholder { //플레이스 홀더 설정
+                      Image(systemName: "person")
+                  }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                  .onSuccess {r in //성공
+//                      print("succes: \(r)")
+                  }
+                  .onFailure { e in //실패
+//                      print("failure: \(e)")
+                  }
+                  .resizable()
+                  .scaledToFill()
+                  .frame(width: 40, height: 40)
+                  .cornerRadius(30)
+                  .overlay(RoundedRectangle(cornerRadius: 30)
+                      .stroke(Color.black, lineWidth: 0.2))
+
+//            Image(systemName: "person")
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 40, height: 40)
+//                .cornerRadius(30)
+//                .overlay(RoundedRectangle(cornerRadius: 30)
+//                    .stroke(Color.black, lineWidth: 0.2))
             VStack(alignment: .leading){
                 HStack{
                     Text("\(comment.createdBy)")
@@ -166,8 +204,8 @@ struct commentView : View {
 
 
 
-struct SnsPostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SnsPostDetailView(post:PostSamples[0])
-    }
-}
+//struct SnsPostDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SnsPostDetailView(post:PostSamples[0])
+//    }
+//}

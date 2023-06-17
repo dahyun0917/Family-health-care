@@ -20,14 +20,14 @@ struct SnsStoryWriteView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading) {
-                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date())
+                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date(),user:user)
                 writeText
                 uploadPicture
             }
             HStack{
                 Spacer()
                 Button {
-                    let story = Story(content: text, img: "", createdBy: user.userId, createdAt: Date())
+                    let story = Story(content: text, img: "", createdBy: user.userId,createdByImg: user.image, createdAt: Date())
                     family.storys.append(story)
                     dismiss()
                 } label: {

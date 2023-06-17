@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UIKit
-
+import Kingfisher
 
 struct SnsView: View {
     @EnvironmentObject private var family : Family
@@ -17,15 +17,16 @@ struct SnsView: View {
     @State private var date = Date()
     
     var body: some View {
-        NavigationView{
-            
+        if let user = userLoader.user{
+            NavigationView{
+                
                 //                Color.mainGrey.edgesIgnoringSafeArea(.all)  // 전체배경색 변화
                 
                 VStack {
                     ScrollView(.horizontal,showsIndicators: false){
                         HStack{
                             ForEach(family.storys, id: \.id) { story in
-                                NavigationLink(destination: SnsStoryView(story: story)) {
+                                NavigationLink(destination: SnsStoryView(user:user,story: story)) {
                                     storyView(story: story)
                                 }
                                 
@@ -36,7 +37,7 @@ struct SnsView: View {
                     }
                     .frame(width: 350)
                     .frame(height: 30)
-//                    .padding(.bottom,10)
+                    .padding(.bottom,10)
                     .padding(.top,30)
                     postMenu(isClick: $isClick)
                     if (isClick == 1 ){
@@ -44,54 +45,53 @@ struct SnsView: View {
                             ScrollView{
                                 LazyVStack{
                                     ForEach(family.posts, id: \.id) { post in
-                                        NavigationLink(destination: SnsPostDetailView(post:post)) {
-                                            SnsPostRow(post:post)
+                                        NavigationLink(destination: SnsPostDetailView(post:post,user:user)) {
+                                            SnsPostRow(post:post,user:user)
                                         }
                                         .buttonStyle(PlainButtonStyle())
                                     }
                                 }
                             }
                             VStack{
-                                if let user = userLoader.user{
-                                    if isWrite {
-                                        NavigationLink(destination: SnsPostWriteView(user:user,family:family)) {
-                                            Image("postWrite")
-                                                .padding(13)     
-                                                .background(Color.mainBlue)
-                                                .foregroundColor(.white)
-                                                .clipShape(Circle())
-                                        }
-                                        NavigationLink(destination: SnsStoryWriteView(user:user,family:family)) {
-                                            Image("storyWrite")
-                                                .padding(13)
-                                                .background(Color.mainBlue)
-                                                .foregroundColor(.white)
-                                                .clipShape(Circle())
-                                        }
-                                    }
-                                    Button {
-                                        if isWrite {
-                                            isWrite = false
-                                        }
-                                        else {
-                                            isWrite = true
-                                        }
-                                        //                    showNewTweetView.toggle()
-                                    } label: {
-                                        Image(systemName: "plus")
+                                
+                                if isWrite {
+                                    NavigationLink(destination: SnsPostWriteView(user:user,family:family)) {
+                                        Image("postWrite")
+                                            .padding(.horizontal,13)
+                                            .background(Color.mainBlue)
                                             .foregroundColor(.white)
-                                            .padding()
+                                            .clipShape(Circle())
                                     }
-                                    .background(Color.mainBlue)
-                                    .foregroundColor(.white)
-                                    .clipShape(Circle())
+                                    NavigationLink(destination: SnsStoryWriteView(user:user,family:family)) {
+                                        Image("storyWrite")
+                                            .padding(.horizontal,13)
+                                            .background(Color.mainBlue)
+                                            .foregroundColor(.white)
+                                            .clipShape(Circle())
+                                    }
                                 }
+                                Button {
+                                    if isWrite {
+                                        isWrite = false
+                                    }
+                                    else {
+                                        isWrite = true
+                                    }
+                                } label: {
+                                    Image(systemName: "plus")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
+                                .background(Color.mainBlue)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
                             }
-                            .padding()
-                        
-                            
-                            //                MyView()
                         }
+                        .padding()
+                        
+                        
+                        //                MyView()
+                        
                         
                     }
                     else if (isClick == 2) {
@@ -106,19 +106,36 @@ struct SnsView: View {
             }
         }
     }
+    }
 
 
 struct storyView : View {
     var story : Story
     var body : some View {
+        let url:URL = URL(string: story.createdByImg)!
         VStack{
-            Image(systemName: "person")
-                .resizable()
-//                .scaledToFill()
-                .frame(width: 50, height: 50)
-                .cornerRadius(30)
-                .overlay(RoundedRectangle(cornerRadius: 30)
-                    .stroke(Color.black, lineWidth: 0.5))
+            KFImage(url)
+                  .placeholder { //플레이스 홀더 설정
+                      Image(systemName: "person")
+                  }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                  .onSuccess {r in //성공
+//                      print("succes: \(r)")
+                  }
+                  .onFailure { e in //실패
+//                      print("failure: \(e)")
+                  }
+                  .resizable()
+                  .scaledToFill()
+                  .frame(width: 40, height: 40)
+                  .cornerRadius(30)
+                  .overlay(RoundedRectangle(cornerRadius: 30)
+                  .stroke(Color.black, lineWidth: 0.2))
+//            Image(systemName: "person")
+//                .resizable()
+//                .frame(width: 50, height: 50)
+//                .cornerRadius(30)
+//                .overlay(RoundedRectangle(cornerRadius: 30)
+//                    .stroke(Color.black, lineWidth: 0.5))
             Text("\(story.createdBy)")
                 .font(.caption)
                 .fontWeight(.thin)

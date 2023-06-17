@@ -7,8 +7,7 @@
 
 import SwiftUI
 import UIKit
-import FirebaseStorage
-import Firebase
+
 
 struct SnsPostWriteView: View {
     @State var textTitle:String = ""
@@ -22,13 +21,14 @@ struct SnsPostWriteView: View {
     var user : User
     var family : Family
     
+    
     var body: some View {
         VStack{
             VStack(alignment: .leading) {
                 writeAll
             }
             Button {
-                let post = Post(title: textTitle, content: textContent, img: "", createdBy: user.userId, createdAt: Date())
+                let post = Post(title: textTitle, content: textContent, img: "", createdBy: user.userId, createdByImg: user.image, createdAt: Date())
                 family.posts.append(post)
                 dismiss()
             } label: {
@@ -44,6 +44,7 @@ struct SnsPostWriteView: View {
         }
     }
 }
+
 private extension SnsPostWriteView {
     var topBar: some View {
         HStack{
@@ -58,7 +59,7 @@ private extension SnsPostWriteView {
     }
     var writeAll: some View {
         VStack{
-            SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date())
+            SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date(),user:user)
             writeTitle
             writeContent
             uploadImage
