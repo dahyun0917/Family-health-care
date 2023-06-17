@@ -13,20 +13,6 @@ final class Family: ObservableObject{
     @Published var posts : [Post] = []{
         didSet(oldValue){
             if (posts.count != lastPostCount && posts.count - oldValue.count>0) {addPostData(token: self.postToken)}
-//            else if(posts.count == oldValue.count){
-//                for i in 0...posts.count {
-//                    print(posts[i].comment.count,oldValue[i].comment.count)
-//                    if posts[i].comment.count != oldValue[i].comment.count{
-//                        if oldValue[i].comment.count == 0 {
-//                            print("first")
-//                            addCommentData(token: self.postToken+"Comments",index:i,first: true)
-//                        }
-//                        else{
-//                            addCommentData(token: self.postToken+"Comments",index:i,first: false)
-//                        }
-//                    }
-//                }
-//            }
         }
     }
     @Published var storys : [Story] = []{
@@ -48,6 +34,7 @@ final class Family: ObservableObject{
         self.users.append(user)
     }
     
+    //getter
     func getUserData (userId : String){
         db.collection("users").document(userId).getDocument(){(doc, error) in
             guard error == nil, let doc = doc, doc.exists else{
@@ -64,7 +51,6 @@ final class Family: ObservableObject{
                             return
                         }
                         self.postToken = family.path+"/Posts"
-//                        self.commentToken = self.postToken+"/Comments"
                         self.storyToken = family.path+"/Storys"
                         self.getPostData(token : self.postToken){
                         }
@@ -91,8 +77,8 @@ final class Family: ObservableObject{
     }
     
     func getPostData (token:String, completion: @escaping () -> Void){
-        
-        db.collection(token).getDocuments() { (querySnapshot,err) in
+        let post = db.collection(token).order(by: "createdAt")
+        post.getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -116,94 +102,12 @@ final class Family: ObservableObject{
                 }
                 completion()
             }
-            
-        }
-        
-        
-    }
-    
-    func addPostData (token:String){
-        let post: [String: Any] = [
-            "title" : posts.last!.title,
-            "content" : posts.last!.content,
-            "img" : posts.last!.img,
-            "createdBy" : posts.last!.createdBy,
-            "createdByImg" : posts.last!.createdByImg,
-            "createdAt" : posts.last!.createdAt
-        ]
-        let newRef = db.collection(token).document()
-        newRef.setData(post){ err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-                self.lastPostCount += 1
-                
-            }
-        }
-        
-    }
-    func getCommentData (token:String, completion: @escaping ([Comment]) -> Void) {
-        var comments:[Comment] = []
-        db.collection(token).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let info = document.data()
-                    
-                    let content:String = info["content"] as? String ?? ""
-                    let createdBy = info["createdBy"] as? String ?? ""
-                    let createdByImg = info["createdByImg"] as? String ?? ""
-                    let createdAt = (info["createdAt"] as? Timestamp ?? Timestamp())
-                    
-                    comments.append(Comment(content:content,createdBy: createdBy,createdByImg: createdByImg, createdAt: createdAt.dateValue()))
-                }
-                completion(comments)
-                
-            }
         }
     }
-    
-    func setCommentData (comment:[String:Any],first:Bool,post:Post) {
-        db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let info = document.data()
-                    let createdBy = info["createdBy"] as? String ?? ""
-                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
-                    
-//                    print(createdAt.dateValue() , post.createdAt)
-                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
-                        self.commentToken = self.postToken+"/"+document.documentID+"/Comments"
-                        
-                        if (first && self.commentToken != "" ){
-                            let newRef = self.db.collection(self.commentToken).document()
-                            newRef.setData(comment){ err in
-                                if let err = err {
-                                    print("Error writing document: \(err)")
-                                } else {
-                                    print("Document successfully written!")
-                                    return
-                                }
-                            }
-                        }
-                    }
-                   
-                }
-            }
-            
-        }
-        
-    }
-    
-    
-    
     
     func getStoryData(token:String, completion: @escaping () -> Void) {
-        db.collection(token).getDocuments() { (querySnapshot,err) in
+        let story = db.collection(token).order(by: "createdAt")
+        story.getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -226,6 +130,120 @@ final class Family: ObservableObject{
         }
     }
     
+    func getCommentData (token:String, completion: @escaping ([Comment]) -> Void) {
+        var comments:[Comment] = []
+        var comment = db.collection(token).order(by: "createdAt")
+        comment.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                    
+                    let content:String = info["content"] as? String ?? ""
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdByImg = info["createdByImg"] as? String ?? ""
+                    let createdAt = (info["createdAt"] as? Timestamp ?? Timestamp())
+                    
+                    comments.append(Comment(content:content,createdBy: createdBy,createdByImg: createdByImg, createdAt: createdAt.dateValue()))
+                }
+                completion(comments)
+                
+            }
+        }
+    }
+    
+    //setter
+    func setPostData(post:Post){
+        db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
+                    
+                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+                        document.reference.updateData([
+                            "title" : post.title,
+                            "content" : post.content,
+                            "img" : post.img,
+                        ]){ err in
+                            if let err = err {
+                                print("Error updating post document: \(err)")
+                            } else {
+                                print("Document successfully post updated")
+                            }
+                        }
+                        
+                    }
+                   
+                }
+            }
+            
+        }
+    }
+    
+    
+    
+    func setCommentData (comment:[String:Any],first:Bool,post:Post) {
+        db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
+                    
+                    print(createdAt.dateValue() , post.createdAt)
+                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+                        self.commentToken = self.postToken+"/"+document.documentID+"/Comments"
+                        
+                        if (first && self.commentToken != "" ){
+                            let newRef = self.db.collection(self.commentToken).document()
+                            newRef.setData(comment){ err in
+                                if let err = err {
+                                    print("Error setting Comment document: \(err)")
+                                } else {
+                                    print("Document successfully Comment set!")
+                                    return
+                                }
+                            }
+                        }
+                    }
+                   
+                }
+            }
+            
+        }
+        
+    }
+    
+    //데이터 추가
+    func addPostData (token:String){
+        let post: [String: Any] = [
+            "title" : posts.last!.title,
+            "content" : posts.last!.content,
+            "img" : posts.last!.img,
+            "createdBy" : posts.last!.createdBy,
+            "createdByImg" : posts.last!.createdByImg,
+            "createdAt" : posts.last!.createdAt
+        ]
+        let newRef = db.collection(token).document()
+        newRef.setData(post){ err in
+            if let err = err {
+                print("Error adding post document: \(err)")
+            } else {
+                print("Document successfully post added!")
+                self.lastPostCount += 1
+                
+            }
+        }
+        
+    }
+    
     func addStoryData (token:String){
         let story: [String: Any] = [
             "content" : storys.last!.content,
@@ -237,13 +255,50 @@ final class Family: ObservableObject{
         let newRef = db.collection(token).document()
         newRef.setData(story){ err in
             if let err = err {
-                print("Error writing document: \(err)")
+                print("Error adding story document: \(err)")
             } else {
-                print("Document successfully written!")
+                print("Document successfully story added!")
                 self.lastPostCount += 1
                 
             }
         }
-        
     }
+    
+    //delete
+    func deletePostData (post:Post) {
+        db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
+                    
+                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+//                        db.collection(self.postToken+"/"+document.documentID)
+                        document.reference.collection("Comments").document().delete(){ err in
+                            if let err = err {
+                                print("Error removing Comments document: \(err)")
+                            } else {
+                                print("Document successfully Comments removed!")
+                            }
+                        }
+                        document.reference.delete(){ err in
+                            if let err = err {
+                                print("Error removing post document: \(err)")
+                            } else {
+                                print("Document successfully post removed!")
+                            }
+                        }
+                        
+                        
+                    }
+                   
+                }
+            }
+            
+        }
+    }
+    
 }

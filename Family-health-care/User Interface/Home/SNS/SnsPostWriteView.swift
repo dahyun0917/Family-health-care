@@ -33,7 +33,7 @@ struct SnsPostWriteView: View {
                 if update {
 //                    let post = family.indices.filter{family[$0].createdBy == user.userId && family[$0].createdBy == lastUpdateTime}
 //                    print(post)
-                    for i in 0...family.posts.count{
+                    for i in 0...family.posts.count-1{
                         if (family.posts[i].createdBy == user.userId && family.posts[i].createdAt == lastUpdateTime){
                             family.posts[i].title = textTitle
                             family.posts[i].content = textContent

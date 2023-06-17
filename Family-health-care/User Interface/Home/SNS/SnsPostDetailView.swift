@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SnsPostDetailView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var family:Family
     @ObservedObject var post : Post
     @State var commentText:String = ""
@@ -92,7 +93,16 @@ private extension SnsPostDetailView {
                             .alert(isPresented: $showingAlert) {
                                 Alert(// showingAlert가 true가 되면 알림창 표시 Alert(
                                     title: Text("정말 삭제하시겠습니까?"),
-                                    primaryButton: .default(Text("확인"), action: {family.deletePostData(post: post)}), secondaryButton: .cancel(Text("취소"))
+                                    primaryButton: .default(Text("확인"), action: {
+                                        for i in 0...family.posts.count-1 {
+                                            if(family.posts[i].createdAt == post.createdAt && family.posts[i].createdBy == post.createdBy){
+                                                family.posts.remove(at: i)
+                                                family.deletePostData(post: post)
+                                                break
+                                            }
+                                        }
+                                        dismiss()
+                                    }), secondaryButton: .cancel(Text("취소"))
                                 )
                             }
                         

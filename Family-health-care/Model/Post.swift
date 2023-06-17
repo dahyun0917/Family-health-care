@@ -20,13 +20,13 @@ import Foundation
 
 class Post: Identifiable,ObservableObject {
     let id: UUID = UUID()
-    var title : String
-    var content: String
-    var img: String
+    @Published var title : String
+    @Published var content: String
+    @Published var img: String
     @Published var comment : [Comment] = []
-    var createdBy: String
-    var createdByImg : String
-    var createdAt: Date
+    @Published var createdBy: String
+    @Published var createdByImg : String
+    @Published var createdAt: Date
     init(title: String,content:String, img:String, comment: [Comment], createdBy:String,createdByImg:String,createdAt:Date){
         self.title = title;
         self.content = content;
