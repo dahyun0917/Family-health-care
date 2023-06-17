@@ -13,38 +13,43 @@ struct SnsStoryView: View {
     var user:User
     var story:Story
     var body: some View {
-        let url:URL = URL(string: story.createdBy)!
         VStack{
-            SnsUserProfile(createdBy: story.createdBy, createdAt: story.createdAt,user:user)
+            SnsUserProfile(createdBy: story.createdBy, createdAt: story.createdAt,createdByImg: story.createdByImg)
             ProgressView(value: progress)
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.mainBlue))
                 .padding(.horizontal,15)
             VStack{
                 if (story.img != ""){
-                    KFImage(url)
+                    KFImage(URL(string: story.img)!)
                         .placeholder { //플레이스 홀더 설정
                             //                      Image(systemName: "person")
                         }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                        .onSuccess {r in //성공
-                            //                      print("succes: \(r)")
-                        }
                         .onFailure { e in //실패
-                            //                      print("failure: \(e)")
+                            print("failure_SnsStoryView: \(e)")
                         }
                         .resizable()
-                    //                    .padding(20)
-                    //                    .frame(width: .infinity, height: .infinity,alignment: .center)
+                        .padding(20)
+                        .frame(width: .infinity, height: .infinity,alignment: .center)
                 }
+                
+                Spacer()
                 Text(story.content)
                     .padding(20)
+                Spacer()
+                
                     
             }
-            .background(Color.primary.colorInvert())
-            .cornerRadius(15)
-            .overlay(RoundedRectangle(cornerRadius: 15)
-            .stroke(Color.black, lineWidth: 0.2))
-            .padding(25)
+//            .background(Color.primary.colorInvert())
+//            .cornerRadius(15)
+//            .overlay(RoundedRectangle(cornerRadius: 15)
+//            .stroke(Color.black, lineWidth: 0.2))
+//            .padding(25)
         }
+        .background(Color.primary.colorInvert())
+        .cornerRadius(15)
+        .overlay(RoundedRectangle(cornerRadius: 15)
+        .stroke(Color.black, lineWidth: 0.2))
+        .padding(25)
         
     }
 }

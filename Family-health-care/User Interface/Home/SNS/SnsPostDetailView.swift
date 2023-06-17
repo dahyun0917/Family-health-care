@@ -21,7 +21,7 @@ struct SnsPostDetailView: View {
                         VStack(spacing: 0){
                             ForEach(post.comment, id: \.id) { comment in
                                 Text("--------------------------------------------")
-                                commentView(comment:comment,url: URL(string: post.createdBy)!)
+                                commentView(comment:comment)
                                 .padding(.leading,15)
                             }
                         }
@@ -62,7 +62,7 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,user:user)
+                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -87,28 +87,20 @@ private extension SnsPostDetailView {
     }
     var postContent: some View {
         VStack(alignment: .leading){
-            KFImage(URL(string: post.createdBy)!)
-              .placeholder { //플레이스 홀더 설정
-//                  Image(systemName: "person")
-              }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-              .onSuccess {r in //성공
-//                      print("succes: \(r)")
-              }
-              .onFailure { e in //실패
-//                      print("failure: \(e)")
-              }
-              .resizable()
-              .scaledToFill()
-              .frame(width: 300, height: 150,alignment: .center)
-              .padding([.bottom, .trailing],10)
-              .padding(.leading,20)
-
-//            Image("postPicTest")
-//                .resizable()
-//                .scaledToFill()
-//                .frame(width: 300, height: 150,alignment: .center)
-//                .padding([.bottom, .trailing],10)
-//                .padding(.leading,20)
+            if (post.img != ""){
+                KFImage(URL(string: post.img)!)
+                    .placeholder { //플레이스 홀더 설정
+                        //                  Image(systemName: "postPicTest")
+                    }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                    .onFailure { e in //실패
+                         print("failure_SnsPostDetailView: \(e)")
+                    }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 150,alignment: .center)
+                    .padding([.bottom, .trailing],10)
+                    .padding(.leading,20)
+            }
             HStack{
                 Text("\(post.title)")
                     .font(.headline)
@@ -150,10 +142,9 @@ struct commentView : View {
 //                formatter.locale = Locale(identifier:"en")
                 return formatter
         }()
-    let url:URL
     var body: some View {
         HStack{
-            KFImage(url)
+            KFImage(URL(string: comment.createdByImg)!)
                   .placeholder { //플레이스 홀더 설정
                       Image(systemName: "person")
                   }.retry(maxCount: 3, interval: .seconds(5)) //재시도

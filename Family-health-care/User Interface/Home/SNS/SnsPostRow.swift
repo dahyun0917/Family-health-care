@@ -13,7 +13,7 @@ struct SnsPostRow: View {
     var user:User
     var body: some View {
         VStack{
-            SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,user:user)
+            SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
             postContent
         }
 //        .padding(30)
@@ -35,11 +35,8 @@ private extension SnsPostRow{
                     .placeholder { //플레이스 홀더 설정
                         //                                  Image(systemName: "person")
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                    .onSuccess {r in //성공
-                        //                      print("succes: \(r)")
-                    }
                     .onFailure { e in //실패
-                        //                      print("failure: \(e)")
+                          print("failure_SnsPostRow: \(e)")
                     }
                     .resizable()
                     .scaledToFill()

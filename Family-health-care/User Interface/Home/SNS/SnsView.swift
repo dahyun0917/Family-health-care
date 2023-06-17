@@ -57,14 +57,14 @@ struct SnsView: View {
                                 if isWrite {
                                     NavigationLink(destination: SnsPostWriteView(user:user,family:family)) {
                                         Image("postWrite")
-                                            .padding(.horizontal,13)
+                                            .padding(13)
                                             .background(Color.mainBlue)
                                             .foregroundColor(.white)
                                             .clipShape(Circle())
                                     }
                                     NavigationLink(destination: SnsStoryWriteView(user:user,family:family)) {
                                         Image("storyWrite")
-                                            .padding(.horizontal,13)
+                                            .padding(13)
                                             .background(Color.mainBlue)
                                             .foregroundColor(.white)
                                             .clipShape(Circle())
@@ -85,6 +85,7 @@ struct SnsView: View {
                                 .background(Color.mainBlue)
                                 .foregroundColor(.white)
                                 .clipShape(Circle())
+                                .padding()
                             }
                         }
                         .padding()
@@ -118,11 +119,8 @@ struct storyView : View {
                   .placeholder { //플레이스 홀더 설정
                       Image(systemName: "person")
                   }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                  .onSuccess {r in //성공
-//                      print("succes: \(r)")
-                  }
                   .onFailure { e in //실패
-//                      print("failure: \(e)")
+                      print("failure_SnsView: \(e)")
                   }
                   .resizable()
                   .scaledToFill()

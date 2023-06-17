@@ -11,7 +11,7 @@ import Kingfisher
 struct SnsUserProfile: View {
     @State var createdBy:String = ""
     @State var createdAt:Date
-    var user:User
+    var createdByImg:String
     
     static let dateFormat: DateFormatter = {
            let formatter = DateFormatter()
@@ -19,17 +19,13 @@ struct SnsUserProfile: View {
             return formatter
     }()
     var body: some View {
-        let url:URL = URL(string: user.image)!
         HStack{
-            KFImage(url)
+            KFImage(URL(string: createdByImg)!)
                   .placeholder { //플레이스 홀더 설정
                       Image(systemName: "person")
                   }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                  .onSuccess {r in //성공
-//                      print("succes: \(r)")
-                  }
                   .onFailure { e in //실패
-//                      print("failure: \(e)")
+                      print("failure_SnsUserProfile: \(e)")
                   }
                   .resizable()
                   .scaledToFill()

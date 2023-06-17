@@ -20,7 +20,7 @@ struct SnsStoryWriteView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading) {
-                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date(),user:user)
+                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date(),createdByImg: user.image)
                 writeText
                 uploadPicture
             }
