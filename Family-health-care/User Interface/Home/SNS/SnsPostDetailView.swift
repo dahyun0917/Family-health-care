@@ -12,6 +12,7 @@ struct SnsPostDetailView: View {
     @EnvironmentObject var family:Family
     @ObservedObject var post : Post
     @State var commentText:String = ""
+    @State var showingAlert = false
     var user:User
     var body: some View {
         NavigationView{
@@ -74,7 +75,29 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
+                HStack{
+                    SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
+//                    Spacer()
+                    if (post.createdBy == user.userId) {
+                        NavigationLink(destination: SnsPostWriteView(textTitle: post.title,textContent: post.content,user: user,update:true,lastUpdateTime:post.createdAt).navigationBarBackButtonHidden(true)) {
+                            Image(systemName:"square.and.pencil")
+                                .foregroundColor(Color.gray)
+                        }
+                        Image(systemName:"trash")
+                            .foregroundColor(Color.gray)
+                            .padding(.trailing,10)
+                            .onTapGesture {
+                                showingAlert = true
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(// showingAlert가 true가 되면 알림창 표시 Alert(
+                                    title: Text("정말 삭제하시겠습니까?"),
+                                    primaryButton: .default(Text("확인"), action: {family.deletePostData(post: post)}), secondaryButton: .cancel(Text("취소"))
+                                )
+                            }
+                        
+                    }
+                }
                 postContent
             }
             .background(Color.primary.colorInvert())

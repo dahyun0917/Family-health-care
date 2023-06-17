@@ -16,10 +16,12 @@ struct SnsPostWriteView: View {
     @State var isFocusedContent:Bool = false
     @State var inputHeightTitle:CGFloat = 40
     @State var inputHeightContent:CGFloat = 40
-    @State var imageFile:Bool = true
+    @State var imageFile:Bool = false
     @Environment(\.dismiss) private var dismiss
     var user : User
-    var family : Family
+    @EnvironmentObject var family : Family
+    var update : Bool = false
+    var lastUpdateTime : Date = Date()
     
     
     var body: some View {
@@ -28,8 +30,32 @@ struct SnsPostWriteView: View {
                 writeAll
             }
             Button {
-                let post = Post(title: textTitle, content: textContent, img: "", createdBy: user.userId, createdByImg: user.image, createdAt: Date())
-                family.posts.append(post)
+                if update {
+//                    let post = family.indices.filter{family[$0].createdBy == user.userId && family[$0].createdBy == lastUpdateTime}
+//                    print(post)
+                    for i in 0...family.posts.count{
+                        if (family.posts[i].createdBy == user.userId && family.posts[i].createdAt == lastUpdateTime){
+                            family.posts[i].title = textTitle
+                            family.posts[i].content = textContent
+                            family.posts[i].img = ""
+                            family.setPostData(post: family.posts[i])
+                        }
+                    }
+//                    ForEach(family.posts, id: \.id){ post in
+//                        if (post.createdBy == user.userId && post.createdAt == lastUpdateTime){
+////                            post.title. textTitle
+////                            post.content = textContent;
+////                            post.img = "";
+////                            post.createdAt = Date();
+//                            post = Post(title: textTitle, content: textContent, img: "", comment: post.comment, createdBy: post.createdBy, createdByImg: post.createdByImg, createdAt: Date())
+//                            family.setPostData(post: post)
+//                        }
+//                    }
+                }
+                else{
+                    let post = Post(title: textTitle, content: textContent, img: "", createdBy: user.userId, createdByImg: user.image, createdAt: Date())
+                    family.posts.append(post)
+                }
                 dismiss()
             } label: {
                 Text("작성완료")
@@ -41,7 +67,7 @@ struct SnsPostWriteView: View {
             .cornerRadius(25)
 //            .clipShape(Circle())
             .padding()
-            .padding(.top,5)
+            .padding(.top,20)
         }
     }
     
@@ -68,13 +94,15 @@ private extension SnsPostWriteView {
             writeContent
             uploadImage
         }
-        .frame(height: 650)
+//        .frame(height: 650)
         .background(Color.primary.colorInvert())
         //        .background(Color.mainGrey)
         .cornerRadius(15)
         .overlay(RoundedRectangle(cornerRadius: 15)
             .stroke(Color.black, lineWidth: 0.2))
-        .padding(20)
+        .padding(.horizontal,20)
+        .padding(.top,20)
+        .padding(.bottom,10)
         
     }
     var writeTitle: some View {
@@ -107,24 +135,28 @@ private extension SnsPostWriteView {
     }
     var uploadImage : some View {
         VStack(alignment: .leading){
-            Text("Image")
-                .font(.headline)
-            Button("+ 파일첨부"){
+                Text("Image")
+                    .font(.headline)
+            HStack{
+                Button("+ 파일첨부"){
+                }
+                .font(.system(size: 12))
+                .padding(5)
+                .background(Color.mainLightBeige)
+                .foregroundColor(Color.black)
+                .border(Color.black, width: 0.3)
+                Spacer()
             }
-            .font(.system(size: 12))
-            .padding(5)
-            .background(Color.mainLightBeige)
-            .foregroundColor(Color.black)
-            .border(Color.black, width: 0.3)
-            
-//            imageview(imageFile: $imageFile)
-            Image(imageFile ? "postPicTest" : "Appicon")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 300, height: 150,alignment: .center)
-                .padding(.vertical,20)
+            if imageFile {
+                //            imageview(imageFile: $imageFile)
+                Image(imageFile ? "postPicTest" : "Appicon")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 150,alignment: .center)
+                    .padding(.top,20)
+            }
         }
-        .padding(.horizontal,15)
+        .padding(15)
     }
 }
 
