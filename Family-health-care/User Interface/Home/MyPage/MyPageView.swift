@@ -10,6 +10,7 @@ import CoreMotion
 
 struct MyPageView: View {
     @EnvironmentObject private var userLoader : UserLoader
+    @EnvironmentObject private var medicines : Medicines
     @State var user:User?
     
     var body: some View {
@@ -23,7 +24,7 @@ struct MyPageView: View {
                         Promise2View(promise: user.promise[0]).environmentObject(userLoader)
                         HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
                         WalkView().environmentObject(userLoader)
-                        MedicineStateView(medicineStateList: user.medicineState)
+                        MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
                     }
                 }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
 //                print(user)
@@ -245,6 +246,8 @@ struct WalkView: View  {
 }
 
 struct MedicineStateView: View {
+    @EnvironmentObject private var medicines : Medicines
+    @EnvironmentObject private var userLoader : UserLoader
     let medicineStateList: [MedicineState]
     @State var medicineStateDictionary: [String:[MedicineState]] = [:]
     @State var sortedTimes: [String] = []
@@ -255,7 +258,7 @@ struct MedicineStateView: View {
                     Text("복약현황").padding(.leading).foregroundColor(Color.steelBlue)
                     Spacer()
                     HStack {
-                        NavigationLink(destination: MyPageMedicineSearchView()) {
+                        NavigationLink(destination: MyPageMedicineSearchView().environmentObject(medicines)) {
                             Image("big-add-pill")
                                 .resizable()
                                 .frame(width: 25, height: 25)
