@@ -7,15 +7,41 @@
 
 import Foundation
 
-struct Post: Codable,Identifiable{
+//struct Post: Codable,Identifiable{
+//    let id: UUID = UUID()
+//    var title : String
+//    var content: String
+//    var img: String
+//    var comment : [Comment] = []
+//    let createdBy: String
+//    var createdByImg : String
+//    var createdAt: Date
+//}
+
+class Post: Identifiable,ObservableObject {
     let id: UUID = UUID()
     var title : String
     var content: String
     var img: String
-    var comment : [Comment] = []
-    let createdBy: String
+    @Published var comment : [Comment] = []
+    var createdBy: String
     var createdByImg : String
     var createdAt: Date
+    init(title: String,content:String, img:String, comment: [Comment], createdBy:String,createdByImg:String,createdAt:Date){
+        self.title = title;
+        self.content = content;
+        self.img = img;
+        self.comment = comment;
+        self.createdBy = createdBy;
+        self.createdByImg = createdByImg;
+        self.createdAt = createdAt
+    }
+    init(title: String,content:String, img:String, createdBy:String,createdByImg:String,createdAt:Date){
+        self.title = title;
+        self.content = content;
+        self.img = img;
+        self.createdBy = createdBy;
+        self.createdByImg = createdByImg;
+        self.createdAt = createdAt
+    }
 }
-
-

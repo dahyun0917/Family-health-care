@@ -13,18 +13,20 @@ final class Family: ObservableObject{
     @Published var posts : [Post] = []{
         didSet(oldValue){
             if (posts.count != lastPostCount && posts.count - oldValue.count>0) {addPostData(token: self.postToken)}
-            else if(posts.count == oldValue.count){
-                for i in 0...posts.count {
-                    if posts[i].comment.count != oldValue[i].comment.count{
-                        if oldValue[i].comment.count == 0 {
-                            addCommentData(token: self.postToken+"Storys",index:i,first: true)
-                        }
-                        else{
-                            addCommentData(token: self.postToken+"Storys",index:i,first: false)
-                        }
-                    }
-                }
-            }
+//            else if(posts.count == oldValue.count){
+//                for i in 0...posts.count {
+//                    print(posts[i].comment.count,oldValue[i].comment.count)
+//                    if posts[i].comment.count != oldValue[i].comment.count{
+//                        if oldValue[i].comment.count == 0 {
+//                            print("first")
+//                            addCommentData(token: self.postToken+"Comments",index:i,first: true)
+//                        }
+//                        else{
+//                            addCommentData(token: self.postToken+"Comments",index:i,first: false)
+//                        }
+//                    }
+//                }
+//            }
         }
     }
     @Published var storys : [Story] = []{
@@ -36,6 +38,7 @@ final class Family: ObservableObject{
     let db = Firestore.firestore()
     @Published var postToken = ""
     @Published var storyToken = ""
+    @Published var commentToken = ""
     @Published var lastPostCount = 0
     @Published var lastStoryCount = 0
     
@@ -61,6 +64,7 @@ final class Family: ObservableObject{
                             return
                         }
                         self.postToken = family.path+"/Posts"
+//                        self.commentToken = self.postToken+"/Comments"
                         self.storyToken = family.path+"/Storys"
                         self.getPostData(token : self.postToken){
                         }
@@ -102,7 +106,7 @@ final class Family: ObservableObject{
                     let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
                     
                     
-                    self.getCommentData(token: token+"/"+document.documentID+"/comments") { (comments) in
+                    self.getCommentData(token: token+"/"+document.documentID+"/Comments") { (comments) in
                         // 이곳에서 comments 데이터를 사용할 수 있습니다.
                         let post:Post = Post(title: title, content: content, img: img, comment : comments, createdBy: createdBy, createdByImg : createdByImg, createdAt: createdAt.dateValue() )
                         self.lastPostCount += 1
@@ -124,6 +128,7 @@ final class Family: ObservableObject{
             "content" : posts.last!.content,
             "img" : posts.last!.img,
             "createdBy" : posts.last!.createdBy,
+            "createdByImg" : posts.last!.createdByImg,
             "createdAt" : posts.last!.createdAt
         ]
         let newRef = db.collection(token).document()
@@ -160,24 +165,40 @@ final class Family: ObservableObject{
         }
     }
     
-    func addCommentData (token:String,index:Int,first:Bool) {
-        let comment: [String: Any] = [
-            "content" : posts[index].comment.last!.content,
-            "createdBy" : posts[index].comment.last!.createdBy,
-            "craetedBy" : posts[index].comment.last!.createdByImg,
-            "createdAt" : posts[index].comment.last!.createdAt
-        ]
-        if first{
-            let newRef = db.collection(token).document()
-            newRef.setData(comment){ err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
+    func setCommentData (comment:[String:Any],first:Bool,post:Post) {
+        db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let info = document.data()
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
+                    
+//                    print(createdAt.dateValue() , post.createdAt)
+                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+                        self.commentToken = self.postToken+"/"+document.documentID+"/Comments"
+                        
+                        if (first && self.commentToken != "" ){
+                            let newRef = self.db.collection(self.commentToken).document()
+                            newRef.setData(comment){ err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("Document successfully written!")
+                                    return
+                                }
+                            }
+                        }
+                    }
+                   
                 }
             }
+            
         }
+        
     }
+    
     
     
     

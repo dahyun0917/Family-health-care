@@ -41,6 +41,7 @@ struct SnsStoryWriteView: View {
                 .cornerRadius(25)
                 
             }.padding()
+                .padding(.top,5)
         }
         .background(Color.primary.colorInvert())
         //        .background(Color.mainGrey)

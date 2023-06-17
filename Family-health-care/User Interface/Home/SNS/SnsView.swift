@@ -45,7 +45,7 @@ struct SnsView: View {
                             ScrollView{
                                 LazyVStack{
                                     ForEach(family.posts, id: \.id) { post in
-                                        NavigationLink(destination: SnsPostDetailView(post:post,user:user)) {
+                                        NavigationLink(destination: SnsPostDetailView(post:post,user:user).environmentObject(family)) {
                                             SnsPostRow(post:post,user:user)
                                         }
                                         .buttonStyle(PlainButtonStyle())

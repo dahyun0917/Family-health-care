@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SnsPostRow: View {
-    @State var post : Post
+    @ObservedObject var post : Post
     var user:User
     var body: some View {
         VStack{

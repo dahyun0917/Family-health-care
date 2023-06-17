@@ -9,7 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct SnsPostDetailView: View {
-    @State var post : Post
+    @EnvironmentObject var family:Family
+    @ObservedObject var post : Post
     @State var commentText:String = ""
     var user:User
     var body: some View {
@@ -40,7 +41,18 @@ struct SnsPostDetailView: View {
                         .padding()
                         .textFieldStyle(.roundedBorder)
                     Button("확인"){
+                        let comment:Comment = Comment(content:commentText ,createdBy: user.userId, createdByImg: user.image, createdAt: Date())
+                        post.comment.append(comment)
                         
+                        let comment_temp: [String: Any] = [
+                            "content" : post.comment.last!.content,
+                            "createdBy" : post.comment.last!.createdBy,
+                            "createdByImg" : post.comment.last!.createdByImg,
+                            "createdAt" : post.comment.last!.createdAt
+                        ]
+                        if (post.comment.count == 1){family.setCommentData(comment:comment_temp,first: true,post:post)}
+                        else {family.setCommentData(comment:comment_temp,first: false,post:post)}
+                    
                     }
                     .foregroundColor(.white)
                     .fontWeight(.bold)

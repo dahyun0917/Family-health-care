@@ -34,8 +34,8 @@ struct Family_health_careApp: App {
                     .environmentObject(MedicationsForPainOfParts())
                     .environmentObject(Medicines())
                     .environmentObject(UserLoader(token: "admin"))
-                    .environmentObject(Posts())
-                    .environmentObject(Storys())
+//                    .environmentObject(Posts())
+//                    .environmentObject(Storys())
             }
         }
     }

@@ -50,6 +50,7 @@ struct SnsStoryView: View {
         .overlay(RoundedRectangle(cornerRadius: 15)
         .stroke(Color.black, lineWidth: 0.2))
         .padding(25)
+        .padding(.top,5)
         
     }
 }
