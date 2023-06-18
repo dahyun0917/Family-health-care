@@ -83,8 +83,9 @@ struct AnswerButton:View{
                                 return ms
                             }
                         }
-                    
-//                    chat.sendToUser(message: "Good Job", answers: [], type: 0)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                        chat.sendToUser(message: "Good Job", answers: [], type: 0)
+                    }
                 }
             }
         }
