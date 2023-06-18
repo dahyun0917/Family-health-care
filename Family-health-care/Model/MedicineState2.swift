@@ -11,4 +11,14 @@ struct MedicineState2{
     let medicineName: String
     let timeList: [String]
     let isComplete: [Bool]
+    
+    var dateTimeList: [Date] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        var dateList:[Date] = []
+        for i in 0..<timeList.count {
+            dateList.append(formatter.date(from: timeList[i]) ?? Date())
+        }
+        return dateList
+    }
 }
