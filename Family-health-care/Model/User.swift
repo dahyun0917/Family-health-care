@@ -16,7 +16,7 @@ final class User: ObservableObject {
     @Published var promise: [Promise] = []
     @Published var medicineState: [MedicineState] = []
     @Published var medicineStateTimeDict: [String:[MedicineState]] = [:]
-    @Published var medicineStateNameDict: [String:[MedicineState2]] = [:]
+    @Published var medicineStateNameDict: [String:MedicineState2] = [:]
     @Published var height: Int = 0
     @Published var weight: Int = 0
     @Published var family: String = ""
@@ -113,10 +113,7 @@ final class User: ObservableObject {
                     }
                     var newItem = MedicineState(medicineName: medicineName, time: timeList[i], isComplete: completeList[i])
                     self.medicineState.append(newItem)
-                    if self.medicineStateNameDict[medicineName] == nil {
-                        self.medicineStateNameDict[medicineName] = []
-                    }
-                    self.medicineStateNameDict[timeList[i]]?.append(MedicineState2(medicineName: medicineName, timeList: timeList, isComplete: completeList))
+                    self.medicineStateNameDict[timeList[i]] = MedicineState2(medicineName: medicineName, timeList: timeList, isComplete: completeList)
                     if self.medicineStateTimeDict[timeList[i]] == nil {
                         self.medicineStateTimeDict[timeList[i]] = []
                     }
@@ -198,16 +195,26 @@ final class User: ObservableObject {
     
     func uploadMedicineState(dataMedicine: Medicine, dataTimeList: [String], dataCompleteList: [Bool]) {
         let db = Firestore.firestore()
-        db.collection("users").document(token).collection("medicines").document(dataMedicine.medicineName).updateData([
+        db.collection("users").document(token).collection("medicines").document(dataMedicine.medicineName).setData([
+            "medicineName": dataMedicine.medicineName,
             "time": dataTimeList,
             "complete": dataCompleteList
-        ]) { err in
+        ], merge: true) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
                 self.medicineState.removeAll { $0.medicineName == dataMedicine.medicineName }
                 for i in 0..<dataTimeList.count {
-                    self.medicineState.append(MedicineState(medicineName: dataMedicine.medicineName, time: dataTimeList[i], isComplete: dataCompleteList[i]))
+                    var newItem = MedicineState(medicineName: dataMedicine.medicineName, time: dataTimeList[i], isComplete: dataCompleteList[i])
+                    var newItem2 = MedicineState2(medicineName: dataMedicine.medicineName, timeList: dataTimeList, isComplete: dataCompleteList)
+                    self.medicineState.append(newItem)
+                    if self.medicineStateTimeDict[dataTimeList[i]] == nil {
+                        self.medicineStateTimeDict[dataTimeList[i]] = []
+                    }
+                    self.medicineStateTimeDict[dataTimeList[i]]?.append(newItem)
+                    self.medicineStateNameDict[dataMedicine.medicineName] = newItem2
+                    print(self.medicineStateTimeDict)
+                    print(self.medicineStateNameDict)
                 }
             }
         }

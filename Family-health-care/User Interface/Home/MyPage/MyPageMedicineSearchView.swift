@@ -77,7 +77,7 @@ struct MyPageMedicineSearchView: View {
                             .foregroundColor(Color.mainWhite)
                     }
                 } else {
-                    NavigationLink(destination: MyPageEditMedicineStateView(medicine: selectedObject!, timeList: [], isChosen: $isChosen)) {
+                    NavigationLink(destination: MyPageEditMedicineStateView(medicine: selectedObject!, timeList: [], completeList: [], isChosen: $isChosen).environmentObject(medicines).environmentObject(userLoader)) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(Color.mainBlue)
