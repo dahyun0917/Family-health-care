@@ -24,7 +24,7 @@ struct SnsPostDetailView: View {
                         VStack(spacing: 0){
                             ForEach(post.comment, id: \.id) { comment in
                                 Text("--------------------------------------------")
-                                commentView(comment:comment)
+                                commentView(comment:comment,user:user,post:post)
                                 .padding(.leading,15)
                             }
                         }
@@ -180,13 +180,18 @@ private extension SnsPostDetailView {
 
     
 struct commentView : View {
+    @EnvironmentObject var family:Family
+    @Environment(\.dismiss) private var dismiss
     var comment:Comment
+    var user:User
+    var post:Post
     let dateFormat: DateFormatter = {
                let formatter = DateFormatter()
                 formatter.dateFormat = "YYYY년 M월 d일"
 //                formatter.locale = Locale(identifier:"en")
                 return formatter
         }()
+    @State var showingAlert:Bool = false
     var body: some View {
         HStack{
             KFImage(URL(string: comment.createdByImg)!)
@@ -197,7 +202,7 @@ struct commentView : View {
 //                      print("succes: \(r)")
                   }
                   .onFailure { e in //실패
-//                      print("failure: \(e)")
+                      print("failure_comment: \(e)")
                   }
                   .resizable()
                   .scaledToFill()
@@ -206,13 +211,6 @@ struct commentView : View {
                   .overlay(RoundedRectangle(cornerRadius: 30)
                       .stroke(Color.black, lineWidth: 0.2))
 
-//            Image(systemName: "person")
-//                .resizable()
-//                .scaledToFill()
-//                .frame(width: 40, height: 40)
-//                .cornerRadius(30)
-//                .overlay(RoundedRectangle(cornerRadius: 30)
-//                    .stroke(Color.black, lineWidth: 0.2))
             VStack(alignment: .leading){
                 HStack{
                     Text("\(comment.createdBy)")
@@ -224,6 +222,29 @@ struct commentView : View {
                         .fontWeight(.thin)
                         .lineLimit(1)
                     Spacer()
+                    if(comment.createdBy == user.userId){
+                        Image(systemName:"trash")
+                            .foregroundColor(Color.gray)
+                            .padding(.trailing,10)
+                            .onTapGesture {
+                                showingAlert = true
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(// showingAlert가 true가 되면 알림창 표시 Alert(
+                                    title: Text("댓글 삭제"),
+                                    primaryButton: .default(Text("확인"), action: {
+                                        for i in 0...post.comment.count-1 {
+                                            if(post.comment[i].createdAt == comment.createdAt && post.comment[i].createdBy == comment.createdBy){
+                                                post.comment.remove(at: i)
+                                                family.deleteCommentData(post:post,comment: comment)
+                                                break
+                                            }
+                                        }
+//                                        dismiss()
+                                    }), secondaryButton: .cancel(Text("취소"))
+                                )
+                            }
+                    }
                 }
                 .padding(.bottom, 3)
                 Text("\(comment.content)")

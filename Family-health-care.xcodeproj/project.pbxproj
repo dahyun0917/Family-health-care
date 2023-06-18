@@ -23,12 +23,15 @@
 		8951E7882A07C37E00988049 /* Family_health_careApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E7872A07C37E00988049 /* Family_health_careApp.swift */; };
 		8951E78E2A07EF8D00988049 /* SnsPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */; };
 		8951E7902A07F26400988049 /* SnsUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951E78F2A07F26400988049 /* SnsUserProfile.swift */; };
+		897DC78A2A3CDD46004FE1A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 897DC7892A3CDD46004FE1A6 /* Kingfisher */; };
+		897DC78F2A3D8D37004FE1A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DC78E2A3D8D37004FE1A6 /* ViewController.swift */; };
 		898A2C592A1CD72400F6C917 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C582A1CD72400F6C917 /* Comment.swift */; };
 		898A2C5B2A1CE0F900F6C917 /* SnsStoryWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5A2A1CE0F900F6C917 /* SnsStoryWriteView.swift */; };
 		898A2C5E2A1CE2AA00F6C917 /* WriteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */; };
 		898A2C602A1E34A200F6C917 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A2C5F2A1E34A200F6C917 /* Story.swift */; };
 		89A2C8BE2A090DB60082D66F /* SnsPostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */; };
 		89A2C8C02A0939BA0082D66F /* SnsStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */; };
+		89B4946C2A2A041F00F4A3C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89B4946B2A2A041F00F4A3C2 /* GoogleService-Info.plist */; };
 		89E71F912A138F3100C93EBF /* SnsPostWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E71F902A138F3100C93EBF /* SnsPostWriteView.swift */; };
 		89E71F942A13A9B300C93EBF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E71F932A13A9B300C93EBF /* Post.swift */; };
 		9309BCF52A1E70AC0031D5E7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9309BCF42A1E70AC0031D5E7 /* ColorExtension.swift */; };
@@ -82,7 +85,6 @@
 		93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC52A0F88A10016675C /* ChatView.swift */; };
 		93D8FDC82A0F88FA0016675C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC72A0F88FA0016675C /* Message.swift */; };
 		F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */; };
-		F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8951E77F2A07B6A000988049 /* GoogleService-Info.plist */; };
 		F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578772A1376A500A0E93B /* MedicineStateRow.swift */; };
 		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
 		F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */; };
@@ -105,18 +107,19 @@
 		87C73F0D2A25E68900FF7CDF /* navView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navView.swift; sourceTree = "<group>"; };
 		89178BF52A026B000046C907 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89178BFA2A026B020046C907 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8951E77F2A07B6A000988049 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Family-health-care/Resource/Firebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8951E7822A07B6F800988049 /* SnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsView.swift; sourceTree = "<group>"; };
 		8951E7842A07B74900988049 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8951E7872A07C37E00988049 /* Family_health_careApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family_health_careApp.swift; sourceTree = "<group>"; };
 		8951E78D2A07EF8D00988049 /* SnsPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostDetailView.swift; sourceTree = "<group>"; };
 		8951E78F2A07F26400988049 /* SnsUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsUserProfile.swift; sourceTree = "<group>"; };
+		897DC78E2A3D8D37004FE1A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		898A2C582A1CD72400F6C917 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		898A2C5A2A1CE0F900F6C917 /* SnsStoryWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryWriteView.swift; sourceTree = "<group>"; };
 		898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextView.swift; sourceTree = "<group>"; };
 		898A2C5F2A1E34A200F6C917 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		89A2C8BD2A090DB60082D66F /* SnsPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostRow.swift; sourceTree = "<group>"; };
 		89A2C8BF2A0939BA0082D66F /* SnsStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsStoryView.swift; sourceTree = "<group>"; };
+		89B4946B2A2A041F00F4A3C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		89E71F902A138F3100C93EBF /* SnsPostWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnsPostWriteView.swift; sourceTree = "<group>"; };
 		89E71F932A13A9B300C93EBF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9309BCF42A1E70AC0031D5E7 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				935FFBC02A067A01007B0E70 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				935FFBE62A067A01007B0E70 /* FirebaseMLModelDownloader in Frameworks */,
 				935FFBDA2A067A01007B0E70 /* FirebaseFirestoreSwift in Frameworks */,
+				897DC78A2A3CDD46004FE1A6 /* Kingfisher in Frameworks */,
 				935FFBC62A067A01007B0E70 /* FirebaseAppCheck in Frameworks */,
 				936B84F62A2032840042EE3F /* SwiftyGif in Frameworks */,
 				935FFBC42A067A01007B0E70 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -265,7 +269,7 @@
 		8951E77E2A07B69600988049 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				8951E77F2A07B6A000988049 /* GoogleService-Info.plist */,
+				89B4946B2A2A041F00F4A3C2 /* GoogleService-Info.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -292,9 +296,18 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		897DC78B2A3D8B7A004FE1A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				897DC78E2A3D8D37004FE1A6 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		935FFBB42A067830007B0E70 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				897DC78B2A3D8B7A004FE1A6 /* Controller */,
 				938C5C892A10CA6800DD7865 /* CustomView */,
 				935FFBB52A067835007B0E70 /* Extension */,
 			);
@@ -305,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				9309BCF42A1E70AC0031D5E7 /* ColorExtension.swift */,
-				898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -345,6 +357,7 @@
 		938C5C892A10CA6800DD7865 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				898A2C5D2A1CE2AA00F6C917 /* WriteTextView.swift */,
 				932117082A10A0AC0037DAF0 /* GifImage.swift */,
 				938C5C8A2A10CA8400DD7865 /* Symbol.swift */,
 				93CC21902A27785D00981AC1 /* NavigationBar.swift */,
@@ -434,6 +447,7 @@
 				935FFBEF2A067A01007B0E70 /* FirebaseStorage */,
 				935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */,
 				936B84F52A2032840042EE3F /* SwiftyGif */,
+				897DC7892A3CDD46004FE1A6 /* Kingfisher */,
 			);
 			productName = "Family-health-care";
 			productType = "com.apple.product-type.application";
@@ -465,6 +479,7 @@
 			packageReferences = (
 				935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				897DC7882A3CDD45004FE1A6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 89178BF12A026B000046C907 /* Products */;
 			projectDirPath = "";
@@ -482,9 +497,9 @@
 			files = (
 				89178BFB2A026B020046C907 /* Preview Assets.xcassets in Resources */,
 				936AF0662A1CE0CD00248447 /* ccc_gif.gif in Resources */,
+				89B4946C2A2A041F00F4A3C2 /* GoogleService-Info.plist in Resources */,
 				9384238B2A10BDD600836D47 /* man_gif.gif in Resources */,
 				9379E2F02A1F10F500858885 /* Assets.xcassets in Resources */,
-				F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +544,7 @@
 				938B04632A13AB1F00A7D56D /* testtest.swift in Sources */,
 				938C5C8B2A10CA8400DD7865 /* Symbol.swift in Sources */,
 				938C5C8D2A10D06300DD7865 /* SickView.swift in Sources */,
+				897DC78F2A3D8D37004FE1A6 /* ViewController.swift in Sources */,
 				93B5B0B22A1703D9007DF94F /* medicineTakenView.swift in Sources */,
 				93D8FDBD2A0F843D0016675C /* Medicine.swift in Sources */,
 				93D8FDBF2A0F846F0016675C /* Medicines.swift in Sources */,
@@ -752,6 +768,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		897DC7882A3CDD45004FE1A6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -771,6 +795,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		897DC7892A3CDD46004FE1A6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 897DC7882A3CDD45004FE1A6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		935FFBBD2A067A01007B0E70 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

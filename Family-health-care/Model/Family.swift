@@ -97,7 +97,6 @@ final class Family: ObservableObject{
                         let post:Post = Post(title: title, content: content, img: img, comment : comments, createdBy: createdBy, createdByImg : createdByImg, createdAt: createdAt.dateValue() )
                         self.lastPostCount += 1
                         self.posts.append(post)
-//                        print(post.createdAt)
                     }
                 }
                 completion()
@@ -125,7 +124,6 @@ final class Family: ObservableObject{
                     self.lastStoryCount += 1
                     self.storys.append(story)
                 }
-//                print(self.storys)
                 completion()
             }
             
@@ -166,7 +164,7 @@ final class Family: ObservableObject{
                     let createdBy = info["createdBy"] as? String ?? ""
                     let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
                     
-                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+                    if (createdAt.dateValue() == post.createdAt && createdBy == post.createdBy) {
                         document.reference.updateData([
                             "title" : post.title,
                             "content" : post.content,
@@ -180,7 +178,7 @@ final class Family: ObservableObject{
                         }
                         
                     }
-                   
+                    
                 }
             }
             
@@ -198,9 +196,7 @@ final class Family: ObservableObject{
                     let info = document.data()
                     let createdBy = info["createdBy"] as? String ?? ""
                     let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
-                    
-                    print(createdAt.dateValue() , post.createdAt)
-                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
+                    if (createdAt.dateValue() == post.createdAt && createdBy == post.createdBy) {
                         self.commentToken = self.postToken+"/"+document.documentID+"/Comments"
                         
                         if (first && self.commentToken != "" ){
@@ -215,7 +211,7 @@ final class Family: ObservableObject{
                             }
                         }
                     }
-                   
+                    
                 }
             }
             
@@ -276,9 +272,7 @@ final class Family: ObservableObject{
                     let info = document.data()
                     let createdBy = info["createdBy"] as? String ?? ""
                     let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
-                    
-                    if (createdBy == post.createdBy && createdAt.dateValue() == post.createdAt) {
-//                        db.collection(self.postToken+"/"+document.documentID)
+                    if (createdAt.dateValue() == post.createdAt && createdBy == post.createdBy) {
                         document.reference.collection("Comments").document().delete(){ err in
                             if let err = err {
                                 print("Error removing Comments document: \(err)")
@@ -296,11 +290,50 @@ final class Family: ObservableObject{
                         
                         
                     }
-                   
+                    
                 }
             }
             
         }
     }
     
+    func deleteCommentData (post:Post,comment:Comment) {
+        db.collection(self.postToken).getDocuments(completion: { (querySnapshot,err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document_post in querySnapshot!.documents {
+                    let info = document_post.data()
+                    let createdBy = info["createdBy"] as? String ?? ""
+                    let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
+                    if (createdAt.dateValue() == post.createdAt && createdBy == post.createdBy) {
+                        document_post.reference.collection("Comments").getDocuments(completion:  { (querySnapshots,errs) in
+                            if let errs = errs {
+                                print("Error getting documents: \(errs)")
+                            } else {
+                                for document in querySnapshots!.documents {
+                                    let info_c = document.data()
+                                    let createdAt_c = info_c["createdAt"] as? Timestamp ?? Timestamp()
+                                    let createdBy_c = info_c["createdBy"] as? String ?? ""
+                                    
+                                    if (createdAt_c.dateValue() == comment.createdAt && createdBy_c == comment.createdBy) {
+                                        document.reference.delete(){ err in
+                                            if let err = err {
+                                                print("Error removing Comment document: \(err)")
+                                            } else {
+                                                print("Document successfully Comment removed!")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        )
+                    }
+                }
+            }
+            
+        })
+    }
+
 }
