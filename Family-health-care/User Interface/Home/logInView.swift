@@ -37,8 +37,14 @@ struct logInView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width:450)
-                    .rotationEffect(.degrees(40))
-                    .offset(x:-180, y:200)
+                    .rotationEffect(.degrees(-40))
+                    .offset(x:180, y:-100)
+                Image("gom")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width:400)
+                    .rotationEffect(.degrees(0))
+                    .offset(x:0, y:400)
             }
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.7) {

@@ -12,28 +12,29 @@ struct Home: View {
     @State var id : String = "admin"
     @State var pd : String = ""
     @State var flag : Bool = false
-    
     @State private var showMessage = false
     
     var body: some View {
-        
-        
         ZStack{
             Color.mainBeige.ignoresSafeArea(.all)
-            
-                
                 Image("sprout")
                     .resizable()
                     .scaledToFit()
                     .frame(width:450)
                     .rotationEffect(.degrees(-40))
                     .offset(x:180, y:200)
+            Image("gom")
+                .resizable()
+                .scaledToFit()
+                .frame(width:200)
+                .rotationEffect(.degrees(40))
+                .offset(x:-180, y:220)
             
             ZStack{
                 VStack{
                     Spacer()
                     VStack{
-                        Text("OO 가디언즈")
+                        Text("패밀리 가디언즈")
                             .font(.largeTitle)
                             .fontWeight(.heavy)
                         Text("우리 가족 건강 지키미")
@@ -45,7 +46,6 @@ struct Home: View {
                     Spacer()
                 }
                 VStack{
-                    
                     VStack{
                         TextField("아이디를 입력하세요", text: $id)
                             .padding()
@@ -68,7 +68,6 @@ struct Home: View {
                                 id.isEmpty ?
                                 Color.gray : Color.mainBlue)
                             .cornerRadius(5)
-                        
                     }
                     .frame(width: 370)
                     Text("비밀번호를 잊으셨나요?")
@@ -78,8 +77,6 @@ struct Home: View {
                                 self.showMessage = true
                             }
                         }
-                    
-                    
                 }
                 VStack{
                     Spacer()
@@ -89,7 +86,6 @@ struct Home: View {
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     self.showMessage = true
                                 }
-                                
                             }
                         Text("|")
                         Text("회원가입").padding()
@@ -97,7 +93,6 @@ struct Home: View {
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     self.showMessage = true
                                 }
-                                
                             }
                     }
                 }
@@ -126,14 +121,7 @@ struct Home: View {
             logInView().environmentObject(UserLoader(token:id))
                 .environmentObject(Chats(token: id))
         }
-        
-        
-        
-        
-        
-        
     }
-    
 }
 
 
