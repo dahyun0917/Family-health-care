@@ -16,16 +16,16 @@ struct FamilyPageView: View {
                 GeometryReader{ geometry in
                     ScrollView(showsIndicators:false){
                         VStack{
-                            ForEach(fam.users.indices){index in
-                                let user = fam.users[index]
-                                NavigationLink(destination: MyPageView().accentColor(.black)){
-                                    FamilyMemberView(
-                                        borderColor: index % 2 == 0 ? Color.mainBeige : Color.mainBlue,
-                                        innerColor: index % 2 == 0 ? Color.mainLightBeige : Color.mainGrey)
-                                    .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
-                                    .environmentObject(user)
-                                }
-                            }.buttonStyle(PlainButtonStyle())
+//                            ForEach(fam.users.indices){index in
+//                                let user = fam.users[index]
+//                                NavigationLink(destination: MyPageView().accentColor(.black)){
+//                                    FamilyMemberView(
+//                                        borderColor: index % 2 == 0 ? Color.mainBeige : Color.mainBlue,
+//                                        innerColor: index % 2 == 0 ? Color.mainLightBeige : Color.mainGrey)
+//                                    .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+//                                    .environmentObject(user)
+//                                }
+//                            }.buttonStyle(PlainButtonStyle())
                         }.padding(.leading,20)
                     }
                 }

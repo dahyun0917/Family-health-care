@@ -16,17 +16,19 @@ struct MyPageView: View {
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
-            GeometryReader {  parent_proxy in
-                let parentWidth = parent_proxy.size.width
-                let parentHeight = parent_proxy.size.height
-                VStack{
-                    if let user = userLoader.user{
-                        Promise2View(promise: user.promise).environmentObject(userLoader)
-                        HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
-                        WalkView().environmentObject(userLoader)
-                        MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
-                    }
-                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+            NavigationView{
+                GeometryReader {  parent_proxy in
+                    let parentWidth = parent_proxy.size.width
+                    let parentHeight = parent_proxy.size.height
+                    VStack{
+                        if let user = userLoader.user{
+                            Promise2View(promise: user.promise).environmentObject(userLoader)
+                            HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
+                            WalkView().environmentObject(userLoader)
+                            MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
+                        }
+                    }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+                }
             }
         }
     }
