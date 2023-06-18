@@ -12,18 +12,24 @@ struct SnsStoryWriteView: View {
     @State var isFocused:Bool = false
     @State var inputHeightTitle:CGFloat = 40
     @State var inputHeightContent:CGFloat = 40
-    @State var imageFile:Bool = true
+    @State var imageFile:Bool = false
+    @Environment(\.dismiss) private var dismiss
+    var user : User
+    @EnvironmentObject var family : Family
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading) {
-                SnsUserProfile(createdBy: "dlekgus1353", createdAt: Date())
+                SnsUserProfile(createdBy: "\(user.userId)", createdAt: Date(),createdByImg: user.image)
                 writeText
                 uploadPicture
             }
             HStack{
                 Spacer()
                 Button {
-                    //                    showNewTweetView.toggle()
+                    let story = Story(content: text, img: "", createdBy: user.userId,createdByImg: user.image, createdAt: Date())
+                    family.storys.append(story)
+                    dismiss()
                 } label: {
                     Text("완료")
                         .foregroundColor(.white)
@@ -35,6 +41,7 @@ struct SnsStoryWriteView: View {
                 .cornerRadius(25)
                 
             }.padding()
+                .padding(.top,20)
         }
         .background(Color.primary.colorInvert())
         //        .background(Color.mainGrey)
@@ -50,22 +57,26 @@ private extension SnsStoryWriteView {
         VStack(alignment: .leading){
             Text("Image")
                 .font(.headline)
-            Button("+ 파일첨부"){
+            HStack{
+                Button("+ 파일첨부"){
+                }
+                .font(.system(size: 12))
+                .padding(5)
+                .background(Color.mainLightBeige)
+                .foregroundColor(Color.black)
+                .border(Color.black, width: 0.3)
+                Spacer()
             }
-            .font(.system(size: 12))
-            .padding(5)
-            .background(Color.mainLightBeige)
-            .foregroundColor(Color.black)
-            .border(Color.black, width: 0.3)
-            
-//            imageview(imageFile: $imageFile)
-            Image(imageFile ? "postPicTest" : "Appicon")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 300, height: 150,alignment: .center)
-                .padding(.vertical,20)
+            if imageFile {
+                //            imageview(imageFile: $imageFile)
+                Image(imageFile ? "postPicTest" : "Appicon")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 150,alignment: .center)
+                    .padding(.top,20)
+            }
         }
-        .padding(.horizontal,15)
+        .padding(15)
     }
     var writeText: some View {
         VStack(alignment: .leading) {
@@ -82,8 +93,8 @@ private extension SnsStoryWriteView {
 
     }
 }
-struct SnsStoryWriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        SnsStoryWriteView()
-    }
-}
+//struct SnsStoryWriteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SnsStoryWriteView()
+//    }
+//}

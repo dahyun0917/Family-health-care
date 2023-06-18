@@ -20,15 +20,12 @@ struct logInView: View {
                     .environmentObject(userLoader)
                     .environmentObject(MedicationsForPainOfParts())
                     .environmentObject(Medicines())
-                    .environmentObject(Posts())
-                    .environmentObject(Storys())
             }
         }
         else{
             ZStack {
                 Color.mainBeige.ignoresSafeArea(.all)
                 VStack{
-//                    GifView(gifName:)
                     GifView(gifName:$loading_gif)
                         .aspectRatio(contentMode: .fit)
                         .frame(width:200)

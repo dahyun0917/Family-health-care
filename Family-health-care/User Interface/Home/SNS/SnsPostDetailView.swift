@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SnsPostDetailView: View {
-    @State var post : Post
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var family:Family
+    @ObservedObject var post : Post
     @State var commentText:String = ""
-    
+    @State var showingAlert = false
+    var user:User
     var body: some View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
@@ -20,7 +24,7 @@ struct SnsPostDetailView: View {
                         VStack(spacing: 0){
                             ForEach(post.comment, id: \.id) { comment in
                                 Text("--------------------------------------------")
-                                commentView(comment:comment)
+                                commentView(comment:comment,user:user,post:post)
                                 .padding(.leading,15)
                             }
                         }
@@ -39,6 +43,18 @@ struct SnsPostDetailView: View {
                         .padding()
                         .textFieldStyle(.roundedBorder)
                     Button("확인"){
+                        let comment:Comment = Comment(content:commentText ,createdBy: user.userId, createdByImg: user.image, createdAt: Date())
+                        post.comment.append(comment)
+                        
+                        let comment_temp: [String: Any] = [
+                            "content" : post.comment.last!.content,
+                            "createdBy" : post.comment.last!.createdBy,
+                            "createdByImg" : post.comment.last!.createdByImg,
+                            "createdAt" : post.comment.last!.createdAt
+                        ]
+                        if (post.comment.count == 1){family.setCommentData(comment:comment_temp,post:post)}
+                        else {family.setCommentData(comment:comment_temp,post:post)}
+                    
                     }
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -60,7 +76,38 @@ private extension SnsPostDetailView {
     var postDetail: some View {
         VStack(alignment: .leading){
             VStack{
-                SnsUserProfile(createdBy: "\(post.createBy)", createdAt: post.createAt)
+                HStack{
+                    SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
+//                    Spacer()
+                    if (post.createdBy == user.userId) {
+                        NavigationLink(destination: SnsPostWriteView(textTitle: post.title,textContent: post.content,user: user,update:true,lastUpdateTime:post.createdAt).navigationBarBackButtonHidden(true)) {
+                            Image(systemName:"square.and.pencil")
+                                .foregroundColor(Color.gray)
+                        }
+                        Image(systemName:"trash")
+                            .foregroundColor(Color.gray)
+                            .padding(.trailing,10)
+                            .onTapGesture {
+                                showingAlert = true
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(// showingAlert가 true가 되면 알림창 표시 Alert(
+                                    title: Text("정말 삭제하시겠습니까?"),
+                                    primaryButton: .default(Text("확인"), action: {
+                                        for i in 0...family.posts.count-1 {
+                                            if(family.posts[i].createdAt == post.createdAt && family.posts[i].createdBy == post.createdBy){
+                                                family.posts.remove(at: i)
+                                                family.deletePostData(post: post)
+                                                break
+                                            }
+                                        }
+                                        dismiss()
+                                    }), secondaryButton: .cancel(Text("취소"))
+                                )
+                            }
+                        
+                    }
+                }
                 postContent
             }
             .background(Color.primary.colorInvert())
@@ -74,7 +121,7 @@ private extension SnsPostDetailView {
                 Image(systemName: "ellipsis.message")
                     .imageScale(.medium)
                     .frame(width: 25, height: 25)
-                Text("13")
+                Text("\(post.comment.count)")
                     .font(.caption)
                     .frame(width: 32, height: 32)
             }
@@ -85,12 +132,20 @@ private extension SnsPostDetailView {
     }
     var postContent: some View {
         VStack(alignment: .leading){
-            Image("postPicTest")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 300, height: 150,alignment: .center)
-                .padding([.bottom, .trailing],10)
-                .padding(.leading,20)
+            if (post.img != ""){
+                KFImage(URL(string: post.img)!)
+                    .placeholder { //플레이스 홀더 설정
+                        //                  Image(systemName: "postPicTest")
+                    }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                    .onFailure { e in //실패
+                         print("failure_SnsPostDetailView: \(e)")
+                    }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 150,alignment: .center)
+                    .padding([.bottom, .trailing],10)
+                    .padding(.leading,20)
+            }
             HStack{
                 Text("\(post.title)")
                     .font(.headline)
@@ -103,7 +158,7 @@ private extension SnsPostDetailView {
                 .padding(.horizontal,20)
                 .padding(.top,1)
                 .padding(.bottom,20)
-                
+
         }
     }
     
@@ -122,34 +177,75 @@ private extension SnsPostDetailView {
     }
     
 }
+
+    
 struct commentView : View {
+    @EnvironmentObject var family:Family
+    @Environment(\.dismiss) private var dismiss
     var comment:Comment
+    var user:User
+    var post:Post
     let dateFormat: DateFormatter = {
                let formatter = DateFormatter()
                 formatter.dateFormat = "YYYY년 M월 d일"
 //                formatter.locale = Locale(identifier:"en")
                 return formatter
         }()
+    @State var showingAlert:Bool = false
     var body: some View {
         HStack{
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40)
-                .cornerRadius(30)
-                .overlay(RoundedRectangle(cornerRadius: 30)
-                    .stroke(Color.black, lineWidth: 0.2))
+            KFImage(URL(string: comment.createdByImg)!)
+                  .placeholder { //플레이스 홀더 설정
+                      Image(systemName: "person")
+                  }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                  .onSuccess {r in //성공
+//                      print("succes: \(r)")
+                  }
+                  .onFailure { e in //실패
+                      print("failure_comment: \(e)")
+                  }
+                  .resizable()
+                  .scaledToFill()
+                  .frame(width: 40, height: 40)
+                  .cornerRadius(30)
+                  .overlay(RoundedRectangle(cornerRadius: 30)
+                      .stroke(Color.black, lineWidth: 0.2))
+
             VStack(alignment: .leading){
                 HStack{
-                    Text("\(comment.createBy)")
+                    Text("\(comment.createdBy)")
                         .font(.caption)
                         .fontWeight(.bold)
 
-                    Text("\(comment.createAt, formatter: dateFormat)")
+                    Text("\(comment.createdAt, formatter: dateFormat)")
                         .font(.caption2)
                         .fontWeight(.thin)
                         .lineLimit(1)
                     Spacer()
+                    if(comment.createdBy == user.userId){
+                        Image(systemName:"trash")
+                            .foregroundColor(Color.gray)
+                            .padding(.trailing,10)
+                            .onTapGesture {
+                                showingAlert = true
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(// showingAlert가 true가 되면 알림창 표시 Alert(
+                                    title: Text("댓글 삭제"),
+                                    primaryButton: .default(Text("확인"), action: {
+                                        for i in 0...post.comment.count-1 {
+                                            if(post.comment[i].createdAt == comment.createdAt && post.comment[i].createdBy == comment.createdBy){
+                                                post.comment.remove(at: i)
+                                                family.deleteCommentData(post:post,comment: comment)
+                                                break
+                                            }
+                                        }
+//                                        dismiss()
+//                                    }), secondaryButton: .cancel(Text("취소"))
+                                    }), secondaryButton: .default(Text("취소"),action: {})
+                                )
+                            }
+                    }
                 }
                 .padding(.bottom, 3)
                 Text("\(comment.content)")
@@ -166,8 +262,8 @@ struct commentView : View {
 
 
 
-struct SnsPostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SnsPostDetailView(post:PostSamples[0])
-    }
-}
+//struct SnsPostDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SnsPostDetailView(post:PostSamples[0])
+//    }
+//}

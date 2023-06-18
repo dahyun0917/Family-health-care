@@ -6,39 +6,42 @@
 //
 
 import Foundation
-import Firebase
 
-struct Post: Codable,Identifiable{
+//struct Post: Codable,Identifiable{
+//    let id: UUID = UUID()
+//    var title : String
+//    var content: String
+//    var img: String
+//    var comment : [Comment] = []
+//    let createdBy: String
+//    var createdByImg : String
+//    var createdAt: Date
+//}
+
+class Post: Identifiable,ObservableObject {
     let id: UUID = UUID()
-    var title : String
-    var content: String
-    var img: String
-    var comment : [Comment] = []
-    let createBy: String
-    var createAt: Date
-}
-
-let PostSamples = [
-    Post(title: "안년",content: "안녀아아녀아아녕아녀아녀아녀아녀아녀아녀아녕",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-    Post(title: "히히히힣",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-    Post(title: "테스트테스트테스트",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-    Post(title: "나는 테스트테스트",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-    Post(title: "테스트할거야아",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-    Post(title: "우하하하",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date())
-    
-]
-
-final class Posts: ObservableObject{
-    @Published var posts : [Post] = []
-    init(){
-        var temp_post = [
-            Post(title: "안년",content: "안녀아아녀아아녕아녀아녀아녀아녀아녀아녀아녕",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-            Post(title: "히히히힣",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-            Post(title: "테스트테스트테스트",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-            Post(title: "나는 테스트테스트",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-            Post(title: "테스트할거야아",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date()),
-            Post(title: "우하하하",content: "하하하하하하하하ㅏ하하하하하ㅏ하하하하하ㅏ하하하",img:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",comment:CommentSamples,createBy: "dahyun",createAt:Date())]
-        
-        self.posts = temp_post
+    @Published var title : String
+    @Published var content: String
+    @Published var img: String
+    @Published var comment : [Comment] = []
+    @Published var createdBy: String
+    @Published var createdByImg : String
+    @Published var createdAt: Date
+    init(title: String,content:String, img:String, comment: [Comment], createdBy:String,createdByImg:String,createdAt:Date){
+        self.title = title;
+        self.content = content;
+        self.img = img;
+        self.comment = comment;
+        self.createdBy = createdBy;
+        self.createdByImg = createdByImg;
+        self.createdAt = createdAt
+    }
+    init(title: String,content:String, img:String, createdBy:String,createdByImg:String,createdAt:Date){
+        self.title = title;
+        self.content = content;
+        self.img = img;
+        self.createdBy = createdBy;
+        self.createdByImg = createdByImg;
+        self.createdAt = createdAt
     }
 }

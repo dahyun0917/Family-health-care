@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SnsPostRow: View {
-    @State var post : Post
+    @ObservedObject var post : Post
+    var user:User
     var body: some View {
         VStack{
-            SnsUserProfile(createdBy: "\(post.createBy)", createdAt: post.createAt)
+            SnsUserProfile(createdBy: "\(post.createdBy)", createdAt: post.createdAt,createdByImg: post.createdByImg)
             postContent
         }
-        .frame(height: 400)
+//        .padding(30)
         .background(Color.primary.colorInvert())
 //        .background(Color.mainGrey)
         .cornerRadius(15)
@@ -23,16 +25,25 @@ struct SnsPostRow: View {
         .shadow(color: .mainBeige, radius: 1, x: 2, y: 2)
         .padding(25)
     }
+    
 }
 private extension SnsPostRow{
     var postContent: some View {
         VStack(alignment: .leading){
-            Image("postPicTest")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 300, height: 150,alignment: .center)
-                .padding([.bottom, .trailing],10)
-                .padding(.leading,20)
+            if (post.img != ""){
+                KFImage(URL(string: post.img)!)
+                    .placeholder { //플레이스 홀더 설정
+                        //                                  Image(systemName: "person")
+                    }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                    .onFailure { e in //실패
+                          print("failure_SnsPostRow: \(e)")
+                    }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 150,alignment: .center)
+                    .padding([.bottom, .trailing],10)
+                    .padding(.leading,20)
+            }
                 
             Text(post.title)
                 .font(.headline)
@@ -59,13 +70,13 @@ private extension SnsPostRow{
     }
 }
 
-struct SnsPostRow_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ForEach(PostSamples) {
-                SnsPostRow(post:$0)
-            }
-        }
-        
-    }
-}
+//struct SnsPostRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ForEach(PostSamples) {
+//                SnsPostRow(post:$0)
+//            }
+//        }
+//        
+//    }
+//}
