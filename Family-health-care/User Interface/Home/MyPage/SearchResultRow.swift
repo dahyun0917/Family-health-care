@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SearchResultRow: View {
     let medicine: Medicine
     var body: some View {
-        HStack{
-            Image(medicine.medicineImage)
+        HStack(alignment: .top) {
+            KFImage(URL(string: medicine.medicineImage))
+                .placeholder { //플레이스 홀더 설정
+                    Image(systemName: "pill.circle").foregroundColor(Color.mainBlue)
+                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                .onFailure { e in //실패
+                    print("failure_MyPage_SearchView: \(e)")
+                }
                 .resizable()
-                .scaledToFill()
-                .frame(width: 100, height: 100)
-                .clipped()
+                .scaledToFit()
+                .frame(width: 75, height: 75)
+                .padding(.leading, 0)
                 .overlay(
                     RoundedRectangle(cornerRadius: 0)
                         .stroke(Color.lightGray, lineWidth: 2))
@@ -25,16 +32,14 @@ struct SearchResultRow: View {
                     .font(.headline)
                     .fontWeight(.medium)
                     .padding(.bottom, 6)
-                Text(medicine.Efficiency)
-                    .font(.footnote)
-                    .foregroundColor(Color.mediumGray)
-            }
+                ScrollView {
+                    Text(medicine.Efficiency)
+                        .font(.footnote)
+                        .foregroundColor(Color.mediumGray)
+                }
+            }.frame(width: 240, height:80)
         }
-        .frame(maxWidth:348,maxHeight:130)
-        .background().cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.lightGray, lineWidth: 2))
+        .frame(width:348,height:100)
     }
 }
 

@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct MyPageEditMedicineStateView: View {
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var userLoader : UserLoader
     let medicine: Medicine
     let rows: [GridItem] = [GridItem(.flexible())]
-    @State var timeList:[timeItem] = [timeItem(time:Date())]
-    @State var weekList:[weekItem] = [weekItem(check: true, day: "월"), weekItem(check: true, day: "화"), weekItem(check: true, day: "수"), weekItem(check: true, day: "목"), weekItem(check: true, day: "금"), weekItem(check: false, day: "토"), weekItem(check: false, day: "일")]
+    @State var timeList:[Date]
+    @Binding var isChosen: Bool
     
     var body: some View {
         VStack {
             HStack {
                 Spacer()
-                Text("취소").foregroundColor(Color.mediumGray).padding(.trailing, 10)
+                Button (action: {dismiss()})
+                {
+                    Text("취소").foregroundColor(Color.mediumGray).padding(.trailing, 10)
+                }
                 Text("삭제").foregroundColor(.red).padding(.trailing, 40)
             }
             Spacer().frame(height: 20)
@@ -47,7 +52,7 @@ struct MyPageEditMedicineStateView: View {
                             .padding([.leading, .bottom])
                         Spacer()
                         Button {
-                            self.timeList.append(timeItem(time: Date()))
+                            self.timeList.append(Date())
                         } label: {
                             Text("시간 추가")
                                 .padding(.trailing)
@@ -56,9 +61,9 @@ struct MyPageEditMedicineStateView: View {
                         }
                     }
                     List{
-                        ForEach($timeList) { item in
+                        ForEach($timeList, id: \.self) { item in
                             HStack{
-                                DatePicker("", selection: item.time, displayedComponents: [.hourAndMinute])
+                                DatePicker("", selection: item, displayedComponents: [.hourAndMinute])
                                     .labelsHidden()
                                     .padding(.leading)
                                 Spacer()
@@ -73,51 +78,21 @@ struct MyPageEditMedicineStateView: View {
             VStack {
                 Spacer()
                     .frame(height: 30)
-                VStack {
-                    HStack {
-                        Text("🗓 요일을 선택해 주세요")
-                            .font(.headline)
-                            .padding([.leading, .bottom])
-                        Spacer()
-                    }
-                    HStack {
-                        LazyHGrid(rows:rows) {
-                            ForEach(0..<weekList.count, id: \.self) { index in
-                                Button {
-                                    weekList[index].check = !weekList[index].check
-                                } label: {
-                                    ZStack {
-                                        if weekList[index].check {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color.mainBlue)
-                                                .frame(width: 40, height: 40)
-                                            Text(weekList[index].day)
-                                                .foregroundColor(Color.mainWhite)
-                                            
-                                        } else {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.mainBlue, lineWidth: 2)
-                                                .frame(width: 40, height: 40)
-                                            Text(weekList[index].day)
-                                                .foregroundColor(Color.mainBlue)
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
             Spacer()
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color.mainBlue)
-                    .frame(height: 60)
-                Text("설정 완료")
-                    .foregroundColor(Color.mainWhite)
+            Button {
+                isChosen = true
+                dismiss()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color.mainBlue)
+                        .frame(height: 60)
+                    Text("설정 완료")
+                        .foregroundColor(Color.mainWhite)
+                }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     func removeRows(at offsets: IndexSet) {
         timeList.remove(atOffsets: offsets)
@@ -176,14 +151,3 @@ struct timeItem: Identifiable {
     var time: Date
 }
 
-struct weekItem: Identifiable {
-    var id = UUID()
-    var check: Bool
-    var day: String
-}
-
-struct MyPageEditMedicineStateView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageEditMedicineStateView(medicine: medicineSamples[0])
-    }
-}
