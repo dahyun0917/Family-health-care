@@ -142,7 +142,7 @@ private extension SnsPostDetailView {
                     }
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 300, height: 150,alignment: .center)
+//                    .frame(width: 300, height: 150,alignment: .center)
                     .padding([.bottom, .trailing],10)
                     .padding(.leading,20)
             }
