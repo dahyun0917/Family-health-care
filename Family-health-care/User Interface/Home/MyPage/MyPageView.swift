@@ -15,19 +15,24 @@ struct MyPageView: View {
     
     var body: some View {
         ZStack{
-            Color.mainGrey.edgesIgnoringSafeArea(.all)
+            
             NavigationView{
                 GeometryReader {  parent_proxy in
                     let parentWidth = parent_proxy.size.width
                     let parentHeight = parent_proxy.size.height
-                    VStack{
-                        if let user = userLoader.user{
-                            Promise2View(promise: user.promise).environmentObject(userLoader)
-                            HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
-                            WalkView().environmentObject(userLoader)
-                            MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
+                    ZStack {
+                        Color.mainGrey.edgesIgnoringSafeArea(.all)
+                        ScrollView {
+                            VStack{
+                                if let user = userLoader.user{
+                                    Promise2View(promise: user.promise).environmentObject(userLoader)
+                                    HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
+                                    WalkView().environmentObject(userLoader)
+                                    MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
+                                }
+                            }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
                         }
-                    }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+                    }
                 }
             }
         }
@@ -179,7 +184,10 @@ struct WalkView: View  {
             Text("오늘").foregroundColor(Color.darkBlue)
             Text("\(stepCount)").font(.system(size:30,weight:.bold)).foregroundColor(Color.mainBlue).onAppear(perform: {
                 startUpdatingStepCount()
-            })
+            }).onDisappear {
+                timer?.invalidate()
+                timer = nil
+            }
             Text("걸음 걸으셨네요!").foregroundColor(Color.darkBlue)
             Image(systemName:"figure.run").foregroundColor(Color.darkBlue)
         }.frame(width:348,height:70)
@@ -187,7 +195,6 @@ struct WalkView: View  {
     }
     func startUpdatingStepCount() {
         guard CMPedometer.isStepCountingAvailable() else {
-            print("걸음수 추적이 지원되지 않습니다.")
             return
         }
         

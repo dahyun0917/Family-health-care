@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MyPageEditMedicineStateView: View {
     @Environment(\.dismiss) private var dismiss
@@ -98,7 +99,6 @@ struct MyPageEditMedicineStateView: View {
                 for i in 0..<timeList.count {
                     stringTimeList.append(formatter.string(from: timeList[i]))
                 }
-                print(stringTimeList)
                 if let user=userLoader.user {
                     user.uploadMedicineState(dataMedicine: medicine, dataTimeList:stringTimeList, dataCompleteList: completeList)
                 }
@@ -128,11 +128,16 @@ struct medicineSettingView : View {
     let medicine: Medicine
     var body: some View {
         HStack {
-            Image(medicine.medicineImage)
+            KFImage(URL(string: medicine.medicineImage))
+                .placeholder { //플레이스 홀더 설정
+                    Image(systemName: "pill.circle").foregroundColor(Color.mainBlue)
+                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                .onFailure { e in //실패
+                    print("failure_MyPage_SearchView: \(e)")
+                }
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(width: 100, height: 100)
-                .clipped()
                 .overlay(
                     RoundedRectangle(cornerRadius: 0)
                         .stroke(Color.lightGray, lineWidth: 2))
