@@ -85,6 +85,10 @@
 		93D8FDC62A0F88A10016675C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC52A0F88A10016675C /* ChatView.swift */; };
 		93D8FDC82A0F88FA0016675C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8FDC72A0F88FA0016675C /* Message.swift */; };
 		F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */; };
+		F2934DAA2A3DA15100288535 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DA92A3DA15100288535 /* URLImage */; };
+		F2934DAC2A3DA15100288535 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DAB2A3DA15100288535 /* URLImageStore */; };
+		F2934DAF2A3DA3D000288535 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DAE2A3DA3D000288535 /* Kingfisher */; };
+		F2934DB12A3E95C600288535 /* MedicineState2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2934DB02A3E95C600288535 /* MedicineState2.swift */; };
 		F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8951E77F2A07B6A000988049 /* GoogleService-Info.plist */; };
 		F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578772A1376A500A0E93B /* MedicineStateRow.swift */; };
 		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
@@ -147,6 +151,7 @@
 		93D8FDC52A0F88A10016675C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		93D8FDC72A0F88FA0016675C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditMedicineStateView.swift; sourceTree = "<group>"; };
+		F2934DB02A3E95C600288535 /* MedicineState2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState2.swift; sourceTree = "<group>"; };
 		F2E578772A1376A500A0E93B /* MedicineStateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineStateRow.swift; sourceTree = "<group>"; };
 		F2E578792A1376EE00A0E93B /* MedicineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState.swift; sourceTree = "<group>"; };
 		F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
@@ -171,11 +176,13 @@
 				935FFBDA2A067A01007B0E70 /* FirebaseFirestoreSwift in Frameworks */,
 				935FFBC62A067A01007B0E70 /* FirebaseAppCheck in Frameworks */,
 				936B84F62A2032840042EE3F /* SwiftyGif in Frameworks */,
+				F2934DAC2A3DA15100288535 /* URLImageStore in Frameworks */,
 				935FFBC42A067A01007B0E70 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				935FFBCA2A067A01007B0E70 /* FirebaseAuth in Frameworks */,
 				935FFBCE2A067A01007B0E70 /* FirebaseCrashlytics in Frameworks */,
 				935FFBEE2A067A01007B0E70 /* FirebaseRemoteConfigSwift in Frameworks */,
 				935FFBE02A067A01007B0E70 /* FirebaseInAppMessaging-Beta in Frameworks */,
+				F2934DAA2A3DA15100288535 /* URLImage in Frameworks */,
 				935FFBD22A067A01007B0E70 /* FirebaseDatabaseSwift in Frameworks */,
 				935FFBDC2A067A01007B0E70 /* FirebaseFunctions in Frameworks */,
 				935FFBF22A067A01007B0E70 /* FirebaseStorageCombine-Community in Frameworks */,
@@ -183,6 +190,7 @@
 				935FFBC82A067A01007B0E70 /* FirebaseAppDistribution-Beta in Frameworks */,
 				935FFBCC2A067A01007B0E70 /* FirebaseAuthCombine-Community in Frameworks */,
 				935FFBEA2A067A01007B0E70 /* FirebasePerformance in Frameworks */,
+				F2934DAF2A3DA3D000288535 /* Kingfisher in Frameworks */,
 				935FFBE22A067A01007B0E70 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				935FFBF02A067A01007B0E70 /* FirebaseStorage in Frameworks */,
 				935FFBD42A067A01007B0E70 /* FirebaseDynamicLinks in Frameworks */,
@@ -391,6 +399,7 @@
 				898A2C582A1CD72400F6C917 /* Comment.swift */,
 				87968D1F2A1E2D5A007DB8AF /* User.swift */,
 				87B200892A1E3DBD00AADFCD /* Family.swift */,
+				F2934DB02A3E95C600288535 /* MedicineState2.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,6 +449,9 @@
 				935FFBEF2A067A01007B0E70 /* FirebaseStorage */,
 				935FFBF12A067A01007B0E70 /* FirebaseStorageCombine-Community */,
 				936B84F52A2032840042EE3F /* SwiftyGif */,
+				F2934DA92A3DA15100288535 /* URLImage */,
+				F2934DAB2A3DA15100288535 /* URLImageStore */,
+				F2934DAE2A3DA3D000288535 /* Kingfisher */,
 			);
 			productName = "Family-health-care";
 			productType = "com.apple.product-type.application";
@@ -471,6 +483,8 @@
 			packageReferences = (
 				935FFBBC2A067A01007B0E70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				F2934DA82A3DA15100288535 /* XCRemoteSwiftPackageReference "url-image" */,
+				F2934DAD2A3DA3D000288535 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 89178BF12A026B000046C907 /* Products */;
 			projectDirPath = "";
@@ -545,6 +559,7 @@
 				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
 				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
 				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
+				F2934DB12A3E95C600288535 /* MedicineState2.swift in Sources */,
 				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
 				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
@@ -778,6 +793,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		F2934DA82A3DA15100288535 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		F2934DAD2A3DA3D000288535 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -920,6 +951,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 936B84F42A2032840042EE3F /* XCRemoteSwiftPackageReference "SwiftyGif" */;
 			productName = SwiftyGif;
+		};
+		F2934DA92A3DA15100288535 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2934DA82A3DA15100288535 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		F2934DAB2A3DA15100288535 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2934DA82A3DA15100288535 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+		F2934DAE2A3DA3D000288535 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2934DAD2A3DA3D000288535 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

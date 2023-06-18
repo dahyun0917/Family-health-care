@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Medicine{
+struct Medicine: Hashable{
     let id : UUID = UUID()
     let medicineName : String
     let Company : String
@@ -41,5 +41,14 @@ struct MedicationsForPain {
 //}
 //
 let medicineSamples = [
-    Medicine(medicineName: "글루패스트", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
+    Medicine(medicineName: "글루패스트", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "postPicTest"),
+    Medicine(medicineName: "글루패스트1", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "postPicTest"),
+    Medicine(medicineName: "글루패스트2", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "postPicTest"),
+    Medicine(medicineName: "글루패스트3", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
+    Medicine(medicineName: "글루패스트4", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
+    Medicine(medicineName: "글루패스트5", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
+    Medicine(medicineName: "글루패스트6", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
+    Medicine(medicineName: "글루패스트7", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "postPicTest"),
+    Medicine(medicineName: "글루패스", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "postPicTest"),
+    Medicine(medicineName: "헬로우", Company: "postPicTest", Efficiency: "이 약은 제2형 당뇨병 환자의 혈당조절을 향상시키기위해 식사요법 및 운동요법의 보조제로 투여한다.", useMethod: "test", Warning: "test", Instruction: "test", depositMethod: "test", medicineImage: "test"),
 ]
