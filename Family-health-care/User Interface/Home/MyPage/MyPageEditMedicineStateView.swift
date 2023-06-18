@@ -10,9 +10,11 @@ import SwiftUI
 struct MyPageEditMedicineStateView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var userLoader : UserLoader
+    @EnvironmentObject private var medicines : Medicines
     let medicine: Medicine
     let rows: [GridItem] = [GridItem(.flexible())]
     @State var timeList:[Date]
+    @State var completeList:[Bool]
     @Binding var isChosen: Bool
     
     var body: some View {
@@ -53,6 +55,7 @@ struct MyPageEditMedicineStateView: View {
                         Spacer()
                         Button {
                             self.timeList.append(Date())
+                            self.completeList.append(false)
                         } label: {
                             Text("시간 추가")
                                 .padding(.trailing)
@@ -61,11 +64,18 @@ struct MyPageEditMedicineStateView: View {
                         }
                     }
                     List{
-                        ForEach($timeList, id: \.self) { item in
+                        ForEach(timeList.indices, id: \.self) { index in
+                            let itemBinding = Binding<Date>(
+                                        get: { timeList[index] },
+                                        set: { timeList[index] = $0 }
+                                    )
                             HStack{
-                                DatePicker("", selection: item, displayedComponents: [.hourAndMinute])
+                                DatePicker("", selection: itemBinding, displayedComponents: [.hourAndMinute])
                                     .labelsHidden()
                                     .padding(.leading)
+                                    .onChange(of: itemBinding.wrappedValue) { _ in
+                                        completeList[index] = false
+                                    }
                                 Spacer()
                             }
                         }.onDelete(perform: removeRows)
@@ -82,6 +92,16 @@ struct MyPageEditMedicineStateView: View {
             Spacer()
             Button {
                 isChosen = true
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                var stringTimeList:[String] = []
+                for i in 0..<timeList.count {
+                    stringTimeList.append(formatter.string(from: timeList[i]))
+                }
+                print(stringTimeList)
+                if let user=userLoader.user {
+                    user.uploadMedicineState(dataMedicine: medicine, dataTimeList:stringTimeList, dataCompleteList: completeList)
+                }
                 dismiss()
             } label: {
                 ZStack {
@@ -92,7 +112,12 @@ struct MyPageEditMedicineStateView: View {
                         .foregroundColor(Color.mainWhite)
                 }
             }
-        }.navigationBarBackButtonHidden(true)
+        }.onAppear {
+            if isChosen {
+                dismiss()
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
     func removeRows(at offsets: IndexSet) {
         timeList.remove(atOffsets: offsets)

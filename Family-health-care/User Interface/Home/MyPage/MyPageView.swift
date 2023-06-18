@@ -16,17 +16,19 @@ struct MyPageView: View {
     var body: some View {
         ZStack{
             Color.mainGrey.edgesIgnoringSafeArea(.all)
-            GeometryReader {  parent_proxy in
-                let parentWidth = parent_proxy.size.width
-                let parentHeight = parent_proxy.size.height
-                VStack{
-                    if let user = userLoader.user{
-                        Promise2View(promise: user.promise).environmentObject(userLoader)
-                        HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
-                        WalkView().environmentObject(userLoader)
-                        MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
-                    }
-                }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+            NavigationView{
+                GeometryReader {  parent_proxy in
+                    let parentWidth = parent_proxy.size.width
+                    let parentHeight = parent_proxy.size.height
+                    VStack{
+                        if let user = userLoader.user{
+                            Promise2View(promise: user.promise).environmentObject(userLoader)
+                            HeightWeightView(height: user.height, weight: user.weight).environmentObject(userLoader)
+                            WalkView().environmentObject(userLoader)
+                            MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
+                        }
+                    }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+                }
             }
         }
     }
@@ -206,7 +208,9 @@ struct WalkView: View  {
             self.updateStepCount()
             if var user = userLoader.user {
                 user.walk = stepCount
-                user.uploadWalk(data: stepCount)
+                if user.walk != stepCount {
+                    user.uploadWalk(data: stepCount)
+                }
             }
         }
     }
@@ -252,19 +256,19 @@ struct MedicineStateView: View {
                     }.frame(alignment: .top).padding([.top, .horizontal])
                 }.onAppear() {
                     for medicineState in medicineStateList {
-                        if medicineStateDictionary[medicineState.time]==nil {
-                            medicineStateDictionary[medicineState.time] = []
+                            if medicineStateDictionary[medicineState.time]==nil {
+                                medicineStateDictionary[medicineState.time] = []
+                            }
+                            medicineStateDictionary[medicineState.time]?.append(medicineState)
                         }
-                        medicineStateDictionary[medicineState.time]?.append(medicineState)
-                    }
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
                     
                     sortedTimes = medicineStateDictionary.keys.sorted { (time1, time2) -> Bool in
-                        if let date1 = dateFormatter.date(from: time1), let date2 = dateFormatter.date(from: time2) {
-                            return date1 < date2
-                        }
-                        return false
+                            if let date1 = dateFormatter.date(from: time1), let date2 = dateFormatter.date(from: time2) {
+                                return date1 < date2
+                            }
+                            return false
                     }
                 }
                 LazyVGrid(columns: [GridItem(.flexible())], spacing: 20) {
