@@ -52,8 +52,8 @@ struct SnsPostDetailView: View {
                             "createdByImg" : post.comment.last!.createdByImg,
                             "createdAt" : post.comment.last!.createdAt
                         ]
-                        if (post.comment.count == 1){family.setCommentData(comment:comment_temp,first: true,post:post)}
-                        else {family.setCommentData(comment:comment_temp,first: false,post:post)}
+                        if (post.comment.count == 1){family.setCommentData(comment:comment_temp,post:post)}
+                        else {family.setCommentData(comment:comment_temp,post:post)}
                     
                     }
                     .foregroundColor(.white)
@@ -241,7 +241,8 @@ struct commentView : View {
                                             }
                                         }
 //                                        dismiss()
-                                    }), secondaryButton: .cancel(Text("취소"))
+//                                    }), secondaryButton: .cancel(Text("취소"))
+                                    }), secondaryButton: .default(Text("취소"),action: {})
                                 )
                             }
                     }

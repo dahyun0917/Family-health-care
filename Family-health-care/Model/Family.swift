@@ -187,7 +187,7 @@ final class Family: ObservableObject{
     
     
     
-    func setCommentData (comment:[String:Any],first:Bool,post:Post) {
+    func setCommentData (comment:[String:Any],post:Post) {
         db.collection(self.postToken).getDocuments() { (querySnapshot,err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -198,8 +198,7 @@ final class Family: ObservableObject{
                     let createdAt = info["createdAt"] as? Timestamp ?? Timestamp()
                     if (createdAt.dateValue() == post.createdAt && createdBy == post.createdBy) {
                         self.commentToken = self.postToken+"/"+document.documentID+"/Comments"
-                        
-                        if (first && self.commentToken != "" ){
+                        if (self.commentToken != "" ){
                             let newRef = self.db.collection(self.commentToken).document()
                             newRef.setData(comment){ err in
                                 if let err = err {
