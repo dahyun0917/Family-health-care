@@ -15,6 +15,8 @@ final class User: ObservableObject {
     @Published var image: String = ""
     @Published var promise: [Promise] = []
     @Published var medicineState: [MedicineState] = []
+    @Published var medicineStateTimeDict: [String:[MedicineState]] = [:]
+    @Published var medicineStateNameDict: [String:[MedicineState2]] = [:]
     @Published var height: Int = 0
     @Published var weight: Int = 0
     @Published var family: String = ""
@@ -102,10 +104,25 @@ final class User: ObservableObject {
             }
             for document in querySnapshot.documents{
                 let medicineName = document.data()["medicineName"] as? String ?? ""
-                let complete = document.data()["complete"] as? Bool ?? false
-                let time = document.data()["time"] as? String ?? ""
+                let completeList = document.data()["complete"] as? [Bool] ?? []
+                let timeList = document.data()["time"] as? [String] ?? []
                 
-                self.medicineState.append(MedicineState(medicineName: medicineName, time: time, isComplete: complete))
+                for i in 0..<timeList.count {
+                    if medicineName == "" || timeList.count == 0 || completeList.count == 0 {
+                        continue
+                    }
+                    var newItem = MedicineState(medicineName: medicineName, time: timeList[i], isComplete: completeList[i])
+                    self.medicineState.append(newItem)
+                    if self.medicineStateNameDict[medicineName] == nil {
+                        self.medicineStateNameDict[medicineName] = []
+                    }
+                    self.medicineStateNameDict[timeList[i]]?.append(MedicineState2(medicineName: medicineName, timeList: timeList, isComplete: completeList))
+                    if self.medicineStateTimeDict[timeList[i]] == nil {
+                        self.medicineStateTimeDict[timeList[i]] = []
+                    }
+                    self.medicineStateTimeDict[timeList[i]]?.append(newItem)
+                    
+                }
             }
             completion()
         }
@@ -174,6 +191,23 @@ final class User: ObservableObject {
                 self.promise.append(data)
                 if self.promise.count > 0 {
                     self.promise[self.promise.count-1].promiseID = ref!.documentID
+                }
+            }
+        }
+    }
+    
+    func uploadMedicineState(dataMedicine: Medicine, dataTimeList: [String], dataCompleteList: [Bool]) {
+        let db = Firestore.firestore()
+        db.collection("users").document(token).collection("medicines").document(dataMedicine.medicineName).updateData([
+            "time": dataTimeList,
+            "complete": dataCompleteList
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                self.medicineState.removeAll { $0.medicineName == dataMedicine.medicineName }
+                for i in 0..<dataTimeList.count {
+                    self.medicineState.append(MedicineState(medicineName: dataMedicine.medicineName, time: dataTimeList[i], isComplete: dataCompleteList[i]))
                 }
             }
         }

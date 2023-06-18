@@ -85,6 +85,7 @@
 		F2934DAA2A3DA15100288535 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DA92A3DA15100288535 /* URLImage */; };
 		F2934DAC2A3DA15100288535 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DAB2A3DA15100288535 /* URLImageStore */; };
 		F2934DAF2A3DA3D000288535 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F2934DAE2A3DA3D000288535 /* Kingfisher */; };
+		F2934DB12A3E95C600288535 /* MedicineState2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2934DB02A3E95C600288535 /* MedicineState2.swift */; };
 		F298DB122A0A87B400D1DB2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8951E77F2A07B6A000988049 /* GoogleService-Info.plist */; };
 		F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578772A1376A500A0E93B /* MedicineStateRow.swift */; };
 		F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E578792A1376EE00A0E93B /* MedicineState.swift */; };
@@ -144,6 +145,7 @@
 		93D8FDC52A0F88A10016675C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		93D8FDC72A0F88FA0016675C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F20317EB2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditMedicineStateView.swift; sourceTree = "<group>"; };
+		F2934DB02A3E95C600288535 /* MedicineState2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState2.swift; sourceTree = "<group>"; };
 		F2E578772A1376A500A0E93B /* MedicineStateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineStateRow.swift; sourceTree = "<group>"; };
 		F2E578792A1376EE00A0E93B /* MedicineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineState.swift; sourceTree = "<group>"; };
 		F2E5787D2A137DB100A0E93B /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				898A2C582A1CD72400F6C917 /* Comment.swift */,
 				87968D1F2A1E2D5A007DB8AF /* User.swift */,
 				87B200892A1E3DBD00AADFCD /* Family.swift */,
+				F2934DB02A3E95C600288535 /* MedicineState2.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				93D8FDC82A0F88FA0016675C /* Message.swift in Sources */,
 				F20317EC2A1CB38300ADE420 /* MyPageEditMedicineStateView.swift in Sources */,
 				F2E578782A1376A500A0E93B /* MedicineStateRow.swift in Sources */,
+				F2934DB12A3E95C600288535 /* MedicineState2.swift in Sources */,
 				F2E5787A2A1376EE00A0E93B /* MedicineState.swift in Sources */,
 				F2E5787E2A137DB100A0E93B /* SearchResultRow.swift in Sources */,
 				F2E578802A1394CF00A0E93B /* Promise.swift in Sources */,
