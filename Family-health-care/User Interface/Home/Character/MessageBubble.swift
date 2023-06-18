@@ -30,6 +30,7 @@ struct MessageBubble: View {
 }
 
 struct AnswerButton:View{
+    @EnvironmentObject private var userLoader : UserLoader
     @EnvironmentObject private var chat : Chats
     @Binding var medicinePresent: Bool
     @Binding var medicineName: String
@@ -46,26 +47,12 @@ struct AnswerButton:View{
             HStack{
                 Spacer()
                 ForEach(Array(message.answers.keys).sorted(), id:\.self){ key in
-//                    Button(action:{
-//                        print("\(value)")
-//                        if message.needAnswer{
-//                            chat.respondToBot(target: message, response: value)
-//                        }
-//                        if message.type == 1{
-//                            medicinePresent = true
-//                            medicineName = value
-//                            print("\(medicinePresent)")
-//                        }
-//
-//                    }){
-//                        Text("\(value)")
-//                    }
                     let value = message.answers[key] ?? ""
                     Button(action: {
-                            respondToBot(type: message.type, target: message, value: value)
-                        }) {
-                            Text("\(message.type == 1 ? String(key) : value)")
-                        }
+                        respondToBot(type: message.type, target: message, value: value)
+                    }) {
+                        Text("\(message.type == 1 ? String(key) : value)")
+                    }
                     .foregroundColor(Color.black)
                     .padding(10)
                     .background(Color.mainLightBeige)
@@ -86,6 +73,20 @@ struct AnswerButton:View{
         }
         if message.needAnswer{
             chat.respondToBot(target: target, response: value)
+            if value == "먹었어"{
+                if let user = userLoader.user {
+                    
+                    user.medicineState = user.medicineState.map { ms in
+                            if ms.meal == 1 {
+                                return MedicineState(medicineName: ms.medicineName, time: ms.time, isComplete: true)
+                            } else {
+                                return ms
+                            }
+                        }
+                    
+//                    chat.sendToUser(message: "Good Job", answers: [], type: 0)
+                }
+            }
         }
     }
 }
@@ -98,19 +99,5 @@ struct DashedLine: Shape {
         path.move(to: startPoint)
         path.addLine(to: endPoint)
         return path
-    }
-}
-
-
-struct MessageBubble_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            ForEach(Chats(token: "admin").allMessages, id:\.id){
-
-                MessageBubble(message:$0)
-
-
-            }
-        }
     }
 }

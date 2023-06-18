@@ -124,6 +124,7 @@ struct Home: View {
             }
         }.fullScreenCover(isPresented: $flag){
             logInView().environmentObject(UserLoader(token:id))
+                .environmentObject(Chats(token: id))
         }
         
         

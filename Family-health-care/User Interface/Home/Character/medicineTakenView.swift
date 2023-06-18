@@ -53,9 +53,3 @@ private extension medicineTakenView{
         return grouped
     }
 }
-
-//struct medicineTakenView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        medicineTakenView()
-//    }
-//}

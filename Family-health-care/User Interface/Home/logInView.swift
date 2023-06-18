@@ -18,7 +18,6 @@ struct logInView: View {
                 navView()
                     .environmentObject(Family(user:user))
                     .environmentObject(userLoader)
-                    .environmentObject(Chats(token: user.userId))
                     .environmentObject(MedicationsForPainOfParts())
                     .environmentObject(Medicines())
                     .environmentObject(Posts())
