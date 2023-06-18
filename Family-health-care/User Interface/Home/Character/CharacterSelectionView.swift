@@ -13,7 +13,7 @@ struct CharacterSelectionView: View {
         VStack{
             HStack{
                 CharacterMenu(gifName:$gifName,imageName: "man")
-                CharacterMenu(gifName:$gifName,imageName: "ccc")
+                CharacterMenu(gifName:$gifName,imageName: "gom")
             }
             HStack{
                 CharacterMenu(gifName:$gifName,imageName: "green")
