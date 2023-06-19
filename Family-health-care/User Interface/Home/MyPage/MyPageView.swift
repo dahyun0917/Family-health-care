@@ -15,11 +15,10 @@ struct MyPageView: View {
     
     var body: some View {
         ZStack{
-            
-            NavigationView{
-                GeometryReader {  parent_proxy in
-                    let parentWidth = parent_proxy.size.width
-                    let parentHeight = parent_proxy.size.height
+            GeometryReader {  parent_proxy in
+                let parentWidth = parent_proxy.size.width
+                let parentHeight = parent_proxy.size.height
+                NavigationView{
                     ZStack {
                         Color.mainGrey.edgesIgnoringSafeArea(.all)
                         ScrollView {
@@ -31,6 +30,7 @@ struct MyPageView: View {
                                     MedicineStateView(medicineStateList: user.medicineState).environmentObject(userLoader).environmentObject(medicines)
                                 }
                             }.frame(width:parentWidth*0.9).position(x:parentWidth/2, y:parentHeight/2)
+                                .padding(.top, 30)
                         }
                     }
                 }
