@@ -16,16 +16,21 @@ struct FamilyPageView: View {
                 GeometryReader{ geometry in
                     ScrollView(showsIndicators:false){
                         VStack{
-//                            ForEach(fam.users.indices){index in
-//                                let user = fam.users[index]
-//                                NavigationLink(destination: MyPageView().accentColor(.black)){
-//                                    FamilyMemberView(
-//                                        borderColor: index % 2 == 0 ? Color.mainBeige : Color.mainBlue,
-//                                        innerColor: index % 2 == 0 ? Color.mainLightBeige : Color.mainGrey)
-//                                    .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
-//                                    .environmentObject(user)
-//                                }
-//                            }.buttonStyle(PlainButtonStyle())
+                            ForEach(0..<fam.users.count){index in
+                                let use = fam.users[Int(index)]
+                                NavigationLink(destination: MyPageView().environmentObject(UserLoader(token: use.userId))
+                                    .accentColor(.black)
+                                    ){
+                                    FamilyMemberView(
+                                        user: use,
+                                        borderColor: index % 2 == 0 ? Color.mainBeige : Color.mainBlue,
+                                        innerColor: index % 2 == 0 ? Color.mainLightBeige : Color.mainGrey)
+                                        
+                                    
+                                    .frame(width:geometry.size.width*0.9,height:geometry.size.width*0.45)
+                                    
+                                }
+                            }.buttonStyle(PlainButtonStyle())
                         }.padding(.leading,20)
                     }
                 }
@@ -41,11 +46,11 @@ struct FamilyPageView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .frame(width:50,height:50)
-                .position(x:350,y:680)
+                .position(x:350,y:580)
                 .sheet(isPresented: $isPresented){
                     FamilyPromiseView()}
             }
-            .navigationTitle("지원이네")
+            .navigationTitle("\(fam.users.first!.userName)이네")
             
                 
         }
