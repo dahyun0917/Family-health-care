@@ -12,6 +12,12 @@ struct Promise:Hashable{
     var promiseDetail: String
     var promiseDate: Date
     var isCompleted: Bool
+    
+    func dateFormatted() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from:promiseDate)
+    }
 }
 
 //let promiseSamples = [

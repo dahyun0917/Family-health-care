@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FamilyMemberView: View {
-    @EnvironmentObject private var user : User
+    @State var user : User
     @State private var isPopup = false
     var borderColor : Color, innerColor : Color
     @State private var pillName : String = "nil"
@@ -37,7 +37,7 @@ struct FamilyMemberView: View {
                         VStack{
                             GeometryReader{ inGeo in
                                 VStack{
-                                    PromiseView(text:user.promise.first!.promiseDetail,date:"2023.04.15",color: innerColor,user:user)
+                                    PromiseView(text:user.promise.first!.promiseDetail,date:user.promise.first!.dateFormatted(),color: innerColor,user:user)
                                         .cornerRadius(20)
                                         .frame(width: inGeo.size.width, height:inGeo.size.height*0.8)
                                     HStack{
