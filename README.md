@@ -63,5 +63,5 @@
 <img width="700" alt="스크린샷 2023-06-19 오후 5 24 19" src="https://github.com/dahyun0917/Family-health-care/assets/75965560/f2463994-c18d-42a7-ba8c-821a49ccd5d9">
 
 ### [관련 링크]
-- 시연영상(유튜브)
+- [시연영상(유튜브)](https://youtu.be/F8BONQojkfc)
 - [피그마](https://www.figma.com/file/tk03UHt4DQof5jHsi9QhNq/%EB%AA%A8%EC%95%B12-ui?type=design&node-id=27%3A7&t=AykTSZ0TOPJJoQ1D-1)
